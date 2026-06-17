@@ -20,6 +20,7 @@ The dashboard has five tabs:
   curve toward target, with CapEx / OpEx / payback and "gap-to-target closed."
 - **Targets & Progress** — actuals vs. internal targets to 2030.
 - **Water Risk** — site withdrawal vs. WWF water stress, with a sortable table.
+- **Site Map** — global markers sized by emissions/water, colored by facility type (offline map).
 
 ## Refresh it each year
 
@@ -48,6 +49,7 @@ To add the new year:
 | `data.json` | Consolidated dataset (source of truth), generated. |
 | `build/build_data.py` | ETL: workbooks → `data.json` → `dashboard.html`. |
 | `build/dashboard_template.html` | App shell (HTML/CSS/JS, custom SVG charts). |
+| `build/worldmap.txt` | Offline world-map SVG path (from `world-atlas`), inlined for the map. |
 | `assets/vantage-logo.jpg` | Official logo, inlined into the dashboard. |
 | `PRODUCT_SPEC.md` | Product specification. |
 | `*.xlsx` | Source inventories (read-only inputs). |
@@ -56,7 +58,8 @@ To add the new year:
 
 - Emissions in **tCO₂e**; water in **megalitres (ML)**; production in **metric tons**.
 - **Scope 2** defaults to **market-based** (toggle to location-based where available).
-- **Scope 3** full-category data exists for **2023–2024** only (Category 1 ≈ 81%).
+- **Scope 3** by category covers **2021–2024** (2021–22 from RouteZero; 2023–24 from the summary
+  workbooks). 2025 Scope 3 isn't inventoried yet. Category 1 ≈ 81%.
 - **Intensity** (per ton) covers **2022–2025** for the 7 manufacturing sites (no 2021
   production data).
 - **2025 water** is converted from inventory gallons → ML; the large drop vs. 2024

@@ -143,6 +143,7 @@ footer{border-top:1px solid var(--bg2);background:#fff;padding:16px 0;color:var(
   <div class="tab" data-t="scenario">Scenario Modeling</div>
   <div class="tab" data-t="targets">Targets &amp; Progress</div>
   <div class="tab" data-t="water">Water Risk</div>
+  <div class="tab" data-t="map">Site Map</div>
 </div></div>
 
 <main class="wrap" id="main"></main>
@@ -155,6 +156,7 @@ footer{border-top:1px solid var(--bg2);background:#fff;padding:16px 0;color:var(
 
 <script>
 const D = window.DASHBOARD_DATA;
+const WORLD_PATH = "__WORLDMAP_PATH__";
 const YEARS = [2021,2022,2023,2024,2025];
 const FUT = [2026,2027,2028,2029,2030];
 const ALLY = YEARS.concat(FUT);
@@ -167,25 +169,29 @@ const $=s=>document.querySelector(s); const $$=s=>[...document.querySelectorAll(
 
 let state={tab:'overview', yMin:2021, yMax:2025, sites:new Set(SITES.map(s=>s.site_id)),
   basis:'market', measure:'abs', showClosed:false, scopes:{s1:true,s2:true,s3:false},
-  scn:{preset:'committed', sel:new Set()}};
+  mapSize:'emissions', scn:{preset:'committed', sel:new Set()}};
+// Scope 2 value for an emissions row, honoring the basis toggle
+const s2of=e=> (state.basis==='location' ? (e.scope2_location ?? e.scope2_market) : e.scope2_market) || 0;
 
 /* ---------- data helpers ---------- */
 function activeSites(){return SITES.filter(s=> (state.showClosed||s.status!=='closed'));}
 function selSiteIds(){return new Set([...state.sites].filter(id=> state.showClosed||byId[id].status!=='closed'));}
 function yrange(){return YEARS.filter(y=>y>=state.yMin&&y<=state.yMax);}
 
-// company emissions by year for selected sites: {scope1, scope2} (market) from site rows
+// emissions by year for the *selected* sites, Scope 2 honoring the basis toggle
 function siteEmsByYear(){
   const sel=selSiteIds(); const out={};
   YEARS.forEach(y=>out[y]={scope1:0,scope2:0});
   D.emissions_by_site.forEach(e=>{ if(sel.has(e.site_id)&&out[e.year]){
-    out[e.year].scope1+=e.scope1||0; out[e.year].scope2+=e.scope2_market||0; }});
+    out[e.year].scope1+=e.scope1||0; out[e.year].scope2+=s2of(e); }});
   return out;
 }
-function companyScope2(y){ // respects basis toggle at company level
-  const c=D.emissions_company[y]||{};
-  if(state.basis==='location'&&c.scope2_location!=null) return c.scope2_location;
-  return c.scope2_market;
+// company-wide totals (all active sites, ignores the site filter) honoring basis — for targets/scenario
+function companyEms(year){
+  let s1=0,s2=0;
+  D.emissions_by_site.forEach(e=>{ if(e.year!==year)return; const st=byId[e.site_id]; if(!st)return;
+    if(st.status==='closed'&&!state.showClosed)return; s1+=e.scope1||0; s2+=s2of(e); });
+  return {s1,s2,total:s1+s2};
 }
 function prodCompany(y){return D.production_company[y]??null;}
 function isAllSites(){return selSiteIds().size===activeSites().length;}
@@ -286,7 +292,7 @@ function deltaHtml(cur,prev,invertGood=true){
 /* ---------- renderers ---------- */
 function renderOverview(){
   const ems=siteEmsByYear(); const yMaxYr=state.yMax;
-  const s12=y=> (ems[y]?.scope1||0)+(state.basis==='location'&&isAllSites()? companyScope2(y): ems[y]?.scope2||0);
+  const s12=y=> (ems[y]?.scope1||0)+(ems[y]?.scope2||0);
   const cur=s12(yMaxYr), prev=s12(yMaxYr-1>=2021?yMaxYr-1:yMaxYr);
   const tgt=(D.targets.ghg_s1s2.find(t=>t.year===yMaxYr)||{}).target;
   const s3=D.emissions_company['2024']?.scope3_total;
@@ -363,7 +369,7 @@ function renderTrends(){
   // top sites
   const sel=selSiteIds();
   const rows=D.emissions_by_site.filter(e=>e.year===state.yMax&&sel.has(e.site_id))
-    .map(e=>({label:byId[e.site_id].name,v:(e.scope1||0)+(e.scope2_market||0)}))
+    .map(e=>({label:byId[e.site_id].name,v:(e.scope1||0)+s2of(e)}))
     .filter(r=>r.v>0).sort((a,b)=>b.v-a.v).slice(0,10).map(r=>({...r,color:col('scope1')}));
   barH($('#topSites'),{rows,unit:'tCO₂e'});
 
@@ -382,7 +388,8 @@ function renderTrends(){
 function renderTargets(){
   const ghg=D.targets.ghg_s1s2, wat=D.targets.water;
   const m=$('#main');
-  const lastA=ghg.filter(t=>t.actual!=null&&t.year<=2025).slice(-1)[0];
+  const actualOf=y=> y<=2025? companyEms(y).total : null;   // honor basis toggle
+  const lastA={year:2025, actual:actualOf(2025)};
   const tgt=ghg[0]?.target;
   m.innerHTML=`
   <div class="grid cards" style="grid-template-columns:repeat(3,1fr)">
@@ -391,14 +398,14 @@ function renderTargets(){
     <div class="card kpi"><div class="label">Gap to target</div><div class="val">${fmt(lastA.actual-tgt)}</div><div class="unit">tCO₂e ${lastA.actual<=tgt?'below ✓':'to close'}</div></div>
   </div>
   <div class="panel" style="margin-top:16px"><h3>Scope 1 + 2 — actual vs. internal target to 2030</h3>
-    <div class="desc">Baseline year 2021 · actuals 2021–2025 · target flat at ${fmtK(tgt)} tCO₂e</div>
+    <div class="desc">Baseline year 2021 · actuals 2021–2025 (${state.basis}-based) · target flat at ${fmtK(tgt)} tCO₂e</div>
     <div id="tgGhg"></div>${legend([{c:col('scope1'),t:'Actual (S1+2)'},{c:col('target'),t:'Internal target'}])}</div>
   <div class="panel"><h3>Water — actual vs. 25% &amp; 50% reduction targets</h3>
     <div class="desc">Megalitres · targets vs. 2021 baseline (${fmtK(wat[0]?.actual)} ML)</div>
     <div id="tgWater"></div>${legend([{c:col('water'),t:'Actual'},{c:col('target'),t:'−25% target'},{c:col('yellow'),t:'−50% target'}])}</div>`;
   const yrsAll=ghg.map(t=>t.year);
   lineChart($('#tgGhg'),{xLabels:yrsAll.map(String),height:320,yLabel:'tCO₂e',
-    series:[{name:'Actual S1+2',color:col('scope1'),points:ghg.map((t,i)=>({i,y:t.year<=2025?t.actual:null,unit:'tCO₂e'}))},
+    series:[{name:'Actual S1+2',color:col('scope1'),points:ghg.map((t,i)=>({i,y:actualOf(t.year),unit:'tCO₂e'}))},
             {name:'Internal target',color:col('target'),dashed:true,noMarker:true,points:ghg.map((t,i)=>({i,y:t.target}))}]});
   const wy=wat.map(t=>t.year);
   lineChart($('#tgWater'),{xLabels:wy.map(String),height:300,yLabel:'ML',
@@ -419,8 +426,7 @@ function initKey(i){return i.name+'|'+i.site_name+'|'+i.year;}
 function renderScenario(){
   if(state.scn.preset!=='custom'&&state.scn.sel.size===0)applyPreset('committed');
   const pl=pipeline();
-  const ghgBase2025=(()=>{const e=siteEmsByYear();return (e[2025].scope1+e[2025].scope2);})();
-  const ghgActual=y=>{const t=D.targets.ghg_s1s2.find(x=>x.year===y);return t?t.actual:null;};
+  const ghgActual=y=> y<=2025? companyEms(y).total : null;   // honors basis toggle
   const tgt=D.targets.ghg_s1s2[0].target;
   // cumulative savings by year from selected
   const selI=pl.filter(i=>state.scn.sel.has(initKey(i)));
@@ -543,11 +549,45 @@ function drawWaterTable(rows){
 // river basin lookup from data
 D.water_by_site.forEach(w=>{const s=byId[w.site_id]; if(s&&w.river_basin)s.river_basin=w.river_basin;});
 
+/* ---------- Site Map ---------- */
+function renderMap(){
+  const yr=state.yMax, sel=selSiteIds(), sizeBy=state.mapSize;
+  const emap={}; D.emissions_by_site.forEach(e=>{if(e.year===yr)emap[e.site_id]=(e.scope1||0)+s2of(e);});
+  const wmap={}; D.water_by_site.forEach(w=>{if(w.year===2024)wmap[w.site_id]=w.withdrawal_ml;});
+  const val=s=> sizeBy==='water'? (wmap[s.site_id]||0) : (emap[s.site_id]||0);
+  const pts=SITES.filter(s=>s.lat!=null && sel.has(s.site_id));
+  const maxV=Math.max(1,...pts.map(val));
+  const m=$('#main');
+  m.innerHTML=`
+  <div class="panel"><h3>Global site map · ${yr}</h3>
+    <div class="desc">Marker size = ${sizeBy==='water'?'water withdrawal (2024)':'Scope 1+2 ('+state.basis+'-based, '+yr+')'} · color = facility type · hover for detail</div>
+    <div class="seg" id="mapSize" style="margin-bottom:10px">
+      <button data-v="emissions" class="${sizeBy==='emissions'?'on':''}">Size by emissions</button>
+      <button data-v="water" class="${sizeBy==='water'?'on':''}">Size by water</button></div>
+    <div id="worldmap"></div>
+    ${legend([{c:col('scope1'),t:'Factory'},{c:col('bright'),t:'Farm'},{c:col('blue'),t:'Office'},{c:col('grey'),t:'Warehouse'}])}
+    <div class="note">Equirectangular projection · ${pts.length} sites shown (closed sites hidden unless enabled).</div></div>`;
+  const svg=el('svg',{viewBox:'0 55 1000 345',width:'100%',class:'chart'});
+  svg.appendChild(el('rect',{x:0,y:55,width:1000,height:345,fill:'#EAF3F7'}));
+  svg.appendChild(el('path',{d:WORLD_PATH,fill:'#DBE3DF',stroke:'#cfd8d4','stroke-width':0.4}));
+  const tc={Factory:col('scope1'),Farm:col('bright'),Office:col('blue'),Warehouse:col('grey')};
+  const px=lon=>(lon+180)/360*1000, py=lat=>(90-lat)/180*500;
+  pts.slice().sort((a,b)=>val(b)-val(a)).forEach(s=>{const v=val(s);
+    const r=v>0? Math.max(3.5,Math.min(28,Math.sqrt(v/maxV)*28)) : 3.5;
+    const c=el('circle',{cx:px(s.lon).toFixed(1),cy:py(s.lat).toFixed(1),r:r.toFixed(1),
+      fill:tc[s.facility_type]||col('grey'),'fill-opacity':0.8,stroke:'#fff','stroke-width':1.1});
+    hover(c,`<b>${s.name}</b><br>${s.region} · ${s.facility_type}${s.status==='closed'?' · closed':''}<br>`+
+      `Scope 1+2: ${fmt(emap[s.site_id]||0)} tCO₂e<br>Water (2024): ${wmap[s.site_id]!=null?fmt(wmap[s.site_id],1)+' ML':'—'}`);
+    svg.appendChild(c);});
+  $('#worldmap').appendChild(svg);
+  $('#mapSize').onclick=e=>{if(e.target.dataset.v){state.mapSize=e.target.dataset.v;renderMap();}};
+}
+
 /* ---------- shell wiring ---------- */
 function render(){
   $$('#tabs .tab').forEach(t=>t.classList.toggle('on',t.dataset.t===state.tab));
-  const intensityTabs=['trends'];
-  ({overview:renderOverview,trends:renderTrends,scenario:renderScenario,targets:renderTargets,water:renderWater}[state.tab])();
+  ({overview:renderOverview,trends:renderTrends,scenario:renderScenario,targets:renderTargets,
+    water:renderWater,map:renderMap}[state.tab])();
 }
 function buildControls(){
   const yMin=$('#yMin'),yMax=$('#yMax');

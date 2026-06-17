@@ -27,6 +27,7 @@ FILES = {
     "fy25":  "VSC_ FY25_Scope1&2_Inventory_v2_5-20-2026 (1).xlsx",
     "s3_23": "VSC_Scope 3_FY2023_Summary Workbook.xlsx",
     "prod":  "Production Volumes - Vantage.xlsx",
+    "rz":    "Copy of RouteZero_results_template_v3_VantageFY21-22.xlsx",
 }
 
 GAL_TO_ML = 3.785411784e-6   # 1 US gallon -> ML  (gal * 3.785411784 L / 1e6 L/ML)
@@ -113,6 +114,40 @@ def rows(ws, maxr=None, maxc=None):
     return list(ws.iter_rows(min_row=1, max_row=maxr or ws.max_row,
                              max_col=maxc or ws.max_column, values_only=True))
 
+# Site coordinates [lat, lon] for the map (approx city/site locations)
+COORDS = {
+ "gurnee":[42.37,-87.92],"chicago":[41.85,-87.65],"leuna":[51.32,12.01],
+ "carnegie":[40.41,-80.08],"englewood":[39.88,-84.30],"les_borges":[41.52,0.87],
+ "tucson":[32.22,-110.97],"agrinsa":[-34.0,-60.5],"dateland":[32.80,-113.54],
+ "barcelona":[41.39,2.17],"granollers":[41.61,2.29],"mexico_city":[19.43,-99.13],
+ "linden":[40.62,-74.24],"fairfield":[40.88,-74.30],"warren":[40.63,-74.51],
+ "pittsburgh":[40.44,-79.99],"south_africa":[-26.20,28.04],"deerfield":[42.17,-87.84],
+ "tlalnepantla":[19.54,-99.20],"shanghai":[31.23,121.47],"bogota":[4.71,-74.07],
+ "santiago":[-33.45,-70.67],"guatemala":[14.63,-90.51],"sao_paulo":[-23.55,-46.63],
+ "buenos_aires":[-34.60,-58.38],"mumbai":[19.08,72.88],"lima":[-12.05,-77.04],
+ "costa_rica":[9.93,-84.08],"paris":[48.86,2.35],
+}
+
+# Canonical Scope 3 category labels (align RouteZero + summary naming)
+S3_CANON = [
+ (("purchased",), "1. Purchased goods & services"),
+ (("capital",), "2. Capital goods"),
+ (("fuel", "energy"), "3. Fuel & energy-related"),
+ (("transportation and dist", "upstream transp"), "4. Upstream transport & distribution"),
+ (("waste",), "5. Waste in operations"),
+ (("business travel",), "6. Business travel"),
+ (("commut",), "7. Employee commuting"),
+ (("leased",), "8. Upstream leased assets"),
+ (("use of sold",), "11. Use of sold products"),
+ (("end-of-life", "end of life", "eol"), "12. End-of-life of sold products"),
+]
+def canon_s3(name):
+    n = str(name).lower()
+    for keys, label in S3_CANON:
+        if any(k in n for k in keys):
+            return label
+    return None
+
 # ---------------------------------------------------------------------------
 data = {
     "meta": {
@@ -137,6 +172,7 @@ for row in SITE_MASTER:
         "facility_type": ftype, "status": status,
         "wwf_water_stress": stress or "NA", "wwf_water_risk": risk or "NA",
         "producing": producing,
+        "lat": COORDS.get(sid, [None, None])[0], "lon": COORDS.get(sid, [None, None])[1],
     })
 
 # ---- Emissions by site 2021-2023  (CDP :: Data 2021 to 2023) ----------------
@@ -189,11 +225,20 @@ for e in data["emissions_by_site"]:
 for y in comp:
     comp[y]["scope1"] = round(comp[y]["scope1"],1)
     comp[y]["scope2_market"] = round(comp[y]["scope2_market"],1)
-# Scope 2 location-based (where known) and Scope 3 totals
-comp.setdefault(2022,{}).update({"scope2_location": 41478.2})   # RouteZero FY22
-comp.setdefault(2023,{}).update({"scope2_location": 35782.6, "scope3_total": 976825.45-57632.51-31315.12})
-comp.setdefault(2024,{}).update({"scope2_location": 39042.7, "scope3_total": 891694.54-59695.38-22562.57})
-comp.setdefault(2025,{}).update({"scope2_location": 31767.6})
+# Scope 2 location-based (company) per year, from inventories/RouteZero
+S2_LOCATION = {2021: 46272.5, 2022: 41478.2, 2023: 35782.6, 2024: 39042.7, 2025: 31767.6}
+for y, v in S2_LOCATION.items():
+    comp.setdefault(y, {}).update({"scope2_location": v})
+comp.setdefault(2023,{}).update({"scope3_total": round(976825.45-57632.51-31315.12,1)})
+comp.setdefault(2024,{}).update({"scope3_total": round(891694.54-59695.38-22562.57,1)})
+
+# Per-site Scope 2 location-based: scale market by the company location/market ratio
+# (site-level location factors aren't reported; this preserves the exact company total).
+for e in data["emissions_by_site"]:
+    cm = comp.get(e["year"], {})
+    ratio = (cm["scope2_location"]/cm["scope2_market"]) if cm.get("scope2_market") else 1.0
+    e["scope2_location"] = round(e["scope2_market"]*ratio, 2)
+
 data["emissions_company"] = {str(y): comp[y] for y in sorted(comp)}
 
 # ---- Scope 3 categories 2023 & 2024  (FY24 summary Total Inventory Summary) --
@@ -203,12 +248,29 @@ for r in rows(ws, maxc=9):
     name = r[2] if len(r)>2 else None          # category name is in column C
     val24 = num(r[3]) if len(r)>3 else None     # FY24 emissions
     val23 = num(r[7]) if len(r)>7 else None     # FY23 emissions
-    if not name or not isinstance(name,str): continue
-    name = name.strip()
-    if val24 is not None and re.match(r"^(Purchased|Fuel|Upstream|Waste|Business|Employee|Use of|End of)", name):
-        cat24[name] = round(val24,1)
-        if val23 is not None: cat23[name] = round(val23,1)
+    lab = canon_s3(name) if isinstance(name, str) else None
+    if lab and val24 is not None:
+        cat24[lab] = round(val24,1)
+        if val23 is not None: cat23[lab] = round(val23,1)
 data["scope3_categories"] = {"2023": cat23, "2024": cat24}
+
+# ---- Scope 3 categories 2021 & 2022  (RouteZero 'emissions' sheet) -----------
+wb_rz = openpyxl.load_workbook(os.path.join(ROOT, FILES["rz"]), read_only=True, data_only=True)
+ws_rz = wb_rz["emissions"]
+s3 = {2021: {}, 2022: {}}
+for r in ws_rz.iter_rows(min_row=2, values_only=True):
+    if r[22] != "Scope 3":            # col 22 = Scope
+        continue
+    yr = int(r[16]) if r[16] else None  # col 16 = Reporting Period Year
+    lab = canon_s3(r[23])               # col 23 = Scope Category
+    mkt = r[41] or 0                    # col 41 = Market tCO2e
+    if yr in s3 and lab:
+        s3[yr][lab] = round(s3[yr].get(lab, 0) + mkt, 1)
+wb_rz.close()
+for y in (2021, 2022):
+    data["scope3_categories"][str(y)] = s3[y]
+    comp.setdefault(y, {}).update({"scope3_total": round(sum(s3[y].values()), 1)})
+data["emissions_company"] = {str(y): comp[y] for y in sorted(comp)}
 wb.close()
 
 # ---- Water: company per year (CDP Target Tracking) + 2025 from FY25 gallons --
@@ -344,6 +406,9 @@ if os.path.exists(tpl_path):
     if os.path.exists(logo_path):
         b64 = base64.b64encode(open(logo_path, "rb").read()).decode()
         html = html.replace("__LOGO_DATA_URI__", "data:image/jpeg;base64," + b64)
+    wm_path = os.path.join(ROOT, "build", "worldmap.txt")
+    if os.path.exists(wm_path):
+        html = html.replace("__WORLDMAP_PATH__", open(wm_path, encoding="utf-8").read())
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     html = html.replace("const D = window.DASHBOARD_DATA;",
                         "window.DASHBOARD_DATA=" + payload + ";\nconst D = window.DASHBOARD_DATA;")

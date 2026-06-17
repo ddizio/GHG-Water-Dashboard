@@ -94,15 +94,15 @@ they are the inputs to the consolidated dataset (Section 6).
 |---|:--:|:--:|:--:|:--:|:--:|
 | Scope 1 (site-level) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Scope 2 market + location | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Scope 3 (by category) | ⚠️ partial | ⚠️ partial | ✅ | ✅ | ❌ not yet |
+| Scope 3 (by category) | ✅ (RouteZero) | ✅ (RouteZero) | ✅ | ✅ | ❌ not yet |
 | Water withdrawal (company) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Water by site + stress/risk | — | — | — | ✅ | ✅ |
 | Production tons (site-level) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Initiatives / targets | — | — | — | ✅ 2024–2030 | ✅ |
 
 **Design implications:**
-- Scope 3 trends render for **2023–2024 only** with a clear "limited history" note; Scope 1/2 and
-  water carry the full **2021–2025** trend.
+- Scope 3 trends render for **2021–2024** (2021–22 from RouteZero, 2023–24 from the summaries);
+  2025 Scope 3 isn't inventoried yet. Scope 1/2 and water carry the full **2021–2025** trend.
 - **Intensity (per ton) is available 2022–2025** for the 7 manufacturing sites; 2021 intensity is
   not shown (no 2021 production). Company-wide intensity uses the production total for those years.
 - **2025 water is final** (confirmed); the build converts it from gallons to ML (Section 7).
@@ -129,6 +129,7 @@ they are the inputs to the consolidated dataset (Section 6).
 2. **Scenario Modeling** — toggle initiatives → projected trajectory vs. target + cost summary.
 3. **Targets & Progress** — actuals vs. target lines through 2030, gap-to-target.
 4. **Water Stress / Risk** — site table/map of withdrawal × WWF stress/risk.
+5. **Site Map** — global markers sized by emissions or water, colored by facility type.
 
 A persistent **global filter bar** (year range, site(s), scope basis) ties them together.
 
@@ -218,10 +219,13 @@ what it did, so numbers are auditable.
    converts the FY25 gallons figures to ML and adds 2025 to the water trend and site-level
    stress/risk view. Production is in lbs + tons; **use tons** (1 ton = 2,000 lbs) for intensity.
 3. **Scope 2 dual basis.** Every S2 figure has market- and location-based values. Default the UI to
-   **market-based**, with a toggle to location-based. Never mix the two in one total.
-4. **Scope 3 history is thin.** Full category data exists only for **2023 and 2024**; 2021–22 is
-   partial (RouteZero) and 2025 isn't done. Show Scope 3 with an explicit coverage caveat; don't
-   imply a 5-year Scope 3 trend.
+   **market-based**, with a toggle to location-based. Company location is known for all years
+   (2021 from RouteZero); **per-site location is derived by scaling each site's market value by the
+   company location/market ratio** so the toggle affects every view (Overview, Trends, Targets,
+   Scenario, Map) and still sums to the exact company location total. Never mix the two in one total.
+4. **Scope 3 now spans 2021–2024.** 2023–24 come from the summary workbooks; **2021–22 are extracted
+   from the RouteZero `emissions` sheet** (by category, market-based). 2025 Scope 3 isn't inventoried
+   yet — the by-scope chart shows 2025 as Scopes 1+2 only, with a note.
 5. **Error cells & blanks** (`#DIV/0!`, empty production for some sites/years) → coerce to null and
    exclude from intensity math; never render as 0 where it means "missing."
 6. **Methodology changes** noted in the FY24 summary (e.g., Cat 5 waste, Cat 12 EOL emission-factor
@@ -280,7 +284,13 @@ what it did, so numbers are auditable.
   discharge, consumption — sortable, with stress/risk color-coded.
 - Emphasis view: sites that are **High stress AND high withdrawal** (the priority quadrant) — a
   scatter (withdrawal × stress) or a filtered list.
-- Optional choropleth/marker map if `lat/lon` added (phase 2).
+
+### Module 5 — Site Map
+- Offline world map (vendored from `world-atlas`, projected to SVG at build — **no map tiles, no
+  network**), with a marker per site.
+- Marker **size** = Scope 1+2 (default) or water withdrawal (toggle); **color** = facility type
+  (Factory / Farm / Office / Warehouse); hover shows site, region, emissions, and water.
+- Respects the global site filter and "show closed." Honors the Scope 2 basis toggle for sizing.
 
 ### Cross-cutting
 - **Export:** download current chart as PNG and underlying data as CSV.

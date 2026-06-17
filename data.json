@@ -22,7 +22,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "High",
-   "producing": true
+   "producing": true,
+   "lat": 42.37,
+   "lon": -87.92
   },
   {
    "site_id": "chicago",
@@ -33,7 +35,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "High",
-   "producing": true
+   "producing": true,
+   "lat": 41.85,
+   "lon": -87.65
   },
   {
    "site_id": "leuna",
@@ -44,7 +48,9 @@
    "status": "active",
    "wwf_water_stress": "High",
    "wwf_water_risk": "High",
-   "producing": true
+   "producing": true,
+   "lat": 51.32,
+   "lon": 12.01
   },
   {
    "site_id": "carnegie",
@@ -55,7 +61,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "Medium",
-   "producing": true
+   "producing": true,
+   "lat": 40.41,
+   "lon": -80.08
   },
   {
    "site_id": "englewood",
@@ -66,7 +74,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "High",
-   "producing": true
+   "producing": true,
+   "lat": 39.88,
+   "lon": -84.3
   },
   {
    "site_id": "les_borges",
@@ -77,7 +87,9 @@
    "status": "active",
    "wwf_water_stress": "High",
    "wwf_water_risk": "High",
-   "producing": true
+   "producing": true,
+   "lat": 41.52,
+   "lon": 0.87
   },
   {
    "site_id": "tucson",
@@ -88,7 +100,9 @@
    "status": "active",
    "wwf_water_stress": "High",
    "wwf_water_risk": "High",
-   "producing": true
+   "producing": true,
+   "lat": 32.22,
+   "lon": -110.97
   },
   {
    "site_id": "agrinsa",
@@ -99,7 +113,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "Medium",
-   "producing": false
+   "producing": false,
+   "lat": -34.0,
+   "lon": -60.5
   },
   {
    "site_id": "dateland",
@@ -110,7 +126,9 @@
    "status": "active",
    "wwf_water_stress": "High",
    "wwf_water_risk": "High",
-   "producing": false
+   "producing": false,
+   "lat": 32.8,
+   "lon": -113.54
   },
   {
    "site_id": "barcelona",
@@ -121,7 +139,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 41.39,
+   "lon": 2.17
   },
   {
    "site_id": "granollers",
@@ -132,7 +152,9 @@
    "status": "closed",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 41.61,
+   "lon": 2.29
   },
   {
    "site_id": "mexico_city",
@@ -143,7 +165,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 19.43,
+   "lon": -99.13
   },
   {
    "site_id": "linden",
@@ -154,7 +178,9 @@
    "status": "closed",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 40.62,
+   "lon": -74.24
   },
   {
    "site_id": "fairfield",
@@ -165,7 +191,9 @@
    "status": "active",
    "wwf_water_stress": "High",
    "wwf_water_risk": "Medium",
-   "producing": false
+   "producing": false,
+   "lat": 40.88,
+   "lon": -74.3
   },
   {
    "site_id": "warren",
@@ -176,7 +204,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 40.63,
+   "lon": -74.51
   },
   {
    "site_id": "pittsburgh",
@@ -187,7 +217,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 40.44,
+   "lon": -79.99
   },
   {
    "site_id": "south_africa",
@@ -198,7 +230,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": -26.2,
+   "lon": 28.04
   },
   {
    "site_id": "delta",
@@ -209,7 +243,9 @@
    "status": "closed",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": null,
+   "lon": null
   },
   {
    "site_id": "deerfield",
@@ -220,7 +256,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 42.17,
+   "lon": -87.84
   },
   {
    "site_id": "tlalnepantla",
@@ -231,7 +269,9 @@
    "status": "closed",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 19.54,
+   "lon": -99.2
   },
   {
    "site_id": "shanghai",
@@ -242,7 +282,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 31.23,
+   "lon": 121.47
   },
   {
    "site_id": "bogota",
@@ -253,7 +295,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 4.71,
+   "lon": -74.07
   },
   {
    "site_id": "santiago",
@@ -264,7 +308,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": -33.45,
+   "lon": -70.67
   },
   {
    "site_id": "guatemala",
@@ -275,7 +321,9 @@
    "status": "closed",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 14.63,
+   "lon": -90.51
   },
   {
    "site_id": "sao_paulo",
@@ -286,7 +334,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": -23.55,
+   "lon": -46.63
   },
   {
    "site_id": "buenos_aires",
@@ -297,7 +347,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": -34.6,
+   "lon": -58.38
   },
   {
    "site_id": "mumbai",
@@ -308,7 +360,9 @@
    "status": "active",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 19.08,
+   "lon": 72.88
   },
   {
    "site_id": "lima",
@@ -319,7 +373,9 @@
    "status": "closed",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": -12.05,
+   "lon": -77.04
   },
   {
    "site_id": "costa_rica",
@@ -330,7 +386,9 @@
    "status": "closed",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 9.93,
+   "lon": -84.08
   },
   {
    "site_id": "paris",
@@ -341,7 +399,9 @@
    "status": "closed",
    "wwf_water_stress": "NA",
    "wwf_water_risk": "NA",
-   "producing": false
+   "producing": false,
+   "lat": 48.86,
+   "lon": 2.35
   }
  ],
  "emissions_by_site": [
@@ -349,804 +409,937 @@
    "site_id": "leuna",
    "year": 2021,
    "scope1": 106.97,
-   "scope2_market": 15080.86
+   "scope2_market": 15080.86,
+   "scope2_location": 16898.31
   },
   {
    "site_id": "leuna",
    "year": 2022,
    "scope1": 88.32,
-   "scope2_market": 15925.81
+   "scope2_market": 15925.81,
+   "scope2_location": 16646.1
   },
   {
    "site_id": "leuna",
    "year": 2023,
    "scope1": 142.25,
-   "scope2_market": 13126.91
+   "scope2_market": 13126.91,
+   "scope2_location": 14999.63
   },
   {
    "site_id": "barcelona",
    "year": 2021,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "barcelona",
    "year": 2022,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "barcelona",
    "year": 2023,
    "scope1": 64.49,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "mexico_city",
    "year": 2021,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "mexico_city",
    "year": 2022,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "mexico_city",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 3.67
+   "scope2_market": 3.67,
+   "scope2_location": 4.19
   },
   {
    "site_id": "chicago",
    "year": 2021,
    "scope1": 50146.19,
-   "scope2_market": 12813.85
+   "scope2_market": 12813.85,
+   "scope2_location": 14358.09
   },
   {
    "site_id": "chicago",
    "year": 2022,
    "scope1": 48883.96,
-   "scope2_market": 12586.73
+   "scope2_market": 12586.73,
+   "scope2_location": 13156.0
   },
   {
    "site_id": "chicago",
    "year": 2023,
    "scope1": 44646.43,
-   "scope2_market": 9052.0
+   "scope2_market": 9052.0,
+   "scope2_location": 10343.38
   },
   {
    "site_id": "gurnee",
    "year": 2021,
    "scope1": 12270.67,
-   "scope2_market": 5752.71
+   "scope2_market": 5752.71,
+   "scope2_location": 6445.99
   },
   {
    "site_id": "gurnee",
    "year": 2022,
    "scope1": 12573.18,
-   "scope2_market": 5787.42
+   "scope2_market": 5787.42,
+   "scope2_location": 6049.17
   },
   {
    "site_id": "gurnee",
    "year": 2023,
    "scope1": 10079.74,
-   "scope2_market": 3914.8
+   "scope2_market": 3914.8,
+   "scope2_location": 4473.3
   },
   {
    "site_id": "agrinsa",
    "year": 2021,
    "scope1": 144.96,
-   "scope2_market": 1787.28
+   "scope2_market": 1787.28,
+   "scope2_location": 2002.67
   },
   {
    "site_id": "agrinsa",
    "year": 2022,
    "scope1": 148.85,
-   "scope2_market": 1609.03
+   "scope2_market": 1609.03,
+   "scope2_location": 1681.8
   },
   {
    "site_id": "agrinsa",
    "year": 2023,
    "scope1": 150.55,
-   "scope2_market": 1733.61
+   "scope2_market": 1733.61,
+   "scope2_location": 1980.93
   },
   {
    "site_id": "dateland",
    "year": 2021,
    "scope1": 802.26,
-   "scope2_market": 2198.04
+   "scope2_market": 2198.04,
+   "scope2_location": 2462.93
   },
   {
    "site_id": "dateland",
    "year": 2022,
    "scope1": 697.19,
-   "scope2_market": 1499.01
+   "scope2_market": 1499.01,
+   "scope2_location": 1566.81
   },
   {
    "site_id": "dateland",
    "year": 2023,
    "scope1": 574.68,
-   "scope2_market": 1529.0
+   "scope2_market": 1529.0,
+   "scope2_location": 1747.13
   },
   {
    "site_id": "englewood",
    "year": 2021,
    "scope1": 184.73,
-   "scope2_market": 885.47
+   "scope2_market": 885.47,
+   "scope2_location": 992.18
   },
   {
    "site_id": "englewood",
    "year": 2022,
    "scope1": 1996.0,
-   "scope2_market": 818.48
+   "scope2_market": 818.48,
+   "scope2_location": 855.5
   },
   {
    "site_id": "englewood",
    "year": 2023,
    "scope1": 168.53,
-   "scope2_market": 800.74
+   "scope2_market": 800.74,
+   "scope2_location": 914.98
   },
   {
    "site_id": "carnegie",
    "year": 2021,
    "scope1": 1226.8,
-   "scope2_market": 546.39
+   "scope2_market": 546.39,
+   "scope2_location": 612.24
   },
   {
    "site_id": "carnegie",
    "year": 2022,
    "scope1": 1328.89,
-   "scope2_market": 591.78
+   "scope2_market": 591.78,
+   "scope2_location": 618.55
   },
   {
    "site_id": "carnegie",
    "year": 2023,
    "scope1": 1190.11,
-   "scope2_market": 739.95
+   "scope2_market": 739.95,
+   "scope2_location": 845.51
   },
   {
    "site_id": "linden",
    "year": 2021,
    "scope1": 531.94,
-   "scope2_market": 469.18
+   "scope2_market": 469.18,
+   "scope2_location": 525.72
   },
   {
    "site_id": "linden",
    "year": 2022,
    "scope1": 64.89,
-   "scope2_market": 327.88
+   "scope2_market": 327.88,
+   "scope2_location": 342.71
   },
   {
    "site_id": "linden",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 16.55
+   "scope2_market": 16.55,
+   "scope2_location": 18.91
   },
   {
    "site_id": "fairfield",
    "year": 2021,
    "scope1": 103.77,
-   "scope2_market": 127.63
+   "scope2_market": 127.63,
+   "scope2_location": 143.01
   },
   {
    "site_id": "fairfield",
    "year": 2022,
    "scope1": 127.92,
-   "scope2_market": 108.93
+   "scope2_market": 108.93,
+   "scope2_location": 113.86
   },
   {
    "site_id": "fairfield",
    "year": 2023,
    "scope1": 97.85,
-   "scope2_market": 116.76
+   "scope2_market": 116.76,
+   "scope2_location": 133.42
   },
   {
    "site_id": "warren",
    "year": 2021,
    "scope1": 13.34,
-   "scope2_market": 147.34
+   "scope2_market": 147.34,
+   "scope2_location": 165.1
   },
   {
    "site_id": "warren",
    "year": 2022,
    "scope1": 35.7,
-   "scope2_market": 93.28
+   "scope2_market": 93.28,
+   "scope2_location": 97.5
   },
   {
    "site_id": "warren",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 46.76
+   "scope2_market": 46.76,
+   "scope2_location": 53.43
   },
   {
    "site_id": "tucson",
    "year": 2021,
    "scope1": 24.68,
-   "scope2_market": 80.97
+   "scope2_market": 80.97,
+   "scope2_location": 90.73
   },
   {
    "site_id": "tucson",
    "year": 2022,
    "scope1": 27.66,
-   "scope2_market": 66.87
+   "scope2_market": 66.87,
+   "scope2_location": 69.89
   },
   {
    "site_id": "tucson",
    "year": 2023,
    "scope1": 13.89,
-   "scope2_market": 55.06
+   "scope2_market": 55.06,
+   "scope2_location": 62.92
   },
   {
    "site_id": "pittsburgh",
    "year": 2021,
    "scope1": 56.04,
-   "scope2_market": 45.64
+   "scope2_market": 45.64,
+   "scope2_location": 51.14
   },
   {
    "site_id": "pittsburgh",
    "year": 2022,
    "scope1": 59.37,
-   "scope2_market": 55.96
+   "scope2_market": 55.96,
+   "scope2_location": 58.49
   },
   {
    "site_id": "pittsburgh",
    "year": 2023,
    "scope1": 44.85,
-   "scope2_market": 60.47
+   "scope2_market": 60.47,
+   "scope2_location": 69.1
   },
   {
    "site_id": "les_borges",
    "year": 2021,
    "scope1": 132.73,
-   "scope2_market": 59.83
+   "scope2_market": 59.83,
+   "scope2_location": 67.04
   },
   {
    "site_id": "les_borges",
    "year": 2022,
    "scope1": 87.64,
-   "scope2_market": 41.1
+   "scope2_market": 41.1,
+   "scope2_location": 42.96
   },
   {
    "site_id": "les_borges",
    "year": 2023,
    "scope1": 74.54,
-   "scope2_market": 39.81
+   "scope2_market": 39.81,
+   "scope2_location": 45.49
   },
   {
    "site_id": "south_africa",
    "year": 2021,
    "scope1": 7.65,
-   "scope2_market": 40.93
+   "scope2_market": 40.93,
+   "scope2_location": 45.86
   },
   {
    "site_id": "south_africa",
    "year": 2022,
    "scope1": 7.65,
-   "scope2_market": 38.54
+   "scope2_market": 38.54,
+   "scope2_location": 40.28
   },
   {
    "site_id": "south_africa",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 26.6
+   "scope2_market": 26.6,
+   "scope2_location": 30.39
   },
   {
    "site_id": "delta",
    "year": 2021,
    "scope1": 64.75,
-   "scope2_market": 51.73
+   "scope2_market": 51.73,
+   "scope2_location": 57.96
   },
   {
    "site_id": "delta",
    "year": 2022,
    "scope1": 63.65,
-   "scope2_market": 38.37
+   "scope2_market": 38.37,
+   "scope2_location": 40.11
   },
   {
    "site_id": "delta",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "deerfield",
    "year": 2021,
    "scope1": 10.41,
-   "scope2_market": 1026.44
+   "scope2_market": 1026.44,
+   "scope2_location": 1150.14
   },
   {
    "site_id": "deerfield",
    "year": 2022,
    "scope1": 30.08,
-   "scope2_market": 25.77
+   "scope2_market": 25.77,
+   "scope2_location": 26.94
   },
   {
    "site_id": "deerfield",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 14.93
+   "scope2_market": 14.93,
+   "scope2_location": 17.06
   },
   {
    "site_id": "tlalnepantla",
    "year": 2021,
    "scope1": 43.01,
-   "scope2_market": 4.26
+   "scope2_market": 4.26,
+   "scope2_location": 4.77
   },
   {
    "site_id": "tlalnepantla",
    "year": 2022,
    "scope1": 62.79,
-   "scope2_market": 22.83
+   "scope2_market": 22.83,
+   "scope2_location": 23.86
   },
   {
    "site_id": "tlalnepantla",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "shanghai",
    "year": 2021,
    "scope1": 16.51,
-   "scope2_market": 20.26
+   "scope2_market": 20.26,
+   "scope2_location": 22.7
   },
   {
    "site_id": "shanghai",
    "year": 2022,
    "scope1": 24.2,
-   "scope2_market": 18.16
+   "scope2_market": 18.16,
+   "scope2_location": 18.98
   },
   {
    "site_id": "shanghai",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 20.65
+   "scope2_market": 20.65,
+   "scope2_location": 23.6
   },
   {
    "site_id": "granollers",
    "year": 2021,
    "scope1": 4.26,
-   "scope2_market": 6.41
+   "scope2_market": 6.41,
+   "scope2_location": 7.18
   },
   {
    "site_id": "granollers",
    "year": 2022,
    "scope1": 6.24,
-   "scope2_market": 7.21
+   "scope2_market": 7.21,
+   "scope2_location": 7.54
   },
   {
    "site_id": "granollers",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 7.35
+   "scope2_market": 7.35,
+   "scope2_location": 8.4
   },
   {
    "site_id": "bogota",
    "year": 2021,
    "scope1": 1.0,
-   "scope2_market": 85.18
+   "scope2_market": 85.18,
+   "scope2_location": 95.45
   },
   {
    "site_id": "bogota",
    "year": 2022,
    "scope1": 24.08,
-   "scope2_market": 5.34
+   "scope2_market": 5.34,
+   "scope2_location": 5.58
   },
   {
    "site_id": "bogota",
    "year": 2023,
    "scope1": 21.9,
-   "scope2_market": 3.54
+   "scope2_market": 3.54,
+   "scope2_location": 4.05
   },
   {
    "site_id": "santiago",
    "year": 2021,
    "scope1": 1.93,
-   "scope2_market": 7.28
+   "scope2_market": 7.28,
+   "scope2_location": 8.16
   },
   {
    "site_id": "santiago",
    "year": 2022,
    "scope1": 1.93,
-   "scope2_market": 5.09
+   "scope2_market": 5.09,
+   "scope2_location": 5.32
   },
   {
    "site_id": "santiago",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 4.54
+   "scope2_market": 4.54,
+   "scope2_location": 5.19
   },
   {
    "site_id": "guatemala",
    "year": 2021,
    "scope1": 1.02,
-   "scope2_market": 7.71
+   "scope2_market": 7.71,
+   "scope2_location": 8.64
   },
   {
    "site_id": "guatemala",
    "year": 2022,
    "scope1": 1.02,
-   "scope2_market": 4.65
+   "scope2_market": 4.65,
+   "scope2_location": 4.86
   },
   {
    "site_id": "guatemala",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "sao_paulo",
    "year": 2021,
    "scope1": 15.13,
-   "scope2_market": 2.55
+   "scope2_market": 2.55,
+   "scope2_location": 2.86
   },
   {
    "site_id": "sao_paulo",
    "year": 2022,
    "scope1": 15.13,
-   "scope2_market": 2.32
+   "scope2_market": 2.32,
+   "scope2_location": 2.42
   },
   {
    "site_id": "sao_paulo",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 1.39
+   "scope2_market": 1.39,
+   "scope2_location": 1.59
   },
   {
    "site_id": "buenos_aires",
    "year": 2021,
    "scope1": 7.82,
-   "scope2_market": 39.23
+   "scope2_market": 39.23,
+   "scope2_location": 43.96
   },
   {
    "site_id": "buenos_aires",
    "year": 2022,
    "scope1": 7.82,
-   "scope2_market": 2.06
+   "scope2_market": 2.06,
+   "scope2_location": 2.15
   },
   {
    "site_id": "buenos_aires",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "mumbai",
    "year": 2021,
    "scope1": 0.09,
-   "scope2_market": 1.77
+   "scope2_market": 1.77,
+   "scope2_location": 1.98
   },
   {
    "site_id": "mumbai",
    "year": 2022,
    "scope1": 0,
-   "scope2_market": 0.69
+   "scope2_market": 0.69,
+   "scope2_location": 0.72
   },
   {
    "site_id": "mumbai",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 0.04
+   "scope2_market": 0.04,
+   "scope2_location": 0.05
   },
   {
    "site_id": "lima",
    "year": 2021,
    "scope1": 0.67,
-   "scope2_market": 5.42
+   "scope2_market": 5.42,
+   "scope2_location": 6.07
   },
   {
    "site_id": "lima",
    "year": 2022,
    "scope1": 0.67,
-   "scope2_market": 0.11
+   "scope2_market": 0.11,
+   "scope2_location": 0.11
   },
   {
    "site_id": "lima",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "costa_rica",
    "year": 2021,
    "scope1": 34.22,
-   "scope2_market": 0.04
+   "scope2_market": 0.04,
+   "scope2_location": 0.04
   },
   {
    "site_id": "costa_rica",
    "year": 2022,
    "scope1": 40.08,
-   "scope2_market": 0.0
+   "scope2_market": 0.0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "costa_rica",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "paris",
    "year": 2021,
    "scope1": 0,
-   "scope2_market": 1.41
+   "scope2_market": 1.41,
+   "scope2_location": 1.58
   },
   {
    "site_id": "paris",
    "year": 2022,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "paris",
    "year": 2023,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "agrinsa",
    "year": 2024,
    "scope1": 110.56,
-   "scope2_market": 1618.97
+   "scope2_market": 1618.97,
+   "scope2_location": 2801.49
   },
   {
    "site_id": "bogota",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 3.44
+   "scope2_market": 3.44,
+   "scope2_location": 5.95
   },
   {
    "site_id": "buenos_aires",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "carnegie",
    "year": 2024,
    "scope1": 1136.85,
-   "scope2_market": 657.39
+   "scope2_market": 657.39,
+   "scope2_location": 1137.56
   },
   {
    "site_id": "chicago",
    "year": 2024,
    "scope1": 46551.35,
-   "scope2_market": 995.29
+   "scope2_market": 995.29,
+   "scope2_location": 1722.27
   },
   {
    "site_id": "dateland",
    "year": 2024,
    "scope1": 474.38,
-   "scope2_market": 1695.96
+   "scope2_market": 1695.96,
+   "scope2_location": 2934.72
   },
   {
    "site_id": "deerfield",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 2.13
+   "scope2_market": 2.13,
+   "scope2_location": 3.69
   },
   {
    "site_id": "englewood",
    "year": 2024,
    "scope1": 186.53,
-   "scope2_market": 813.39
+   "scope2_market": 813.39,
+   "scope2_location": 1407.5
   },
   {
    "site_id": "fairfield",
    "year": 2024,
    "scope1": 112.04,
-   "scope2_market": 121.56
+   "scope2_market": 121.56,
+   "scope2_location": 210.35
   },
   {
    "site_id": "gurnee",
    "year": 2024,
    "scope1": 11056.98,
-   "scope2_market": 573.06
+   "scope2_market": 573.06,
+   "scope2_location": 991.63
   },
   {
    "site_id": "les_borges",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 34.62
+   "scope2_market": 34.62,
+   "scope2_location": 59.91
   },
   {
    "site_id": "leuna",
    "year": 2024,
    "scope1": 7.15,
-   "scope2_market": 15773.16
+   "scope2_market": 15773.16,
+   "scope2_location": 27294.14
   },
   {
    "site_id": "mexico_city",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 4.73
+   "scope2_market": 4.73,
+   "scope2_location": 8.18
   },
   {
    "site_id": "pittsburgh",
    "year": 2024,
    "scope1": 44.98,
-   "scope2_market": 58.04
+   "scope2_market": 58.04,
+   "scope2_location": 100.43
   },
   {
    "site_id": "santiago",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 3.92
+   "scope2_market": 3.92,
+   "scope2_location": 6.78
   },
   {
    "site_id": "sao_paulo",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 1.97
+   "scope2_market": 1.97,
+   "scope2_location": 3.41
   },
   {
    "site_id": "shanghai",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 19.95
+   "scope2_market": 19.95,
+   "scope2_location": 34.52
   },
   {
    "site_id": "south_africa",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 29.42
+   "scope2_market": 29.42,
+   "scope2_location": 50.91
   },
   {
    "site_id": "tucson",
    "year": 2024,
    "scope1": 14.57,
-   "scope2_market": 49.25
+   "scope2_market": 49.25,
+   "scope2_location": 85.22
   },
   {
    "site_id": "warren",
    "year": 2024,
    "scope1": 0,
-   "scope2_market": 106.32
+   "scope2_market": 106.32,
+   "scope2_location": 183.98
   },
   {
    "site_id": "agrinsa",
    "year": 2025,
    "scope1": 164.83,
-   "scope2_market": 1022.79
+   "scope2_market": 1022.79,
+   "scope2_location": 1571.21
   },
   {
    "site_id": "barcelona",
    "year": 2025,
    "scope1": 12.72,
-   "scope2_market": 0
+   "scope2_market": 0,
+   "scope2_location": 0.0
   },
   {
    "site_id": "bogota",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 4.9
+   "scope2_market": 4.9,
+   "scope2_location": 7.53
   },
   {
    "site_id": "carnegie",
    "year": 2025,
    "scope1": 1197.71,
-   "scope2_market": 608.17
+   "scope2_market": 608.17,
+   "scope2_location": 934.27
   },
   {
    "site_id": "chicago",
    "year": 2025,
    "scope1": 45882.89,
-   "scope2_market": 1514.66
+   "scope2_market": 1514.66,
+   "scope2_location": 2326.83
   },
   {
    "site_id": "dateland",
    "year": 2025,
    "scope1": 205.3,
-   "scope2_market": 754.37
+   "scope2_market": 754.37,
+   "scope2_location": 1158.87
   },
   {
    "site_id": "deerfield",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 2.8
+   "scope2_market": 2.8,
+   "scope2_location": 4.3
   },
   {
    "site_id": "englewood",
    "year": 2025,
    "scope1": 204.2,
-   "scope2_market": 692.39
+   "scope2_market": 692.39,
+   "scope2_location": 1063.65
   },
   {
    "site_id": "fairfield",
    "year": 2025,
    "scope1": 157.17,
-   "scope2_market": 115.06
+   "scope2_market": 115.06,
+   "scope2_location": 176.76
   },
   {
    "site_id": "gurnee",
    "year": 2025,
    "scope1": 11574.06,
-   "scope2_market": 720.6
+   "scope2_market": 720.6,
+   "scope2_location": 1106.99
   },
   {
    "site_id": "les_borges",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 35.36
+   "scope2_market": 35.36,
+   "scope2_location": 54.32
   },
   {
    "site_id": "leuna",
    "year": 2025,
    "scope1": 0.4,
-   "scope2_market": 14874.75
+   "scope2_market": 14874.75,
+   "scope2_location": 22850.63
   },
   {
    "site_id": "mexico_city",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 4.26
+   "scope2_market": 4.26,
+   "scope2_location": 6.54
   },
   {
    "site_id": "pittsburgh",
    "year": 2025,
    "scope1": 53.69,
-   "scope2_market": 62.49
+   "scope2_market": 62.49,
+   "scope2_location": 96.0
   },
   {
    "site_id": "santiago",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 2.69
+   "scope2_market": 2.69,
+   "scope2_location": 4.13
   },
   {
    "site_id": "sao_paulo",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 1.97
+   "scope2_market": 1.97,
+   "scope2_location": 3.03
   },
   {
    "site_id": "shanghai",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 19.96
+   "scope2_market": 19.96,
+   "scope2_location": 30.66
   },
   {
    "site_id": "south_africa",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 68.78
+   "scope2_market": 68.78,
+   "scope2_location": 105.66
   },
   {
    "site_id": "tucson",
    "year": 2025,
    "scope1": 11.49,
-   "scope2_market": 39.35
+   "scope2_market": 39.35,
+   "scope2_location": 60.45
   },
   {
    "site_id": "warren",
    "year": 2025,
    "scope1": 0,
-   "scope2_market": 133.98
+   "scope2_market": 133.98,
+   "scope2_location": 205.82
   }
  ],
  "emissions_company": {
   "2021": {
    "scope1": 65953.5,
-   "scope2_market": 41295.8
+   "scope2_market": 41295.8,
+   "scope2_location": 46272.5,
+   "scope3_total": 896739.3
   },
   "2022": {
    "scope1": 66404.9,
    "scope2_market": 39683.4,
-   "scope2_location": 41478.2
+   "scope2_location": 41478.2,
+   "scope3_total": 977708.4
   },
   "2023": {
    "scope1": 57269.8,
    "scope2_market": 31315.1,
    "scope2_location": 35782.6,
-   "scope3_total": 887877.82
+   "scope3_total": 887877.8
   },
   "2024": {
    "scope1": 59695.4,
    "scope2_market": 22562.6,
    "scope2_location": 39042.7,
-   "scope3_total": 809436.5900000001
+   "scope3_total": 809436.6
   },
   "2025": {
    "scope1": 59464.5,
@@ -1156,26 +1349,44 @@
  },
  "scope3_categories": {
   "2023": {
-   "Purchased goods and services": 722260.3,
-   "Fuel-and-energy-related activities": 14525.2,
-   "Upstream transportation and distribution": 17067.6,
-   "Waste generated in operations": 27262.8,
-   "Business travel": 374.4,
-   "Employee commuting": 1404.7,
-   "Upstream leased assets": 470.3,
-   "Use of sold products": 1206.3,
-   "End of life treatment of sold products": 103306.2
+   "1. Purchased goods & services": 722260.3,
+   "3. Fuel & energy-related": 14525.2,
+   "4. Upstream transport & distribution": 17067.6,
+   "5. Waste in operations": 27262.8,
+   "6. Business travel": 374.4,
+   "7. Employee commuting": 1404.7,
+   "8. Upstream leased assets": 470.3,
+   "11. Use of sold products": 1206.3,
+   "12. End-of-life of sold products": 103306.2
   },
   "2024": {
-   "Purchased goods and services": 726053.4,
-   "Fuel-and-energy-related activities": 17446.7,
-   "Upstream transportation and distribution": 17441.4,
-   "Waste generated in operations": 3594.6,
-   "Business travel": 356.3,
-   "Employee commuting": 1587.5,
-   "Upstream leased assets": 332.0,
-   "Use of sold products": 601.9,
-   "End of life treatment of sold products": 42022.8
+   "1. Purchased goods & services": 726053.4,
+   "3. Fuel & energy-related": 17446.7,
+   "4. Upstream transport & distribution": 17441.4,
+   "5. Waste in operations": 3594.6,
+   "6. Business travel": 356.3,
+   "7. Employee commuting": 1587.5,
+   "8. Upstream leased assets": 332.0,
+   "11. Use of sold products": 601.9,
+   "12. End-of-life of sold products": 42022.8
+  },
+  "2021": {
+   "3. Fuel & energy-related": 27648.7,
+   "1. Purchased goods & services": 741930.8,
+   "2. Capital goods": 1836.6,
+   "4. Upstream transport & distribution": 17021.0,
+   "5. Waste in operations": 2522.2,
+   "11. Use of sold products": 740.9,
+   "12. End-of-life of sold products": 105039.1
+  },
+  "2022": {
+   "3. Fuel & energy-related": 27054.1,
+   "1. Purchased goods & services": 805776.0,
+   "2. Capital goods": 2257.4,
+   "4. Upstream transport & distribution": 22199.5,
+   "5. Waste in operations": 4060.8,
+   "11. Use of sold products": 2622.5,
+   "12. End-of-life of sold products": 113738.1
   }
  },
  "water_company": {
