@@ -148,6 +148,7 @@ script (`build_data.py`) so the yearly refresh is repeatable. Mirror to CSVs for
 | `aliases` | string[] | `["Vantage_Chicago","Chicago"]` | resolves naming variants across files |
 | `country` / `region` | string | `USA` / `North America` | |
 | `facility_type` | enum | `Factory` | Factory / Farm / Warehouse / Office |
+| `status` | enum | `active` | `active` / `closed` (closed = all-zero across years, or tapered to zero) |
 | `river_basin` | string | `Michigan` | from water summary |
 | `wwf_water_stress` | enum | `High` | High / Medium / Low / NA |
 | `wwf_water_risk` | enum | `High` | High / Medium / Low / NA |
@@ -230,6 +231,10 @@ what it did, so numbers are auditable.
    site/years only. **2021 has no production**, so 2021 intensity is hidden and the intensity x-axis
    starts at 2022. Non-manufacturing sites (offices/warehouses) have no production and show absolute
    values only.
+8. **Closed sites** — `status=closed` when a site is zero across all metrics/years, or once it
+   tapers to zero (e.g., Granollers, Delta, Linden, Warren). Closed sites are hidden from the default
+   "active" views but retained in the dataset; a "show closed" toggle exposes their history so a
+   company-total drop isn't mistaken for a reduction.
 
 ---
 
@@ -454,15 +459,18 @@ Target: **≤ 30 minutes** per yearly update once site mapping is stable.
 ### Confirmed (2026-06-17)
 - ✅ **2025 water is final** → convert gallons→ML and include 2025 in water trend + site stress/risk.
 - ✅ **Target is internal** (not SBTi-validated) → label "Internal target."
+- ✅ **Target baseline year = 2021** (107,249 tCO2e S1+2; water 16,522 ML). Reductions measured vs. 2021.
 - ✅ **Scenario baseline** holds **flat from the last actual** for 2026–2030.
 - ✅ **Production data provided** → site-level tons 2022–2025 (7 manufacturing sites); intensity
   enabled for those years. **No 2021 production** → 2021 intensity not shown.
+- ✅ **Closed-site rule** → any site that is **zero across all metrics and all years** is marked
+  `closed` and excluded from active views (kept in data for auditability). Sites that taper to zero
+  mid-period (e.g., **Granollers — no longer operating**; Delta, Linden, Warren) keep their history
+  and are marked `closed` from their first all-zero year.
+- ✅ **Spain = Les Borges** (manufacturing). **Barcelona = office** (no production). Confirmed.
+- ✅ **Logo provided** → recreated as an inline SVG in brand colors (`assets/vantage-logo.svg`);
+  swappable with the official asset if committed to the repo.
 
 ### Still open
-1. **Baseline-year for targets** — assume **2021** is the official baseline (107,249 tCO2e S1+2). Confirm.
-2. **Site list** — confirm the ~29-site master and any closures/additions (some sites show zeros in
-   later years — closed vs. missing data?).
-3. **Production granularity** — the file aggregates the Spanish manufacturing site as "Spain"
-   (= Les Borges). Confirm that mapping and whether Barcelona/Granollers ever have production.
-4. **Logo asset** — provide a transparent PNG/SVG of the Vantage wordmark for the header (otherwise
-   I'll recreate the wordmark in brand colors as a placeholder).
+- None blocking. Future input welcome on a growth/decline BAU assumption (Phase 3) and lat/lon for a
+  site map (Phase 2).
