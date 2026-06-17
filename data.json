@@ -1,0 +1,2646 @@
+{
+ "meta": {
+  "company": "Vantage Specialty Chemicals",
+  "generated": "2026-06-17",
+  "baseline_year": 2021,
+  "units": {
+   "emissions": "tCO2e",
+   "water": "ML",
+   "production": "metric tons"
+  },
+  "target_type": "Internal (not SBTi-validated)",
+  "scope2_default_basis": "market",
+  "bau_assumption": "Held flat at last actual for 2026-2030"
+ },
+ "sites": [
+  {
+   "site_id": "gurnee",
+   "name": "Gurnee, IL",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Factory",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "High",
+   "producing": true
+  },
+  {
+   "site_id": "chicago",
+   "name": "Chicago, IL",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Factory",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "High",
+   "producing": true
+  },
+  {
+   "site_id": "leuna",
+   "name": "Leuna",
+   "country": "Germany",
+   "region": "Europe",
+   "facility_type": "Factory",
+   "status": "active",
+   "wwf_water_stress": "High",
+   "wwf_water_risk": "High",
+   "producing": true
+  },
+  {
+   "site_id": "carnegie",
+   "name": "Carnegie, PA",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Factory",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "Medium",
+   "producing": true
+  },
+  {
+   "site_id": "englewood",
+   "name": "Englewood, OH",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Factory",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "High",
+   "producing": true
+  },
+  {
+   "site_id": "les_borges",
+   "name": "Les Borges",
+   "country": "Spain",
+   "region": "Europe",
+   "facility_type": "Factory",
+   "status": "active",
+   "wwf_water_stress": "High",
+   "wwf_water_risk": "High",
+   "producing": true
+  },
+  {
+   "site_id": "tucson",
+   "name": "Tucson",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Factory",
+   "status": "active",
+   "wwf_water_stress": "High",
+   "wwf_water_risk": "High",
+   "producing": true
+  },
+  {
+   "site_id": "agrinsa",
+   "name": "Agrinsa (Argentina Farm)",
+   "country": "Argentina",
+   "region": "South America",
+   "facility_type": "Farm",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "Medium",
+   "producing": false
+  },
+  {
+   "site_id": "dateland",
+   "name": "Dateland",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Farm",
+   "status": "active",
+   "wwf_water_stress": "High",
+   "wwf_water_risk": "High",
+   "producing": false
+  },
+  {
+   "site_id": "barcelona",
+   "name": "Barcelona",
+   "country": "Spain",
+   "region": "Europe",
+   "facility_type": "Office",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "granollers",
+   "name": "Granollers",
+   "country": "Spain",
+   "region": "Europe",
+   "facility_type": "Office",
+   "status": "closed",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "mexico_city",
+   "name": "Mexico City",
+   "country": "Mexico",
+   "region": "North America",
+   "facility_type": "Warehouse",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "linden",
+   "name": "Linden, NJ",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Warehouse",
+   "status": "closed",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "fairfield",
+   "name": "Fairfield",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Warehouse",
+   "status": "active",
+   "wwf_water_stress": "High",
+   "wwf_water_risk": "Medium",
+   "producing": false
+  },
+  {
+   "site_id": "warren",
+   "name": "Warren, NJ",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Office",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "pittsburgh",
+   "name": "Pittsburgh, PA",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Office",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "south_africa",
+   "name": "South Africa",
+   "country": "South Africa",
+   "region": "Africa",
+   "facility_type": "Warehouse",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "delta",
+   "name": "Delta",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Warehouse",
+   "status": "closed",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "deerfield",
+   "name": "Deerfield",
+   "country": "USA",
+   "region": "North America",
+   "facility_type": "Office",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "tlalnepantla",
+   "name": "Tlalnepantla de Baz",
+   "country": "Mexico",
+   "region": "North America",
+   "facility_type": "Warehouse",
+   "status": "closed",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "shanghai",
+   "name": "Shanghai",
+   "country": "China",
+   "region": "Asia",
+   "facility_type": "Warehouse",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "bogota",
+   "name": "Bogota",
+   "country": "Colombia",
+   "region": "South America",
+   "facility_type": "Office",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "santiago",
+   "name": "Santiago",
+   "country": "Chile",
+   "region": "South America",
+   "facility_type": "Warehouse",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "guatemala",
+   "name": "Guatemala City",
+   "country": "Guatemala",
+   "region": "North America",
+   "facility_type": "Warehouse",
+   "status": "closed",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "sao_paulo",
+   "name": "Sao Paulo",
+   "country": "Brazil",
+   "region": "South America",
+   "facility_type": "Warehouse",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "buenos_aires",
+   "name": "Buenos Aires",
+   "country": "Argentina",
+   "region": "South America",
+   "facility_type": "Office",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "mumbai",
+   "name": "Mumbai",
+   "country": "India",
+   "region": "Asia",
+   "facility_type": "Warehouse",
+   "status": "active",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "lima",
+   "name": "Lima",
+   "country": "Peru",
+   "region": "South America",
+   "facility_type": "Warehouse",
+   "status": "closed",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "costa_rica",
+   "name": "Costa Rica",
+   "country": "Costa Rica",
+   "region": "North America",
+   "facility_type": "Warehouse",
+   "status": "closed",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  },
+  {
+   "site_id": "paris",
+   "name": "Paris",
+   "country": "France",
+   "region": "Europe",
+   "facility_type": "Office",
+   "status": "closed",
+   "wwf_water_stress": "NA",
+   "wwf_water_risk": "NA",
+   "producing": false
+  }
+ ],
+ "emissions_by_site": [
+  {
+   "site_id": "leuna",
+   "year": 2021,
+   "scope1": 106.97,
+   "scope2_market": 15080.86
+  },
+  {
+   "site_id": "leuna",
+   "year": 2022,
+   "scope1": 88.32,
+   "scope2_market": 15925.81
+  },
+  {
+   "site_id": "leuna",
+   "year": 2023,
+   "scope1": 142.25,
+   "scope2_market": 13126.91
+  },
+  {
+   "site_id": "barcelona",
+   "year": 2021,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "barcelona",
+   "year": 2022,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "barcelona",
+   "year": 2023,
+   "scope1": 64.49,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "mexico_city",
+   "year": 2021,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "mexico_city",
+   "year": 2022,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "mexico_city",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 3.67
+  },
+  {
+   "site_id": "chicago",
+   "year": 2021,
+   "scope1": 50146.19,
+   "scope2_market": 12813.85
+  },
+  {
+   "site_id": "chicago",
+   "year": 2022,
+   "scope1": 48883.96,
+   "scope2_market": 12586.73
+  },
+  {
+   "site_id": "chicago",
+   "year": 2023,
+   "scope1": 44646.43,
+   "scope2_market": 9052.0
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2021,
+   "scope1": 12270.67,
+   "scope2_market": 5752.71
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2022,
+   "scope1": 12573.18,
+   "scope2_market": 5787.42
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2023,
+   "scope1": 10079.74,
+   "scope2_market": 3914.8
+  },
+  {
+   "site_id": "agrinsa",
+   "year": 2021,
+   "scope1": 144.96,
+   "scope2_market": 1787.28
+  },
+  {
+   "site_id": "agrinsa",
+   "year": 2022,
+   "scope1": 148.85,
+   "scope2_market": 1609.03
+  },
+  {
+   "site_id": "agrinsa",
+   "year": 2023,
+   "scope1": 150.55,
+   "scope2_market": 1733.61
+  },
+  {
+   "site_id": "dateland",
+   "year": 2021,
+   "scope1": 802.26,
+   "scope2_market": 2198.04
+  },
+  {
+   "site_id": "dateland",
+   "year": 2022,
+   "scope1": 697.19,
+   "scope2_market": 1499.01
+  },
+  {
+   "site_id": "dateland",
+   "year": 2023,
+   "scope1": 574.68,
+   "scope2_market": 1529.0
+  },
+  {
+   "site_id": "englewood",
+   "year": 2021,
+   "scope1": 184.73,
+   "scope2_market": 885.47
+  },
+  {
+   "site_id": "englewood",
+   "year": 2022,
+   "scope1": 1996.0,
+   "scope2_market": 818.48
+  },
+  {
+   "site_id": "englewood",
+   "year": 2023,
+   "scope1": 168.53,
+   "scope2_market": 800.74
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2021,
+   "scope1": 1226.8,
+   "scope2_market": 546.39
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2022,
+   "scope1": 1328.89,
+   "scope2_market": 591.78
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2023,
+   "scope1": 1190.11,
+   "scope2_market": 739.95
+  },
+  {
+   "site_id": "linden",
+   "year": 2021,
+   "scope1": 531.94,
+   "scope2_market": 469.18
+  },
+  {
+   "site_id": "linden",
+   "year": 2022,
+   "scope1": 64.89,
+   "scope2_market": 327.88
+  },
+  {
+   "site_id": "linden",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 16.55
+  },
+  {
+   "site_id": "fairfield",
+   "year": 2021,
+   "scope1": 103.77,
+   "scope2_market": 127.63
+  },
+  {
+   "site_id": "fairfield",
+   "year": 2022,
+   "scope1": 127.92,
+   "scope2_market": 108.93
+  },
+  {
+   "site_id": "fairfield",
+   "year": 2023,
+   "scope1": 97.85,
+   "scope2_market": 116.76
+  },
+  {
+   "site_id": "warren",
+   "year": 2021,
+   "scope1": 13.34,
+   "scope2_market": 147.34
+  },
+  {
+   "site_id": "warren",
+   "year": 2022,
+   "scope1": 35.7,
+   "scope2_market": 93.28
+  },
+  {
+   "site_id": "warren",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 46.76
+  },
+  {
+   "site_id": "tucson",
+   "year": 2021,
+   "scope1": 24.68,
+   "scope2_market": 80.97
+  },
+  {
+   "site_id": "tucson",
+   "year": 2022,
+   "scope1": 27.66,
+   "scope2_market": 66.87
+  },
+  {
+   "site_id": "tucson",
+   "year": 2023,
+   "scope1": 13.89,
+   "scope2_market": 55.06
+  },
+  {
+   "site_id": "pittsburgh",
+   "year": 2021,
+   "scope1": 56.04,
+   "scope2_market": 45.64
+  },
+  {
+   "site_id": "pittsburgh",
+   "year": 2022,
+   "scope1": 59.37,
+   "scope2_market": 55.96
+  },
+  {
+   "site_id": "pittsburgh",
+   "year": 2023,
+   "scope1": 44.85,
+   "scope2_market": 60.47
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2021,
+   "scope1": 132.73,
+   "scope2_market": 59.83
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2022,
+   "scope1": 87.64,
+   "scope2_market": 41.1
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2023,
+   "scope1": 74.54,
+   "scope2_market": 39.81
+  },
+  {
+   "site_id": "south_africa",
+   "year": 2021,
+   "scope1": 7.65,
+   "scope2_market": 40.93
+  },
+  {
+   "site_id": "south_africa",
+   "year": 2022,
+   "scope1": 7.65,
+   "scope2_market": 38.54
+  },
+  {
+   "site_id": "south_africa",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 26.6
+  },
+  {
+   "site_id": "delta",
+   "year": 2021,
+   "scope1": 64.75,
+   "scope2_market": 51.73
+  },
+  {
+   "site_id": "delta",
+   "year": 2022,
+   "scope1": 63.65,
+   "scope2_market": 38.37
+  },
+  {
+   "site_id": "delta",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "deerfield",
+   "year": 2021,
+   "scope1": 10.41,
+   "scope2_market": 1026.44
+  },
+  {
+   "site_id": "deerfield",
+   "year": 2022,
+   "scope1": 30.08,
+   "scope2_market": 25.77
+  },
+  {
+   "site_id": "deerfield",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 14.93
+  },
+  {
+   "site_id": "tlalnepantla",
+   "year": 2021,
+   "scope1": 43.01,
+   "scope2_market": 4.26
+  },
+  {
+   "site_id": "tlalnepantla",
+   "year": 2022,
+   "scope1": 62.79,
+   "scope2_market": 22.83
+  },
+  {
+   "site_id": "tlalnepantla",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "shanghai",
+   "year": 2021,
+   "scope1": 16.51,
+   "scope2_market": 20.26
+  },
+  {
+   "site_id": "shanghai",
+   "year": 2022,
+   "scope1": 24.2,
+   "scope2_market": 18.16
+  },
+  {
+   "site_id": "shanghai",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 20.65
+  },
+  {
+   "site_id": "granollers",
+   "year": 2021,
+   "scope1": 4.26,
+   "scope2_market": 6.41
+  },
+  {
+   "site_id": "granollers",
+   "year": 2022,
+   "scope1": 6.24,
+   "scope2_market": 7.21
+  },
+  {
+   "site_id": "granollers",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 7.35
+  },
+  {
+   "site_id": "bogota",
+   "year": 2021,
+   "scope1": 1.0,
+   "scope2_market": 85.18
+  },
+  {
+   "site_id": "bogota",
+   "year": 2022,
+   "scope1": 24.08,
+   "scope2_market": 5.34
+  },
+  {
+   "site_id": "bogota",
+   "year": 2023,
+   "scope1": 21.9,
+   "scope2_market": 3.54
+  },
+  {
+   "site_id": "santiago",
+   "year": 2021,
+   "scope1": 1.93,
+   "scope2_market": 7.28
+  },
+  {
+   "site_id": "santiago",
+   "year": 2022,
+   "scope1": 1.93,
+   "scope2_market": 5.09
+  },
+  {
+   "site_id": "santiago",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 4.54
+  },
+  {
+   "site_id": "guatemala",
+   "year": 2021,
+   "scope1": 1.02,
+   "scope2_market": 7.71
+  },
+  {
+   "site_id": "guatemala",
+   "year": 2022,
+   "scope1": 1.02,
+   "scope2_market": 4.65
+  },
+  {
+   "site_id": "guatemala",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "sao_paulo",
+   "year": 2021,
+   "scope1": 15.13,
+   "scope2_market": 2.55
+  },
+  {
+   "site_id": "sao_paulo",
+   "year": 2022,
+   "scope1": 15.13,
+   "scope2_market": 2.32
+  },
+  {
+   "site_id": "sao_paulo",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 1.39
+  },
+  {
+   "site_id": "buenos_aires",
+   "year": 2021,
+   "scope1": 7.82,
+   "scope2_market": 39.23
+  },
+  {
+   "site_id": "buenos_aires",
+   "year": 2022,
+   "scope1": 7.82,
+   "scope2_market": 2.06
+  },
+  {
+   "site_id": "buenos_aires",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "mumbai",
+   "year": 2021,
+   "scope1": 0.09,
+   "scope2_market": 1.77
+  },
+  {
+   "site_id": "mumbai",
+   "year": 2022,
+   "scope1": 0,
+   "scope2_market": 0.69
+  },
+  {
+   "site_id": "mumbai",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 0.04
+  },
+  {
+   "site_id": "lima",
+   "year": 2021,
+   "scope1": 0.67,
+   "scope2_market": 5.42
+  },
+  {
+   "site_id": "lima",
+   "year": 2022,
+   "scope1": 0.67,
+   "scope2_market": 0.11
+  },
+  {
+   "site_id": "lima",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "costa_rica",
+   "year": 2021,
+   "scope1": 34.22,
+   "scope2_market": 0.04
+  },
+  {
+   "site_id": "costa_rica",
+   "year": 2022,
+   "scope1": 40.08,
+   "scope2_market": 0.0
+  },
+  {
+   "site_id": "costa_rica",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "paris",
+   "year": 2021,
+   "scope1": 0,
+   "scope2_market": 1.41
+  },
+  {
+   "site_id": "paris",
+   "year": 2022,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "paris",
+   "year": 2023,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "agrinsa",
+   "year": 2024,
+   "scope1": 110.56,
+   "scope2_market": 1618.97
+  },
+  {
+   "site_id": "bogota",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 3.44
+  },
+  {
+   "site_id": "buenos_aires",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2024,
+   "scope1": 1136.85,
+   "scope2_market": 657.39
+  },
+  {
+   "site_id": "chicago",
+   "year": 2024,
+   "scope1": 46551.35,
+   "scope2_market": 995.29
+  },
+  {
+   "site_id": "dateland",
+   "year": 2024,
+   "scope1": 474.38,
+   "scope2_market": 1695.96
+  },
+  {
+   "site_id": "deerfield",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 2.13
+  },
+  {
+   "site_id": "englewood",
+   "year": 2024,
+   "scope1": 186.53,
+   "scope2_market": 813.39
+  },
+  {
+   "site_id": "fairfield",
+   "year": 2024,
+   "scope1": 112.04,
+   "scope2_market": 121.56
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2024,
+   "scope1": 11056.98,
+   "scope2_market": 573.06
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 34.62
+  },
+  {
+   "site_id": "leuna",
+   "year": 2024,
+   "scope1": 7.15,
+   "scope2_market": 15773.16
+  },
+  {
+   "site_id": "mexico_city",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 4.73
+  },
+  {
+   "site_id": "pittsburgh",
+   "year": 2024,
+   "scope1": 44.98,
+   "scope2_market": 58.04
+  },
+  {
+   "site_id": "santiago",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 3.92
+  },
+  {
+   "site_id": "sao_paulo",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 1.97
+  },
+  {
+   "site_id": "shanghai",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 19.95
+  },
+  {
+   "site_id": "south_africa",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 29.42
+  },
+  {
+   "site_id": "tucson",
+   "year": 2024,
+   "scope1": 14.57,
+   "scope2_market": 49.25
+  },
+  {
+   "site_id": "warren",
+   "year": 2024,
+   "scope1": 0,
+   "scope2_market": 106.32
+  },
+  {
+   "site_id": "agrinsa",
+   "year": 2025,
+   "scope1": 164.83,
+   "scope2_market": 1022.79
+  },
+  {
+   "site_id": "barcelona",
+   "year": 2025,
+   "scope1": 12.72,
+   "scope2_market": 0
+  },
+  {
+   "site_id": "bogota",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 4.9
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2025,
+   "scope1": 1197.71,
+   "scope2_market": 608.17
+  },
+  {
+   "site_id": "chicago",
+   "year": 2025,
+   "scope1": 45882.89,
+   "scope2_market": 1514.66
+  },
+  {
+   "site_id": "dateland",
+   "year": 2025,
+   "scope1": 205.3,
+   "scope2_market": 754.37
+  },
+  {
+   "site_id": "deerfield",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 2.8
+  },
+  {
+   "site_id": "englewood",
+   "year": 2025,
+   "scope1": 204.2,
+   "scope2_market": 692.39
+  },
+  {
+   "site_id": "fairfield",
+   "year": 2025,
+   "scope1": 157.17,
+   "scope2_market": 115.06
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2025,
+   "scope1": 11574.06,
+   "scope2_market": 720.6
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 35.36
+  },
+  {
+   "site_id": "leuna",
+   "year": 2025,
+   "scope1": 0.4,
+   "scope2_market": 14874.75
+  },
+  {
+   "site_id": "mexico_city",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 4.26
+  },
+  {
+   "site_id": "pittsburgh",
+   "year": 2025,
+   "scope1": 53.69,
+   "scope2_market": 62.49
+  },
+  {
+   "site_id": "santiago",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 2.69
+  },
+  {
+   "site_id": "sao_paulo",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 1.97
+  },
+  {
+   "site_id": "shanghai",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 19.96
+  },
+  {
+   "site_id": "south_africa",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 68.78
+  },
+  {
+   "site_id": "tucson",
+   "year": 2025,
+   "scope1": 11.49,
+   "scope2_market": 39.35
+  },
+  {
+   "site_id": "warren",
+   "year": 2025,
+   "scope1": 0,
+   "scope2_market": 133.98
+  }
+ ],
+ "emissions_company": {
+  "2021": {
+   "scope1": 65953.5,
+   "scope2_market": 41295.8
+  },
+  "2022": {
+   "scope1": 66404.9,
+   "scope2_market": 39683.4,
+   "scope2_location": 41478.2
+  },
+  "2023": {
+   "scope1": 57269.8,
+   "scope2_market": 31315.1,
+   "scope2_location": 35782.6,
+   "scope3_total": 887877.82
+  },
+  "2024": {
+   "scope1": 59695.4,
+   "scope2_market": 22562.6,
+   "scope2_location": 39042.7,
+   "scope3_total": 809436.5900000001
+  },
+  "2025": {
+   "scope1": 59464.5,
+   "scope2_market": 20679.3,
+   "scope2_location": 31767.6
+  }
+ },
+ "scope3_categories": {
+  "2023": {
+   "Purchased goods and services": 722260.3,
+   "Fuel-and-energy-related activities": 14525.2,
+   "Upstream transportation and distribution": 17067.6,
+   "Waste generated in operations": 27262.8,
+   "Business travel": 374.4,
+   "Employee commuting": 1404.7,
+   "Upstream leased assets": 470.3,
+   "Use of sold products": 1206.3,
+   "End of life treatment of sold products": 103306.2
+  },
+  "2024": {
+   "Purchased goods and services": 726053.4,
+   "Fuel-and-energy-related activities": 17446.7,
+   "Upstream transportation and distribution": 17441.4,
+   "Waste generated in operations": 3594.6,
+   "Business travel": 356.3,
+   "Employee commuting": 1587.5,
+   "Upstream leased assets": 332.0,
+   "Use of sold products": 601.9,
+   "End of life treatment of sold products": 42022.8
+  }
+ },
+ "water_company": {
+  "2021": {
+   "withdrawal_ml": 16522.0
+  },
+  "2022": {
+   "withdrawal_ml": 15202.0
+  },
+  "2023": {
+   "withdrawal_ml": 14434.0
+  },
+  "2024": {
+   "withdrawal_ml": 13155.0
+  },
+  "2025": {
+   "withdrawal_ml": 7984.1,
+   "note": "Converted from FY25 inventory gallons"
+  }
+ },
+ "water_by_site": [
+  {
+   "site_id": "agrinsa",
+   "year": 2024,
+   "withdrawal_ml": 7362.97,
+   "consumption_ml": 3681.49,
+   "surface": 0,
+   "groundwater": 7362.97,
+   "third_party": 0,
+   "recycled": 0
+  },
+  {
+   "site_id": "barcelona",
+   "year": 2024,
+   "withdrawal_ml": 0.19,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.19,
+   "recycled": 0
+  },
+  {
+   "site_id": "bogota",
+   "year": 2024,
+   "withdrawal_ml": 1.65,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 1.65,
+   "recycled": 0
+  },
+  {
+   "site_id": "buenos_aires",
+   "year": 2024,
+   "withdrawal_ml": 0.16,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.16,
+   "recycled": 0
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2024,
+   "withdrawal_ml": 11.37,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 11.37,
+   "recycled": 0
+  },
+  {
+   "site_id": "chicago",
+   "year": 2024,
+   "withdrawal_ml": 401.54,
+   "consumption_ml": 80.31,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 401.54,
+   "recycled": 0
+  },
+  {
+   "site_id": "dateland",
+   "year": 2024,
+   "withdrawal_ml": 4991.47,
+   "consumption_ml": 2495.73,
+   "surface": 0,
+   "groundwater": 4991.47,
+   "third_party": 0,
+   "recycled": 0
+  },
+  {
+   "site_id": "deerfield",
+   "year": 2024,
+   "withdrawal_ml": 0.5,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.5,
+   "recycled": 0
+  },
+  {
+   "site_id": "englewood",
+   "year": 2024,
+   "withdrawal_ml": 6.89,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 6.89,
+   "recycled": 0
+  },
+  {
+   "site_id": "fairfield",
+   "year": 2024,
+   "withdrawal_ml": 4.39,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 4.39,
+   "recycled": 0
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2024,
+   "withdrawal_ml": 347.06,
+   "consumption_ml": 226.96,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 347.06,
+   "recycled": 0
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2024,
+   "withdrawal_ml": 3.12,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 3.12,
+   "recycled": 0
+  },
+  {
+   "site_id": "leuna",
+   "year": 2024,
+   "withdrawal_ml": 37.03,
+   "consumption_ml": -17.91,
+   "surface": 19.66,
+   "groundwater": 0,
+   "third_party": 1.62,
+   "recycled": 15.75
+  },
+  {
+   "site_id": "mexico_city",
+   "year": 2024,
+   "withdrawal_ml": 0.83,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.83,
+   "recycled": 0
+  },
+  {
+   "site_id": "pittsburgh",
+   "year": 2024,
+   "withdrawal_ml": 0.36,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.36,
+   "recycled": 0
+  },
+  {
+   "site_id": "santiago",
+   "year": 2024,
+   "withdrawal_ml": 0.08,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.08,
+   "recycled": 0
+  },
+  {
+   "site_id": "sao_paulo",
+   "year": 2024,
+   "withdrawal_ml": 0.03,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.03,
+   "recycled": 0
+  },
+  {
+   "site_id": "shanghai",
+   "year": 2024,
+   "withdrawal_ml": 0.16,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.16,
+   "recycled": 0
+  },
+  {
+   "site_id": "south_africa",
+   "year": 2024,
+   "withdrawal_ml": 0.5,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.5,
+   "recycled": 0
+  },
+  {
+   "site_id": "tucson",
+   "year": 2024,
+   "withdrawal_ml": 0.55,
+   "consumption_ml": 0.17,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.55,
+   "recycled": 0
+  },
+  {
+   "site_id": "warren",
+   "year": 2024,
+   "withdrawal_ml": 0.79,
+   "consumption_ml": 0.0,
+   "surface": 0,
+   "groundwater": 0,
+   "third_party": 0.79,
+   "recycled": 0
+  }
+ ],
+ "production_by_site": [
+  {
+   "site_id": "gurnee",
+   "year": 2022,
+   "production_tons": 61042.3
+  },
+  {
+   "site_id": "chicago",
+   "year": 2022,
+   "production_tons": 224127.7
+  },
+  {
+   "site_id": "leuna",
+   "year": 2022,
+   "production_tons": 47392.7
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2022,
+   "production_tons": 25785.8
+  },
+  {
+   "site_id": "englewood",
+   "year": 2022,
+   "production_tons": 1071.6
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2022,
+   "production_tons": 6849.9
+  },
+  {
+   "site_id": "tucson",
+   "year": 2022,
+   "production_tons": 964.3
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2023,
+   "production_tons": 46146.8
+  },
+  {
+   "site_id": "chicago",
+   "year": 2023,
+   "production_tons": 207637.8
+  },
+  {
+   "site_id": "leuna",
+   "year": 2023,
+   "production_tons": 44097.1
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2023,
+   "production_tons": 23295.2
+  },
+  {
+   "site_id": "englewood",
+   "year": 2023,
+   "production_tons": 865.7
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2023,
+   "production_tons": 6021.2
+  },
+  {
+   "site_id": "tucson",
+   "year": 2023,
+   "production_tons": 644.7
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2024,
+   "production_tons": 53929.6
+  },
+  {
+   "site_id": "chicago",
+   "year": 2024,
+   "production_tons": 222284.8
+  },
+  {
+   "site_id": "leuna",
+   "year": 2024,
+   "production_tons": 56877.2
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2024,
+   "production_tons": 20419.9
+  },
+  {
+   "site_id": "englewood",
+   "year": 2024,
+   "production_tons": 1114.4
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2024,
+   "production_tons": 7863.2
+  },
+  {
+   "site_id": "tucson",
+   "year": 2024,
+   "production_tons": 670.0
+  },
+  {
+   "site_id": "gurnee",
+   "year": 2025,
+   "production_tons": 50614.0
+  },
+  {
+   "site_id": "chicago",
+   "year": 2025,
+   "production_tons": 205990.4
+  },
+  {
+   "site_id": "leuna",
+   "year": 2025,
+   "production_tons": 49678.0
+  },
+  {
+   "site_id": "carnegie",
+   "year": 2025,
+   "production_tons": 20108.9
+  },
+  {
+   "site_id": "englewood",
+   "year": 2025,
+   "production_tons": 1274.4
+  },
+  {
+   "site_id": "les_borges",
+   "year": 2025,
+   "production_tons": 7715.7
+  },
+  {
+   "site_id": "tucson",
+   "year": 2025,
+   "production_tons": 486.7
+  }
+ ],
+ "production_company": {
+  "2022": 367234.0,
+  "2023": 328708.0,
+  "2024": 363159.0,
+  "2025": 335868.0
+ },
+ "targets": {
+  "ghg_s1s2": [
+   {
+    "year": 2021,
+    "actual": 107249.0,
+    "target": 85799.2
+   },
+   {
+    "year": 2022,
+    "actual": 106088.0,
+    "target": 85799.2
+   },
+   {
+    "year": 2023,
+    "actual": 88585.0,
+    "target": 85799.2
+   },
+   {
+    "year": 2024,
+    "actual": 82258.0,
+    "target": 85799.2
+   },
+   {
+    "year": 2025,
+    "actual": 87865.33768,
+    "target": 85799.2
+   },
+   {
+    "year": 2026,
+    "actual": 87173.33768,
+    "target": 85799.2
+   },
+   {
+    "year": 2027,
+    "actual": 86839.08168,
+    "target": 85799.2
+   },
+   {
+    "year": 2028,
+    "actual": 86134.08168,
+    "target": 85799.2
+   },
+   {
+    "year": 2029,
+    "actual": 85429.08168,
+    "target": 85799.2
+   },
+   {
+    "year": 2030,
+    "actual": 84724.08168,
+    "target": 85799.2
+   }
+  ],
+  "water": [
+   {
+    "year": 2021,
+    "actual": 16522.0,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2022,
+    "actual": 15202.0,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2023,
+    "actual": 14434.0,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2024,
+    "actual": 13155.0,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2025,
+    "actual": 13143.2484508,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2026,
+    "actual": 12716.467450799999,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2027,
+    "actual": 12716.467450799999,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2028,
+    "actual": 12005.467450799999,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2029,
+    "actual": 12005.467450799999,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   },
+   {
+    "year": 2030,
+    "actual": 12005.467450799999,
+    "target_25": 12391.5,
+    "target_50": 8261.0
+   }
+  ]
+ },
+ "initiatives": [
+  {
+   "name": "Dateland removal of every other row in several fields to reduce water use",
+   "site_id": "dateland",
+   "site_name": "Dateland",
+   "stage": "Implemented",
+   "year": 2022,
+   "type": "Water",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": 1400.0,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Distillation Barametric water savings",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2023,
+   "type": "Water",
+   "ghg_savings_tco2e": 0.0,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": 24.761470000000003,
+   "energy_savings_mwh": 0.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 61000.0,
+   "opex_savings_usd": 70000.0,
+   "payback_years": 0.8714285714285714
+  },
+  {
+   "name": "(ComEd SEM) Cooling tower fan VFD (50 hp)",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2023,
+   "type": "GHG",
+   "ghg_savings_tco2e": 90.7184,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 200.0,
+   "incentive_usd": 15400.0,
+   "capex_usd": 25000.0,
+   "opex_savings_usd": 24000.0,
+   "payback_years": 0.4
+  },
+  {
+   "name": "(GOS 2023) Replace Steam Trap on Stearic Acid Drop Tank A in Dry Frac",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2023,
+   "type": "GHG",
+   "ghg_savings_tco2e": 10.0,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 54.6446865,
+   "incentive_usd": 300.0,
+   "capex_usd": 1000.0,
+   "opex_savings_usd": 1500.0,
+   "payback_years": 0.4666666666666667
+  },
+  {
+   "name": "Steam trap replacements",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Implemented",
+   "year": 2024,
+   "type": "GHG",
+   "ghg_savings_tco2e": 545.0,
+   "scope1": 545.0,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 2930.0099999999998,
+   "incentive_usd": 39000.0,
+   "capex_usd": 0.0,
+   "opex_savings_usd": 25000.0,
+   "payback_years": -1.56
+  },
+  {
+   "name": "(ComEd SEM) Decommissioning of 6 mixer motors no longer in use (Dry frac mixer motors)",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2024,
+   "type": "GHG",
+   "ghg_savings_tco2e": 75.749864,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 167.0,
+   "incentive_usd": 15000.0,
+   "capex_usd": 24000.0,
+   "opex_savings_usd": 20040.0,
+   "payback_years": 0.4491017964071856
+  },
+  {
+   "name": "Steam line insulation",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2024,
+   "type": "GHG",
+   "ghg_savings_tco2e": 250.0,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 1416.952836,
+   "incentive_usd": 65000.0,
+   "capex_usd": 130000.0,
+   "opex_savings_usd": 40000.0,
+   "payback_years": 1.625
+  },
+  {
+   "name": "(GOS 2023) Fully Shut Boiler Makeup Water Valve to Tank T99",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Implemented",
+   "year": 2024,
+   "type": "GHG",
+   "ghg_savings_tco2e": 332.2,
+   "scope1": 332.0,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 1845.9062999999999,
+   "incentive_usd": 0.0,
+   "capex_usd": 5000.0,
+   "opex_savings_usd": 50000.0,
+   "payback_years": 0.1
+  },
+  {
+   "name": "Tank Farm Agitator Programming",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2024,
+   "type": "GHG",
+   "ghg_savings_tco2e": 328.32,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": 0.0,
+   "energy_savings_mwh": 800.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 0.0,
+   "opex_savings_usd": 90000.0,
+   "payback_years": 0.0
+  },
+  {
+   "name": "Steam trap replacements and reduced boiler blowdown",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implementation commenced",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 1000.0,
+   "scope1": 1000.0,
+   "scope2": 0.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 8613.0085625,
+   "incentive_usd": 43000.0,
+   "capex_usd": 45000.0,
+   "opex_savings_usd": 360000.0,
+   "payback_years": 0.005555555555555556
+  },
+  {
+   "name": "Heat Savings at Metaupon by insulating K522 Tank (Electricity)",
+   "site_id": "leuna",
+   "site_name": "Leuna",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 40.0,
+   "scope1": null,
+   "scope2": 40.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 55.0,
+   "incentive_usd": 0.0,
+   "capex_usd": null,
+   "opex_savings_usd": 7114.0,
+   "payback_years": 0.0
+  },
+  {
+   "name": "Heat Savings at Metaupon by insulating R341-R346 stirring tanks (Steam)",
+   "site_id": "leuna",
+   "site_name": "Leuna",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 155.0,
+   "scope1": 0.0,
+   "scope2": 155.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 871.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 125022.46590000002,
+   "opex_savings_usd": 54062.0,
+   "payback_years": 2.312575670526433
+  },
+  {
+   "name": "(Custom Project) Tolan Evaporator steam efficiency improvements",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 5860.0199999999995,
+   "incentive_usd": 100000.0,
+   "capex_usd": 1000000.0,
+   "opex_savings_usd": 150000.0,
+   "payback_years": 6.0
+  },
+  {
+   "name": "(GOS 2023) Recover splitter flash to preheat makeup water",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2026,
+   "type": "GHG, Water",
+   "ghg_savings_tco2e": 1200.0,
+   "scope1": 1200.0,
+   "scope2": null,
+   "water_savings_ml": 56.781,
+   "energy_savings_mwh": 5215.4178,
+   "incentive_usd": 178000.0,
+   "capex_usd": 500000.0,
+   "opex_savings_usd": 145000.0,
+   "payback_years": 2.220689655172414
+  },
+  {
+   "name": "Condensate Tie in for Spray Congealing Tower",
+   "site_id": "englewood",
+   "site_name": "Englewood",
+   "stage": "To be implemented",
+   "year": 2025,
+   "type": "GHG, Water",
+   "ghg_savings_tco2e": 4.88152,
+   "scope1": 4.88152,
+   "scope2": null,
+   "water_savings_ml": 0.5,
+   "energy_savings_mwh": 27.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 10000.0,
+   "opex_savings_usd": 1500.0,
+   "payback_years": 6.666666666666667
+  },
+  {
+   "name": "(GOS 2023) Automate skimming blowdown control",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2025,
+   "type": "GHG, Water",
+   "ghg_savings_tco2e": 24.0,
+   "scope1": 0.0,
+   "scope2": 24.0,
+   "water_savings_ml": 0.6435179999999999,
+   "energy_savings_mwh": 129.8873433,
+   "incentive_usd": 3325.0,
+   "capex_usd": 60000.0,
+   "opex_savings_usd": 5500.0,
+   "payback_years": 10.304545454545455
+  },
+  {
+   "name": "Optimizing Cooling Towers",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implementation commenced",
+   "year": 2025,
+   "type": "Water",
+   "ghg_savings_tco2e": 0.0,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": 0.66,
+   "energy_savings_mwh": 0.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 0.0,
+   "opex_savings_usd": 130000.0,
+   "payback_years": 0.0
+  },
+  {
+   "name": "Air Compressor Replacement to replace current",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Under Investigation",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Compressed Air Leak Fixes",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "To be implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Crystallizer Optimization",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 33.6528,
+   "scope1": 0.0,
+   "scope2": 33.6528,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 82.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 0.0,
+   "opex_savings_usd": 25000.0,
+   "payback_years": 0.0
+  },
+  {
+   "name": "Glycol Piping Insulation",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "(Custom Project) Installation of reciculation system on the alkoxidazation vacuum pumps",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "To be implemented",
+   "year": 2025,
+   "type": "Water",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": 9.948031199999999,
+   "energy_savings_mwh": null,
+   "incentive_usd": 0.0,
+   "capex_usd": 60000.0,
+   "opex_savings_usd": 1989.0,
+   "payback_years": 30.165912518853695
+  },
+  {
+   "name": "Solar project at Argentina Farm (Phase 1)",
+   "site_id": "agrinsa",
+   "site_name": "Agrinsa",
+   "stage": "To be implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 466.0,
+   "scope1": 0.0,
+   "scope2": 466.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 1500.0,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Optimizations of Electricity at Dateland",
+   "site_id": "dateland",
+   "site_name": "Dateland",
+   "stage": "To be implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 664.0,
+   "scope1": 0.0,
+   "scope2": 664.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 1600.0,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Solar PPA",
+   "site_id": "leuna",
+   "site_name": "Leuna",
+   "stage": "Under Investigation",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": 0.0,
+   "energy_savings_mwh": 4000.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 0.0,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "New taurine synthesis heat exchanger. Recover 90% of heat and save electricity",
+   "site_id": "leuna",
+   "site_name": "Leuna",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 1465.128,
+   "scope1": 0.0,
+   "scope2": 1465.128,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 2142.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 50000.0,
+   "opex_savings_usd": 353000.0,
+   "payback_years": 0.141643059490085
+  },
+  {
+   "name": "Dateland facility to continue adjusting its irrigation practices from furrow to drip at Field Seven Eleven (7-11) Stage 1 (160 acres)",
+   "site_id": "dateland",
+   "site_name": "Dateland",
+   "stage": "Under Investigation",
+   "year": 2026,
+   "type": "GHG, Water",
+   "ghg_savings_tco2e": 141.0,
+   "scope1": 0.0,
+   "scope2": 141.0,
+   "water_savings_ml": 370.0,
+   "energy_savings_mwh": 400.0,
+   "incentive_usd": 220000.0,
+   "capex_usd": 300000.0,
+   "opex_savings_usd": 52000.0,
+   "payback_years": 1.5384615384615385
+  },
+  {
+   "name": "New Dry Frac Air Compressor (SEM Incentive Pending)",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2027,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Supply temperature reset with OA WB conditions to slow fans on VFD during winter",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": 4000.0,
+   "payback_years": 0.0
+  },
+  {
+   "name": "Oleic acid temperature controls",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Improve approach temperature on cooling water supply temperature",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 20.0,
+   "scope1": null,
+   "scope2": 20.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 52.3,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": 3800.0,
+   "payback_years": 0.0
+  },
+  {
+   "name": "Dry Frac Chillers - Running 1 vs 2",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Conti Odor scrubber system",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "Water",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": 32.0,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Spent Catalyst Reduction (also reduction in nitrogen)",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "",
+   "year": null,
+   "type": "",
+   "ghg_savings_tco2e": 61302.4388,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Shut off chiller and chiller pump when flaker rolls are off",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 70.0,
+   "scope1": null,
+   "scope2": 70.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 182.8,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": 13231.0,
+   "payback_years": 0.0
+  },
+  {
+   "name": "Low Nox burners for Boiler 11",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Larger Nitrogen Generator",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Under Investigation",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Condensate Tank Replacement",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Under Investigation",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Optimize D1 and D2 Loading to improve efficiency",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2028,
+   "type": "GHG",
+   "ghg_savings_tco2e": 156.0,
+   "scope1": 156.0,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": 0.0,
+   "capex_usd": 12000.0,
+   "opex_savings_usd": 15582.0,
+   "payback_years": 0.7701193685021178
+  },
+  {
+   "name": "Utilize free cooling below 30F DBT to reduce chiller energy usage (Flaking)",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2028,
+   "type": "GHG",
+   "ghg_savings_tco2e": 20.0,
+   "scope1": null,
+   "scope2": 20.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 53.0,
+   "incentive_usd": 6328.0,
+   "capex_usd": 80000.0,
+   "opex_savings_usd": 3818.0,
+   "payback_years": 19.295966474594028
+  },
+  {
+   "name": "Reduce pump flow during winter and increase cooling tower fan speeds (Conti water tower)",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2028,
+   "type": "GHG",
+   "ghg_savings_tco2e": 6.0,
+   "scope1": null,
+   "scope2": 6.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 16.0,
+   "incentive_usd": 1850.0,
+   "capex_usd": 3000.0,
+   "opex_savings_usd": 1160.0,
+   "payback_years": 0.9913793103448276
+  },
+  {
+   "name": "Install and utilize VFDs on Boiler 11 feedwater pumps",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2027,
+   "type": "GHG",
+   "ghg_savings_tco2e": 58.0,
+   "scope1": null,
+   "scope2": 58.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 152.0,
+   "incentive_usd": 8000.0,
+   "capex_usd": 36000.0,
+   "opex_savings_usd": 10977.0,
+   "payback_years": 2.550788011296347
+  },
+  {
+   "name": "Install Advanced O2 Trim Controls on B1 and B11 (1% to 2% increase in eff): Flue Gas Test Recommended",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "Under Investigation",
+   "year": 2028,
+   "type": "GHG",
+   "ghg_savings_tco2e": 523.0,
+   "scope1": 523.0,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 288.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 60000.0,
+   "opex_savings_usd": 52231.0,
+   "payback_years": 1.1487430836093508
+  },
+  {
+   "name": "Regenerative Thermal Oxidizer",
+   "site_id": "chicago",
+   "site_name": "Chicago",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": -1690.0,
+   "scope1": -1690.0,
+   "scope2": 0.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": 0.0,
+   "capex_usd": 1000000.0,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Solar project at Argentina Farm (Phase 2)",
+   "site_id": "agrinsa",
+   "site_name": "Agrinsa",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": 560.0,
+   "scope1": 0.0,
+   "scope2": 560.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 1800.0,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Optimizations of Electricity at Dateland",
+   "site_id": "dateland",
+   "site_name": "Dateland",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": 249.0,
+   "scope1": 0.0,
+   "scope2": 249.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 600.0,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Cocopah Furrow to Drip Irrigation Phase 2 (320 acres)",
+   "site_id": "dateland",
+   "site_name": "Dateland",
+   "stage": "Under Investigation",
+   "year": 2027,
+   "type": "GHG, Water",
+   "ghg_savings_tco2e": null,
+   "scope1": 0.0,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 400.0,
+   "incentive_usd": 480000.0,
+   "capex_usd": 550000.0,
+   "opex_savings_usd": 40000.0,
+   "payback_years": 1.75
+  },
+  {
+   "name": "Cocopah Furrow to Drip Irrigation Phase 3 (320 acres)",
+   "site_id": "dateland",
+   "site_name": "Dateland",
+   "stage": "Under Investigation",
+   "year": 2028,
+   "type": "GHG, Water",
+   "ghg_savings_tco2e": null,
+   "scope1": 0.0,
+   "scope2": null,
+   "water_savings_ml": 711.0,
+   "energy_savings_mwh": 400.0,
+   "incentive_usd": 480000.0,
+   "capex_usd": 550000.0,
+   "opex_savings_usd": 40000.0,
+   "payback_years": 1.75
+  },
+  {
+   "name": "Chlorinated parrafins product exit (not optimization)",
+   "site_id": "leuna",
+   "site_name": "Leuna",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": 59.0,
+   "scope1": null,
+   "scope2": 59.0,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 330.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 0.0,
+   "opex_savings_usd": 25000.0,
+   "payback_years": 0.0
+  },
+  {
+   "name": "New amine distillation. Install preheating for cool NMT/MMA mixture with the warm NMT outlet so that less steam is required in the process.",
+   "site_id": "leuna",
+   "site_name": "Leuna",
+   "stage": "To be implemented",
+   "year": 2027,
+   "type": "GHG",
+   "ghg_savings_tco2e": 276.256,
+   "scope1": 0.0,
+   "scope2": 276.256,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 1552.0,
+   "incentive_usd": 0.0,
+   "capex_usd": 100000.0,
+   "opex_savings_usd": 100000.0,
+   "payback_years": 1.0
+  },
+  {
+   "name": "Steam Trap Survey and Fixes",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Implemented",
+   "year": 2025,
+   "type": "GHG",
+   "ghg_savings_tco2e": 450.0,
+   "scope1": 450.0,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 2483.0,
+   "incentive_usd": 9365.0,
+   "capex_usd": null,
+   "opex_savings_usd": 59582.0,
+   "payback_years": -0.15717834245241852
+  },
+  {
+   "name": "Insulation of steam lines (North Shore incentive) - Phase 1\nBoiler Room in Bldg one, outdoor process areas",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": 173.0,
+   "scope1": 173.0,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": 952.0,
+   "incentive_usd": 110527.0,
+   "capex_usd": null,
+   "opex_savings_usd": 40000.0,
+   "payback_years": -2.763175
+  },
+  {
+   "name": "Insulation of steam lines (North Shore incentive) - Phase 2 (Bldg 1) does not include oxide room",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG/Water",
+   "ghg_savings_tco2e": 160.0,
+   "scope1": 160.0,
+   "scope2": null,
+   "water_savings_ml": 1.0,
+   "energy_savings_mwh": 790.0,
+   "incentive_usd": 93237.0,
+   "capex_usd": null,
+   "opex_savings_usd": 34000.0,
+   "payback_years": -2.742264705882353
+  },
+  {
+   "name": "LED Lighting Replacement Project",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Steam Trap Survey and Fixes (Bldg 1)",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "To be implemented",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "HVAC Bldg 2 2nd Floor (7.5 ton)",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Under Investigation",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  },
+  {
+   "name": "Compressed Air Leak Fixes",
+   "site_id": "gurnee",
+   "site_name": "Gurnee",
+   "stage": "Under Investigation",
+   "year": 2026,
+   "type": "GHG",
+   "ghg_savings_tco2e": null,
+   "scope1": null,
+   "scope2": null,
+   "water_savings_ml": null,
+   "energy_savings_mwh": null,
+   "incentive_usd": null,
+   "capex_usd": null,
+   "opex_savings_usd": null,
+   "payback_years": null
+  }
+ ]
+}
