@@ -355,8 +355,8 @@ From the 2026 Vantage Style Guide. Use these exactly.
 - **Buttons:** Primary = Fresh Green fill, white text; Secondary = New Dark Blue. Rounded
   (~6–8px), matching the style guide's pill buttons. Active states darken one step.
 - **KPI cards:** white on Background 2/3, dark-charcoal numerals, small trend sparkline + YoY chip.
-- **Logo:** Vantage wordmark (water-drop/globe mark) top-left — thematically perfect for a
-  water + emissions tool.
+- **Logo:** official Vantage wordmark (`assets/vantage-logo.jpg`, water-drop mark) top-left —
+  thematically perfect for a water + emissions tool. Inlined as base64 in the HTML.
 - Generous white space, minimal gridlines, accessible contrast (see Section 13).
 
 ---
@@ -381,7 +381,8 @@ From the 2026 Vantage Style Guide. Use these exactly.
 /build/build_data.py      # Excel → normalized data.json
 /build/sites.yml          # canonical site map + aliases + stress/risk
 /data.json                # generated consolidated dataset (source of truth)
-/dashboard.html           # the deliverable (data inlined at build)
+/dashboard.html           # the deliverable (data + logo inlined at build)
+/assets/vantage-logo.jpg  # official Vantage logo (inlined as base64)
 /vendor/chart.min.js      # pinned chart library
 PRODUCT_SPEC.md           # this file
 README.md                 # how to refresh + open
@@ -468,8 +469,9 @@ Target: **≤ 30 minutes** per yearly update once site mapping is stable.
   mid-period (e.g., **Granollers — no longer operating**; Delta, Linden, Warren) keep their history
   and are marked `closed` from their first all-zero year.
 - ✅ **Spain = Les Borges** (manufacturing). **Barcelona = office** (no production). Confirmed.
-- ✅ **Logo provided** → recreated as an inline SVG in brand colors (`assets/vantage-logo.svg`);
-  swappable with the official asset if committed to the repo.
+- ✅ **Official logo incorporated** → `assets/vantage-logo.jpg` (the real Vantage wordmark, JPEG
+  415×155, white background). Embedded as a base64 data-URI in the single-file HTML so it stays
+  self-contained. Header sits on a white/Background-1 surface so the white logo background is seamless.
 
 ### Still open
 - None blocking. Future input welcome on a growth/decline BAU assumption (Phase 3) and lat/lon for a
