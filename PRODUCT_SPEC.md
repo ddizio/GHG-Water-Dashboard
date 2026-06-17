@@ -77,6 +77,7 @@ they are the inputs to the consolidated dataset (Section 6).
 | `VSC_Scope 3_FY2023_Summary Workbook.xlsx` | Scope 3 by category (1–12) | FY23 | category sheets C1…C12 + `Scope 3 Summary` |
 | `VSC_S1 S2 and S3_FY2024_Inventory Summary_v2.xlsx` | **Full S1+S2+S3** rollup by category | FY24 | best single-year total view (`Total Inventory Summary`) |
 | `CDP Question List (2025 Update).xlsx` | Consolidated trends, water, targets, **initiatives** | 2021–2030 | richest summary file — see below |
+| `Production Volumes - Vantage.xlsx` | **Site-level production** (lbs + tons), monthly + annual | 2022–2025 | 7 manufacturing sites; enables intensity. No 2021. `Prod Volumes` sheet |
 
 ### Key sheets inside `CDP Question List (2025 Update).xlsx`
 - **`Data 2021 to 2023`** — Scope 1 & 2 (market) by site for 2021/2022/2023 + production tons. The
@@ -94,23 +95,29 @@ they are the inputs to the consolidated dataset (Section 6).
 | Scope 1 (site-level) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Scope 2 market + location | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Scope 3 (by category) | ⚠️ partial | ⚠️ partial | ✅ | ✅ | ❌ not yet |
-| Water withdrawal (company) | ✅ | ✅ | ✅ | ✅ | ✅* |
-| Water by site + stress/risk | — | — | — | ✅ | ⚠️ |
-| Production (tons) | — | ✅ | ✅ | ⚠️ | ⚠️ |
+| Water withdrawal (company) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Water by site + stress/risk | — | — | — | ✅ | ✅ |
+| Production tons (site-level) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Initiatives / targets | — | — | — | ✅ 2024–2030 | ✅ |
 
-\* 2025 water is reported in gallons in the FY25 workbook and needs unit reconciliation (Section 7).
-**Design implication:** Scope 3 trends render for 2023–2024 with a clear "limited history" note;
-Scope 1/2 and water carry the full 2021–2025 trend.
+**Design implications:**
+- Scope 3 trends render for **2023–2024 only** with a clear "limited history" note; Scope 1/2 and
+  water carry the full **2021–2025** trend.
+- **Intensity (per ton) is available 2022–2025** for the 7 manufacturing sites; 2021 intensity is
+  not shown (no 2021 production). Company-wide intensity uses the production total for those years.
+- **2025 water is final** (confirmed); the build converts it from gallons to ML (Section 7).
 
 ### Anchor numbers (sanity checks for the build)
 - **Scope 1+2 (market), tCO2e:** 2021 ≈ 107,249 · 2022 ≈ 106,088 · 2023 ≈ 88,585 · 2024 ≈ 82,258 · 2025 ≈ 80,144
 - **2024 total incl. Scope 3:** ≈ 891,695 tCO2e; Scope 3 ≈ 809,400, of which **Category 1 (Purchased
   goods & services) ≈ 726,053 = ~81%**.
-- **Water withdrawal (ML):** 2021 ≈ 16,522 · 2022 ≈ 15,202 · 2023 ≈ 14,434 · 2024 ≈ 13,155.
+- **Water withdrawal (ML):** 2021 ≈ 16,522 · 2022 ≈ 15,202 · 2023 ≈ 14,434 · 2024 ≈ 13,155 · 2025 ≈ TBD
+  (converted from gallons during build).
+- **Production (tons):** 2022 ≈ 367,234 · 2023 ≈ 328,709 · 2024 ≈ 363,159 · 2025 ≈ 335,868 (7
+  manufacturing sites: Gurnee, Chicago/Oleo, Leuna, Carnegie/Mallet, Englewood, Spain/Les Borges, Tucson).
 - **Top emitting sites:** Chicago, Gurnee, Leuna (together the majority of Scope 1+2).
-- **Targets:** S1+2 target ≈ **85,799 tCO2e** (~20% below 2021); water targets **25% = 12,392 ML**,
-  **50% = 8,261 ML**.
+- **Targets (internal, not SBTi-validated):** S1+2 target ≈ **85,799 tCO2e** (~20% below 2021);
+  water targets **25% = 12,392 ML**, **50% = 8,261 ML**.
 - **~29 operating sites** across US, Europe (Leuna, Barcelona, Granollers, Les Borges, Paris),
   Latin America, India, China, South Africa.
 
@@ -199,12 +206,16 @@ script (`build_data.py`) so the yearly refresh is repeatable. Mirror to CSVs for
 These come straight from inspecting the files. The build script handles each explicitly and logs
 what it did, so numbers are auditable.
 
-1. **Site naming differs across files** — `Vantage_Chicago` vs `Chicago, IL` vs `Chicago`. Resolved
-   via the `sites.aliases` map; any unmapped name is flagged, not silently dropped.
+1. **Site naming differs across files** — `Vantage_Chicago` vs `Chicago, IL` vs `Chicago`; the
+   production file adds business-unit labels: **`Chicago (Oleo)` → Chicago**, **`Carnegie (Mallet
+   Ingredients)` → Carnegie**, and **`Spain` → Les Borges** (the Spanish *manufacturing* site; not
+   the Barcelona/Granollers offices). Resolved via the `sites.aliases` map; any unmapped name is
+   flagged, not silently dropped.
 2. **Units vary.** Emissions are tCO2e throughout (good). Water is **ML in summaries but gallons in
    the FY25 inventory and m³/L in some site source rows.** Normalize everything to **ML**; keep a
-   documented conversion table (gal→ML, m³→ML, L→ML). Reconcile the 2025 gallons figure against the
-   ML trend before publishing 2025 water.
+   documented conversion table (gal→ML, m³→ML, L→ML). **2025 water is confirmed final** — the build
+   converts the FY25 gallons figures to ML and adds 2025 to the water trend and site-level
+   stress/risk view. Production is in lbs + tons; **use tons** (1 ton = 2,000 lbs) for intensity.
 3. **Scope 2 dual basis.** Every S2 figure has market- and location-based values. Default the UI to
    **market-based**, with a toggle to location-based. Never mix the two in one total.
 4. **Scope 3 history is thin.** Full category data exists only for **2023 and 2024**; 2021–22 is
@@ -215,8 +226,10 @@ what it did, so numbers are auditable.
 6. **Methodology changes** noted in the FY24 summary (e.g., Cat 5 waste, Cat 12 EOL emission-factor
    updates) cause large year-over-year swings. Carry a `notes` field and surface it on hover so a
    −87% change reads as "methodology change," not a real drop.
-7. **Production coverage is partial** — intensity metrics show only where production exists; otherwise
-   the intensity view is hidden for that site/year.
+7. **Production coverage is 2022–2025, 7 sites** — intensity (tCO2e/ton, ML/ton) renders for those
+   site/years only. **2021 has no production**, so 2021 intensity is hidden and the intensity x-axis
+   starts at 2022. Non-manufacturing sites (offices/warehouses) have no production and show absolute
+   values only.
 
 ---
 
@@ -244,6 +257,8 @@ what it did, so numbers are auditable.
 - Selecting initiatives recomputes the **forward trajectory**:
   `projected[year] = baseline[year] − Σ savings of selected initiatives active by that year`
   (cumulative; GHG in tCO2e, water in ML), plotted against the **target line**.
+- **Baseline (BAU) for 2026→2030 is held flat at the last actual** (confirmed). Stated on-chart as
+  "Baseline held flat at 2025 actual." (A growth/decline assumption can be added later in Phase 3.)
 - **Cost panel** for the selected set: total CapEx, total annual OpEx savings, total incentives,
   blended simple payback, and resulting **gap-to-target closed (%)**.
 - Filter initiatives by site and type (GHG/Water).
@@ -265,7 +280,7 @@ what it did, so numbers are auditable.
 ### Cross-cutting
 - **Export:** download current chart as PNG and underlying data as CSV.
 - **"Data as of" stamp** and source-file provenance footer.
-- **Empty/limited-data states** handled gracefully (esp. Scope 3, 2025 water).
+- **Empty/limited-data states** handled gracefully (esp. Scope 3 history and 2021 intensity).
 
 ---
 
@@ -383,7 +398,8 @@ README.md                 # how to refresh + open
 - **Intensity** — emissions or water per metric ton of production (where production exists).
 - **Initiative / project** — a discrete action reducing GHG and/or water, with a lifecycle stage and
   economics (CapEx, OpEx savings, incentive, simple payback).
-- **Target** — S1+2 ≈ 85,799 tCO2e (~20% vs. 2021); water 25%/50% reduction milestones.
+- **Target** — **internal** (not SBTi-validated) reduction goals: S1+2 ≈ 85,799 tCO2e (~20% vs.
+  2021); water 25%/50% reduction milestones. Label as "Internal target" in the UI.
 
 ---
 
@@ -433,17 +449,20 @@ Target: **≤ 30 minutes** per yearly update once site mapping is stable.
 
 ---
 
-## 17. Open Questions / Assumptions
+## 17. Decisions Confirmed & Remaining Questions
 
-1. **2025 water units** — confirm the gallons→ML reconciliation and whether 2025 site-level water
-   (with stress/risk) is final. *(Assumption: company-level 2025 water shown; site-level marked
-   provisional until confirmed.)*
-2. **Baseline-year for targets** — assume 2021 is the official baseline (107,249 tCO2e S1+2). Confirm.
-3. **Scenario baseline forward** — for projecting 2026–2030 before initiatives, assume **flat from
-   last actual** unless you have a growth/BAU assumption you'd prefer.
-4. **Target framework** — is 85,799 tCO2e an SBTi-validated target or internal? Affects labeling.
-5. **Site list** — confirm the ~29-site master and any closures/additions (some sites show zeros in
+### Confirmed (2026-06-17)
+- ✅ **2025 water is final** → convert gallons→ML and include 2025 in water trend + site stress/risk.
+- ✅ **Target is internal** (not SBTi-validated) → label "Internal target."
+- ✅ **Scenario baseline** holds **flat from the last actual** for 2026–2030.
+- ✅ **Production data provided** → site-level tons 2022–2025 (7 manufacturing sites); intensity
+  enabled for those years. **No 2021 production** → 2021 intensity not shown.
+
+### Still open
+1. **Baseline-year for targets** — assume **2021** is the official baseline (107,249 tCO2e S1+2). Confirm.
+2. **Site list** — confirm the ~29-site master and any closures/additions (some sites show zeros in
    later years — closed vs. missing data?).
-6. **Production data** — can you supply company/site production tons for all years to enable
-   intensity, or keep intensity to years where it exists?
-7. **Logo asset** — provide a transparent PNG/SVG of the Vantage wordmark for the header.
+3. **Production granularity** — the file aggregates the Spanish manufacturing site as "Spain"
+   (= Les Borges). Confirm that mapping and whether Barcelona/Granollers ever have production.
+4. **Logo asset** — provide a transparent PNG/SVG of the Vantage wordmark for the header (otherwise
+   I'll recreate the wordmark in brand colors as a placeholder).
