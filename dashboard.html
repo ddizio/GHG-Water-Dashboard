@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vantage — Sustainability Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green1:#00B388; --green2:#008264; --blue:#015B9A; --bright:#97C93C; --greentext:#038264;
+  --acc-blue:#1AB9DE; --orange:#F15F22; --yellow:#F3B64F;
+  --t1:#161617; --t2:#3D3B3E; --t3:#4D4B4B; --grey:#70706F;
+  --bg1:#FFFFFF; --bg2:#E6E4E6; --bg3:#F2F1F2;
+  --scope1:#00B388; --scope2:#015B9A; --scope3:#70706F; --water:#1AB9DE; --target:#F15F22; --save:#97C93C;
+  --shadow:0 1px 3px rgba(22,22,23,.10),0 1px 2px rgba(22,22,23,.06);
+  --radius:10px;
+  --font:"Poppins","Century Gothic","Open Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--font);color:var(--t2);background:var(--bg3);font-size:14px;line-height:1.45}
+h1,h2,h3,h4{color:var(--t1);font-weight:600;margin:0}
+a{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+
+/* Header */
+header{background:var(--bg1);border-bottom:1px solid var(--bg2)}
+.hdr{display:flex;align-items:center;gap:16px;padding:14px 0}
+.hdr img{height:40px;width:auto}
+.hdr .titles{flex:1}
+.hdr h1{font-size:18px;letter-spacing:-.2px}
+.hdr .sub{color:var(--grey);font-size:12.5px}
+.hdr .asof{font-size:12px;color:var(--grey);text-align:right;white-space:nowrap}
+.hdr .asof b{color:var(--green2)}
+
+/* Filter bar */
+.filters{background:var(--bg1);border-bottom:1px solid var(--bg2);position:sticky;top:0;z-index:30}
+.filters .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:10px 18px}
+.fgroup{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t3)}
+.fgroup label{font-weight:500;color:var(--t2)}
+select,button,input{font-family:inherit;font-size:12.5px}
+select{padding:5px 8px;border:1px solid var(--bg2);border-radius:7px;background:#fff;color:var(--t2)}
+.seg{display:inline-flex;border:1px solid var(--bg2);border-radius:7px;overflow:hidden}
+.seg button{border:0;background:#fff;color:var(--t3);padding:5px 11px;cursor:pointer}
+.seg button.on{background:var(--green1);color:#fff;font-weight:600}
+.dd{position:relative}
+.dd>button{border:1px solid var(--bg2);border-radius:7px;background:#fff;color:var(--t2);padding:5px 10px;cursor:pointer}
+.dd-menu{position:absolute;top:108%;left:0;background:#fff;border:1px solid var(--bg2);border-radius:8px;box-shadow:var(--shadow);padding:8px;max-height:300px;overflow:auto;display:none;z-index:40;min-width:230px}
+.dd.open .dd-menu{display:block}
+.dd-menu .row{display:flex;align-items:center;gap:7px;padding:3px 4px;font-size:12.5px;white-space:nowrap}
+.dd-menu .row label{cursor:pointer}
+.dd-actions{display:flex;gap:8px;margin:4px 0 8px}
+.dd-actions a{font-size:12px;cursor:pointer}
+
+/* Tabs */
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--bg2);background:var(--bg1)}
+.tabs .wrap{display:flex;gap:4px;padding:0 18px}
+.tab{padding:12px 16px;cursor:pointer;color:var(--t3);font-weight:500;border-bottom:3px solid transparent;font-size:13.5px}
+.tab:hover{color:var(--green2)}
+.tab.on{color:var(--green2);border-bottom-color:var(--green1);font-weight:600}
+
+/* Content */
+main{padding:20px 0 60px}
+.grid{display:grid;gap:16px}
+.cards{grid-template-columns:repeat(4,1fr)}
+@media(max-width:880px){.cards{grid-template-columns:repeat(2,1fr)}}
+.card{background:#fff;border:1px solid var(--bg2);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
+.kpi .label{font-size:12px;color:var(--grey);font-weight:500}
+.kpi .val{font-size:26px;font-weight:700;color:var(--t1);margin:4px 0 2px;letter-spacing:-.5px}
+.kpi .unit{font-size:12px;color:var(--grey);font-weight:500}
+.kpi .delta{font-size:12px;font-weight:600;margin-top:6px}
+.delta.down{color:var(--green2)} .delta.up{color:var(--orange)}
+.panel{background:#fff;border:1px solid var(--bg2);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;margin-bottom:16px}
+.panel h3{font-size:15px;margin-bottom:2px}
+.panel .desc{color:var(--grey);font-size:12.5px;margin-bottom:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:880px){.two{grid-template-columns:1fr}}
+.note{font-size:11.5px;color:var(--grey);font-style:italic;margin-top:8px}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:20px;background:var(--bg2);color:var(--t3)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0 2px;font-size:12px;color:var(--t3)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+/* charts */
+.chart{width:100%}
+svg text{font-family:var(--font)}
+.tip{position:fixed;pointer-events:none;background:var(--t1);color:#fff;padding:7px 9px;border-radius:6px;font-size:11.5px;opacity:0;transition:opacity .08s;z-index:100;box-shadow:var(--shadow);max-width:260px}
+.tip b{color:#fff}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:right;padding:7px 9px;border-bottom:1px solid var(--bg2)}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--grey);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap}
+tbody tr:hover{background:var(--bg3)}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+.r-High{background:#fde1d6;color:#b5400f} .r-Medium{background:#fdeccc;color:#9a6a10} .r-Low{background:#d8f0e6;color:var(--green2)} .r-NA{background:var(--bg2);color:var(--grey)}
+
+/* scenario */
+.init-list{max-height:430px;overflow:auto;border:1px solid var(--bg2);border-radius:8px}
+.init-stage{padding:7px 12px;background:var(--bg3);font-weight:600;font-size:12px;color:var(--t2);position:sticky;top:0}
+.init{display:flex;gap:9px;padding:8px 12px;border-top:1px solid var(--bg2);font-size:12px;align-items:flex-start}
+.init input{margin-top:2px}
+.init .meta{color:var(--grey);font-size:11px;margin-top:2px}
+.statbox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.statbox .s{background:var(--bg3);border-radius:8px;padding:10px 12px}
+.statbox .s .l{font-size:11px;color:var(--grey)}
+.statbox .s .v{font-size:18px;font-weight:700;color:var(--t1)}
+.preset{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.preset button{border:1px solid var(--bg2);background:#fff;border-radius:20px;padding:5px 11px;cursor:pointer;color:var(--t3)}
+.preset button.on{background:var(--green2);color:#fff;border-color:var(--green2);font-weight:600}
+.hidden{display:none!important}
+.muted{color:var(--grey)}
+footer{border-top:1px solid var(--bg2);background:#fff;padding:16px 0;color:var(--grey);font-size:11.5px}
+</style>
+</head>
+<body>
+<header><div class="wrap hdr">
+  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACbAZ8DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApMgkgEZHWorq5js7WS4lOEQZPv7Vx+j65IutSSXDfu7psN6Ke35dK5a+LhRnGEupLkk7HbUUUV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ZW8XX5WNyCy8hT/cWvZaKUZcruaZhgvrlNU+a1ncwfBilfCNgGBBCtwR/tmneK9DOvaM0EZAuI28yInoSO34ityilfW5ssNF0FQnqrWPA5Ir/R73DrPaXMZ4PKsPoa19I1bVNU8RaXHdXdxcKtzG21mJAww5x/WvYpIo5l2yxo49GUGkighhGIokjB/uKBWjqX6HjU8jlTn7tV8t72t/wSDU9Ot9W0+WyuVzHIMZHVT2I9xXkGueFNS0SZi8LTW2flnjXIx7+h+te1UVEZuJ6OOy2ljEnLSS6nhMGv6vbRCKHUrpIwMBRKcD6elWtN0PWPEt4HAmdWPz3MxJUD6nr9BXsps7UvvNtCW/vFBmp+gwKv2nZHnQyJtpVarcV0/pnhGp6a9hq9zaRpI6QylFYr1APWvdh0FLRUylzHoYHL1hJTcXfm/Df/M4bxd4JfUZ31HTAouG5lhJwHPqD6/zrz2SDUdJuPnjubSUcZwyH869Ml8bQ6b4kvdN1JSsCOPLmQZ2gqDhh/UV0NvrGl3ce6G/tpFPpIM/lVKUorU86tgMJi6kpUp8sk9V5+mh4uo1nWnWIG9vTngFmcD8+lSa1oVxoRto7tl8+aPzGjU52DOAM9zxXrl/4k0fTIWee+hJA4jjYMx/AV5F4g1mTXdXlvXXYpwsaZ+6o6D+v41cZNvY83H4ShhqetTnm/wO5+GIP9l3x7ecP/Qa6rWdHttb057O6BweUcdUbsRWZ4H0x9M8NxCVSstwxmYHqM4A/QD866OsZP3ro+lwNC2DhTqLdar1PFtY8I6to8jFoGngB+WaEEjHuOo/GqsHiPWrVPLi1K5VRwFLk4/Ovc6hktLaVt0lvE59WQGr9p3R508i5Zc1Co4/16o8Qm1HWNYbyZLm7uiekYZmB/4CK9F8AaLfaTZXT30Pkm4ZSiE/MAM9R2611scUcQxHGqD0UYp9KU7qx0YPKfYVVWnNykv68wooorM9gKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigDhvFHgWXVL+XUbC4UTSYLxS8AkDHBH071xs/g/X7dtrabK3vGQw/Q17XRVqo0eRiclw9abnqm+x4pB4Q1+4cKumzL7yYQfqa7Dw98PktJku9WdJpFOVgTlAfc9/p/Ou7opuo2GHyXDUZczvJ+YUUUVmeuFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf//Z" alt="Vantage">
+  <div class="titles"><h1>Sustainability Dashboard</h1>
+    <div class="sub">GHG emissions (Scope 1–3) &amp; water withdrawal · by site &amp; company</div></div>
+  <div class="asof">Data through <b>FY2025</b><br><span id="gen"></span></div>
+</div></header>
+
+<div class="filters"><div class="wrap">
+  <div class="fgroup"><label>Years</label>
+    <select id="yMin"></select><span>–</span><select id="yMax"></select></div>
+  <div class="fgroup"><label>Sites</label>
+    <div class="dd" id="siteDD"><button id="siteBtn">All sites ▾</button>
+      <div class="dd-menu"><div class="dd-actions"><a id="siteAll">All</a><a id="siteNone">None</a>
+        <a id="siteProd">Producing only</a></div><div id="siteList"></div></div></div></div>
+  <div class="fgroup"><label>Scope 2</label>
+    <div class="seg" id="basis"><button data-v="market" class="on">Market</button><button data-v="location">Location</button></div></div>
+  <div class="fgroup"><label>Measure</label>
+    <div class="seg" id="measure"><button data-v="abs" class="on">Absolute</button><button data-v="int">Per ton</button></div></div>
+  <div class="fgroup"><input type="checkbox" id="showClosed"><label for="showClosed">Show closed sites</label></div>
+</div></div>
+
+<div class="tabs"><div class="wrap" id="tabs">
+  <div class="tab on" data-t="overview">Overview</div>
+  <div class="tab" data-t="trends">Trends</div>
+  <div class="tab" data-t="scenario">Scenario Modeling</div>
+  <div class="tab" data-t="targets">Targets &amp; Progress</div>
+  <div class="tab" data-t="water">Water Risk</div>
+</div></div>
+
+<main class="wrap" id="main"></main>
+<footer><div class="wrap">
+  <b>Vantage Specialty Chemicals.</b> Internal tool — figures sourced from annual GHG &amp; water inventories.
+  Emissions in tCO₂e; water in megalitres (ML). Scope 2 default: market-based.
+  Targets are internal (not SBTi-validated). Built as a single self-contained file.
+</div></footer>
+<div class="tip" id="tip"></div>
+
+<script>
+window.DASHBOARD_DATA={"meta":{"company":"Vantage Specialty Chemicals","generated":"2026-06-17","baseline_year":2021,"units":{"emissions":"tCO2e","water":"ML","production":"metric tons"},"target_type":"Internal (not SBTi-validated)","scope2_default_basis":"market","bau_assumption":"Held flat at last actual for 2026-2030"},"sites":[{"site_id":"gurnee","name":"Gurnee, IL","country":"USA","region":"North America","facility_type":"Factory","status":"active","wwf_water_stress":"NA","wwf_water_risk":"High","producing":true},{"site_id":"chicago","name":"Chicago, IL","country":"USA","region":"North America","facility_type":"Factory","status":"active","wwf_water_stress":"NA","wwf_water_risk":"High","producing":true},{"site_id":"leuna","name":"Leuna","country":"Germany","region":"Europe","facility_type":"Factory","status":"active","wwf_water_stress":"High","wwf_water_risk":"High","producing":true},{"site_id":"carnegie","name":"Carnegie, PA","country":"USA","region":"North America","facility_type":"Factory","status":"active","wwf_water_stress":"NA","wwf_water_risk":"Medium","producing":true},{"site_id":"englewood","name":"Englewood, OH","country":"USA","region":"North America","facility_type":"Factory","status":"active","wwf_water_stress":"NA","wwf_water_risk":"High","producing":true},{"site_id":"les_borges","name":"Les Borges","country":"Spain","region":"Europe","facility_type":"Factory","status":"active","wwf_water_stress":"High","wwf_water_risk":"High","producing":true},{"site_id":"tucson","name":"Tucson","country":"USA","region":"North America","facility_type":"Factory","status":"active","wwf_water_stress":"High","wwf_water_risk":"High","producing":true},{"site_id":"agrinsa","name":"Agrinsa (Argentina Farm)","country":"Argentina","region":"South America","facility_type":"Farm","status":"active","wwf_water_stress":"NA","wwf_water_risk":"Medium","producing":false},{"site_id":"dateland","name":"Dateland","country":"USA","region":"North America","facility_type":"Farm","status":"active","wwf_water_stress":"High","wwf_water_risk":"High","producing":false},{"site_id":"barcelona","name":"Barcelona","country":"Spain","region":"Europe","facility_type":"Office","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"granollers","name":"Granollers","country":"Spain","region":"Europe","facility_type":"Office","status":"closed","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"mexico_city","name":"Mexico City","country":"Mexico","region":"North America","facility_type":"Warehouse","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"linden","name":"Linden, NJ","country":"USA","region":"North America","facility_type":"Warehouse","status":"closed","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"fairfield","name":"Fairfield","country":"USA","region":"North America","facility_type":"Warehouse","status":"active","wwf_water_stress":"High","wwf_water_risk":"Medium","producing":false},{"site_id":"warren","name":"Warren, NJ","country":"USA","region":"North America","facility_type":"Office","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"pittsburgh","name":"Pittsburgh, PA","country":"USA","region":"North America","facility_type":"Office","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"south_africa","name":"South Africa","country":"South Africa","region":"Africa","facility_type":"Warehouse","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"delta","name":"Delta","country":"USA","region":"North America","facility_type":"Warehouse","status":"closed","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"deerfield","name":"Deerfield","country":"USA","region":"North America","facility_type":"Office","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"tlalnepantla","name":"Tlalnepantla de Baz","country":"Mexico","region":"North America","facility_type":"Warehouse","status":"closed","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"shanghai","name":"Shanghai","country":"China","region":"Asia","facility_type":"Warehouse","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"bogota","name":"Bogota","country":"Colombia","region":"South America","facility_type":"Office","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"santiago","name":"Santiago","country":"Chile","region":"South America","facility_type":"Warehouse","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"guatemala","name":"Guatemala City","country":"Guatemala","region":"North America","facility_type":"Warehouse","status":"closed","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"sao_paulo","name":"Sao Paulo","country":"Brazil","region":"South America","facility_type":"Warehouse","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"buenos_aires","name":"Buenos Aires","country":"Argentina","region":"South America","facility_type":"Office","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"mumbai","name":"Mumbai","country":"India","region":"Asia","facility_type":"Warehouse","status":"active","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"lima","name":"Lima","country":"Peru","region":"South America","facility_type":"Warehouse","status":"closed","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"costa_rica","name":"Costa Rica","country":"Costa Rica","region":"North America","facility_type":"Warehouse","status":"closed","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false},{"site_id":"paris","name":"Paris","country":"France","region":"Europe","facility_type":"Office","status":"closed","wwf_water_stress":"NA","wwf_water_risk":"NA","producing":false}],"emissions_by_site":[{"site_id":"leuna","year":2021,"scope1":106.97,"scope2_market":15080.86},{"site_id":"leuna","year":2022,"scope1":88.32,"scope2_market":15925.81},{"site_id":"leuna","year":2023,"scope1":142.25,"scope2_market":13126.91},{"site_id":"barcelona","year":2021,"scope1":0,"scope2_market":0},{"site_id":"barcelona","year":2022,"scope1":0,"scope2_market":0},{"site_id":"barcelona","year":2023,"scope1":64.49,"scope2_market":0},{"site_id":"mexico_city","year":2021,"scope1":0,"scope2_market":0},{"site_id":"mexico_city","year":2022,"scope1":0,"scope2_market":0},{"site_id":"mexico_city","year":2023,"scope1":0,"scope2_market":3.67},{"site_id":"chicago","year":2021,"scope1":50146.19,"scope2_market":12813.85},{"site_id":"chicago","year":2022,"scope1":48883.96,"scope2_market":12586.73},{"site_id":"chicago","year":2023,"scope1":44646.43,"scope2_market":9052.0},{"site_id":"gurnee","year":2021,"scope1":12270.67,"scope2_market":5752.71},{"site_id":"gurnee","year":2022,"scope1":12573.18,"scope2_market":5787.42},{"site_id":"gurnee","year":2023,"scope1":10079.74,"scope2_market":3914.8},{"site_id":"agrinsa","year":2021,"scope1":144.96,"scope2_market":1787.28},{"site_id":"agrinsa","year":2022,"scope1":148.85,"scope2_market":1609.03},{"site_id":"agrinsa","year":2023,"scope1":150.55,"scope2_market":1733.61},{"site_id":"dateland","year":2021,"scope1":802.26,"scope2_market":2198.04},{"site_id":"dateland","year":2022,"scope1":697.19,"scope2_market":1499.01},{"site_id":"dateland","year":2023,"scope1":574.68,"scope2_market":1529.0},{"site_id":"englewood","year":2021,"scope1":184.73,"scope2_market":885.47},{"site_id":"englewood","year":2022,"scope1":1996.0,"scope2_market":818.48},{"site_id":"englewood","year":2023,"scope1":168.53,"scope2_market":800.74},{"site_id":"carnegie","year":2021,"scope1":1226.8,"scope2_market":546.39},{"site_id":"carnegie","year":2022,"scope1":1328.89,"scope2_market":591.78},{"site_id":"carnegie","year":2023,"scope1":1190.11,"scope2_market":739.95},{"site_id":"linden","year":2021,"scope1":531.94,"scope2_market":469.18},{"site_id":"linden","year":2022,"scope1":64.89,"scope2_market":327.88},{"site_id":"linden","year":2023,"scope1":0,"scope2_market":16.55},{"site_id":"fairfield","year":2021,"scope1":103.77,"scope2_market":127.63},{"site_id":"fairfield","year":2022,"scope1":127.92,"scope2_market":108.93},{"site_id":"fairfield","year":2023,"scope1":97.85,"scope2_market":116.76},{"site_id":"warren","year":2021,"scope1":13.34,"scope2_market":147.34},{"site_id":"warren","year":2022,"scope1":35.7,"scope2_market":93.28},{"site_id":"warren","year":2023,"scope1":0,"scope2_market":46.76},{"site_id":"tucson","year":2021,"scope1":24.68,"scope2_market":80.97},{"site_id":"tucson","year":2022,"scope1":27.66,"scope2_market":66.87},{"site_id":"tucson","year":2023,"scope1":13.89,"scope2_market":55.06},{"site_id":"pittsburgh","year":2021,"scope1":56.04,"scope2_market":45.64},{"site_id":"pittsburgh","year":2022,"scope1":59.37,"scope2_market":55.96},{"site_id":"pittsburgh","year":2023,"scope1":44.85,"scope2_market":60.47},{"site_id":"les_borges","year":2021,"scope1":132.73,"scope2_market":59.83},{"site_id":"les_borges","year":2022,"scope1":87.64,"scope2_market":41.1},{"site_id":"les_borges","year":2023,"scope1":74.54,"scope2_market":39.81},{"site_id":"south_africa","year":2021,"scope1":7.65,"scope2_market":40.93},{"site_id":"south_africa","year":2022,"scope1":7.65,"scope2_market":38.54},{"site_id":"south_africa","year":2023,"scope1":0,"scope2_market":26.6},{"site_id":"delta","year":2021,"scope1":64.75,"scope2_market":51.73},{"site_id":"delta","year":2022,"scope1":63.65,"scope2_market":38.37},{"site_id":"delta","year":2023,"scope1":0,"scope2_market":0},{"site_id":"deerfield","year":2021,"scope1":10.41,"scope2_market":1026.44},{"site_id":"deerfield","year":2022,"scope1":30.08,"scope2_market":25.77},{"site_id":"deerfield","year":2023,"scope1":0,"scope2_market":14.93},{"site_id":"tlalnepantla","year":2021,"scope1":43.01,"scope2_market":4.26},{"site_id":"tlalnepantla","year":2022,"scope1":62.79,"scope2_market":22.83},{"site_id":"tlalnepantla","year":2023,"scope1":0,"scope2_market":0},{"site_id":"shanghai","year":2021,"scope1":16.51,"scope2_market":20.26},{"site_id":"shanghai","year":2022,"scope1":24.2,"scope2_market":18.16},{"site_id":"shanghai","year":2023,"scope1":0,"scope2_market":20.65},{"site_id":"granollers","year":2021,"scope1":4.26,"scope2_market":6.41},{"site_id":"granollers","year":2022,"scope1":6.24,"scope2_market":7.21},{"site_id":"granollers","year":2023,"scope1":0,"scope2_market":7.35},{"site_id":"bogota","year":2021,"scope1":1.0,"scope2_market":85.18},{"site_id":"bogota","year":2022,"scope1":24.08,"scope2_market":5.34},{"site_id":"bogota","year":2023,"scope1":21.9,"scope2_market":3.54},{"site_id":"santiago","year":2021,"scope1":1.93,"scope2_market":7.28},{"site_id":"santiago","year":2022,"scope1":1.93,"scope2_market":5.09},{"site_id":"santiago","year":2023,"scope1":0,"scope2_market":4.54},{"site_id":"guatemala","year":2021,"scope1":1.02,"scope2_market":7.71},{"site_id":"guatemala","year":2022,"scope1":1.02,"scope2_market":4.65},{"site_id":"guatemala","year":2023,"scope1":0,"scope2_market":0},{"site_id":"sao_paulo","year":2021,"scope1":15.13,"scope2_market":2.55},{"site_id":"sao_paulo","year":2022,"scope1":15.13,"scope2_market":2.32},{"site_id":"sao_paulo","year":2023,"scope1":0,"scope2_market":1.39},{"site_id":"buenos_aires","year":2021,"scope1":7.82,"scope2_market":39.23},{"site_id":"buenos_aires","year":2022,"scope1":7.82,"scope2_market":2.06},{"site_id":"buenos_aires","year":2023,"scope1":0,"scope2_market":0},{"site_id":"mumbai","year":2021,"scope1":0.09,"scope2_market":1.77},{"site_id":"mumbai","year":2022,"scope1":0,"scope2_market":0.69},{"site_id":"mumbai","year":2023,"scope1":0,"scope2_market":0.04},{"site_id":"lima","year":2021,"scope1":0.67,"scope2_market":5.42},{"site_id":"lima","year":2022,"scope1":0.67,"scope2_market":0.11},{"site_id":"lima","year":2023,"scope1":0,"scope2_market":0},{"site_id":"costa_rica","year":2021,"scope1":34.22,"scope2_market":0.04},{"site_id":"costa_rica","year":2022,"scope1":40.08,"scope2_market":0.0},{"site_id":"costa_rica","year":2023,"scope1":0,"scope2_market":0},{"site_id":"paris","year":2021,"scope1":0,"scope2_market":1.41},{"site_id":"paris","year":2022,"scope1":0,"scope2_market":0},{"site_id":"paris","year":2023,"scope1":0,"scope2_market":0},{"site_id":"agrinsa","year":2024,"scope1":110.56,"scope2_market":1618.97},{"site_id":"bogota","year":2024,"scope1":0,"scope2_market":3.44},{"site_id":"buenos_aires","year":2024,"scope1":0,"scope2_market":0},{"site_id":"carnegie","year":2024,"scope1":1136.85,"scope2_market":657.39},{"site_id":"chicago","year":2024,"scope1":46551.35,"scope2_market":995.29},{"site_id":"dateland","year":2024,"scope1":474.38,"scope2_market":1695.96},{"site_id":"deerfield","year":2024,"scope1":0,"scope2_market":2.13},{"site_id":"englewood","year":2024,"scope1":186.53,"scope2_market":813.39},{"site_id":"fairfield","year":2024,"scope1":112.04,"scope2_market":121.56},{"site_id":"gurnee","year":2024,"scope1":11056.98,"scope2_market":573.06},{"site_id":"les_borges","year":2024,"scope1":0,"scope2_market":34.62},{"site_id":"leuna","year":2024,"scope1":7.15,"scope2_market":15773.16},{"site_id":"mexico_city","year":2024,"scope1":0,"scope2_market":4.73},{"site_id":"pittsburgh","year":2024,"scope1":44.98,"scope2_market":58.04},{"site_id":"santiago","year":2024,"scope1":0,"scope2_market":3.92},{"site_id":"sao_paulo","year":2024,"scope1":0,"scope2_market":1.97},{"site_id":"shanghai","year":2024,"scope1":0,"scope2_market":19.95},{"site_id":"south_africa","year":2024,"scope1":0,"scope2_market":29.42},{"site_id":"tucson","year":2024,"scope1":14.57,"scope2_market":49.25},{"site_id":"warren","year":2024,"scope1":0,"scope2_market":106.32},{"site_id":"agrinsa","year":2025,"scope1":164.83,"scope2_market":1022.79},{"site_id":"barcelona","year":2025,"scope1":12.72,"scope2_market":0},{"site_id":"bogota","year":2025,"scope1":0,"scope2_market":4.9},{"site_id":"carnegie","year":2025,"scope1":1197.71,"scope2_market":608.17},{"site_id":"chicago","year":2025,"scope1":45882.89,"scope2_market":1514.66},{"site_id":"dateland","year":2025,"scope1":205.3,"scope2_market":754.37},{"site_id":"deerfield","year":2025,"scope1":0,"scope2_market":2.8},{"site_id":"englewood","year":2025,"scope1":204.2,"scope2_market":692.39},{"site_id":"fairfield","year":2025,"scope1":157.17,"scope2_market":115.06},{"site_id":"gurnee","year":2025,"scope1":11574.06,"scope2_market":720.6},{"site_id":"les_borges","year":2025,"scope1":0,"scope2_market":35.36},{"site_id":"leuna","year":2025,"scope1":0.4,"scope2_market":14874.75},{"site_id":"mexico_city","year":2025,"scope1":0,"scope2_market":4.26},{"site_id":"pittsburgh","year":2025,"scope1":53.69,"scope2_market":62.49},{"site_id":"santiago","year":2025,"scope1":0,"scope2_market":2.69},{"site_id":"sao_paulo","year":2025,"scope1":0,"scope2_market":1.97},{"site_id":"shanghai","year":2025,"scope1":0,"scope2_market":19.96},{"site_id":"south_africa","year":2025,"scope1":0,"scope2_market":68.78},{"site_id":"tucson","year":2025,"scope1":11.49,"scope2_market":39.35},{"site_id":"warren","year":2025,"scope1":0,"scope2_market":133.98}],"emissions_company":{"2021":{"scope1":65953.5,"scope2_market":41295.8},"2022":{"scope1":66404.9,"scope2_market":39683.4,"scope2_location":41478.2},"2023":{"scope1":57269.8,"scope2_market":31315.1,"scope2_location":35782.6,"scope3_total":887877.82},"2024":{"scope1":59695.4,"scope2_market":22562.6,"scope2_location":39042.7,"scope3_total":809436.5900000001},"2025":{"scope1":59464.5,"scope2_market":20679.3,"scope2_location":31767.6}},"scope3_categories":{"2023":{"Purchased goods and services":722260.3,"Fuel-and-energy-related activities":14525.2,"Upstream transportation and distribution":17067.6,"Waste generated in operations":27262.8,"Business travel":374.4,"Employee commuting":1404.7,"Upstream leased assets":470.3,"Use of sold products":1206.3,"End of life treatment of sold products":103306.2},"2024":{"Purchased goods and services":726053.4,"Fuel-and-energy-related activities":17446.7,"Upstream transportation and distribution":17441.4,"Waste generated in operations":3594.6,"Business travel":356.3,"Employee commuting":1587.5,"Upstream leased assets":332.0,"Use of sold products":601.9,"End of life treatment of sold products":42022.8}},"water_company":{"2021":{"withdrawal_ml":16522.0},"2022":{"withdrawal_ml":15202.0},"2023":{"withdrawal_ml":14434.0},"2024":{"withdrawal_ml":13155.0},"2025":{"withdrawal_ml":7984.1,"note":"Converted from FY25 inventory gallons"}},"water_by_site":[{"site_id":"agrinsa","year":2024,"withdrawal_ml":7362.97,"consumption_ml":3681.49,"river_basin":"WMOBB374","surface":0,"groundwater":7362.97,"third_party":0,"recycled":0},{"site_id":"barcelona","year":2024,"withdrawal_ml":0.19,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.19,"recycled":0},{"site_id":"bogota","year":2024,"withdrawal_ml":1.65,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":1.65,"recycled":0},{"site_id":"buenos_aires","year":2024,"withdrawal_ml":0.16,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.16,"recycled":0},{"site_id":"carnegie","year":2024,"withdrawal_ml":11.37,"consumption_ml":0.0,"river_basin":"Ohio","surface":0,"groundwater":0,"third_party":11.37,"recycled":0},{"site_id":"chicago","year":2024,"withdrawal_ml":401.54,"consumption_ml":80.31,"river_basin":"Michigan","surface":0,"groundwater":0,"third_party":401.54,"recycled":0},{"site_id":"dateland","year":2024,"withdrawal_ml":4991.47,"consumption_ml":2495.73,"river_basin":"Colorado","surface":0,"groundwater":4991.47,"third_party":0,"recycled":0},{"site_id":"deerfield","year":2024,"withdrawal_ml":0.5,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.5,"recycled":0},{"site_id":"englewood","year":2024,"withdrawal_ml":6.89,"consumption_ml":0.0,"river_basin":"Ohio","surface":0,"groundwater":0,"third_party":6.89,"recycled":0},{"site_id":"fairfield","year":2024,"withdrawal_ml":4.39,"consumption_ml":0.0,"river_basin":"North Atlantic (419)","surface":0,"groundwater":0,"third_party":4.39,"recycled":0},{"site_id":"gurnee","year":2024,"withdrawal_ml":347.06,"consumption_ml":226.96,"river_basin":"Mississippi (419)","surface":0,"groundwater":0,"third_party":347.06,"recycled":0},{"site_id":"les_borges","year":2024,"withdrawal_ml":3.12,"consumption_ml":0.0,"river_basin":"Ebro","surface":0,"groundwater":0,"third_party":3.12,"recycled":0},{"site_id":"leuna","year":2024,"withdrawal_ml":37.03,"consumption_ml":-17.91,"river_basin":"Elbe","surface":19.66,"groundwater":0,"third_party":1.62,"recycled":15.75},{"site_id":"mexico_city","year":2024,"withdrawal_ml":0.83,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.83,"recycled":0},{"site_id":"pittsburgh","year":2024,"withdrawal_ml":0.36,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.36,"recycled":0},{"site_id":"santiago","year":2024,"withdrawal_ml":0.08,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.08,"recycled":0},{"site_id":"sao_paulo","year":2024,"withdrawal_ml":0.03,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.03,"recycled":0},{"site_id":"shanghai","year":2024,"withdrawal_ml":0.16,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.16,"recycled":0},{"site_id":"south_africa","year":2024,"withdrawal_ml":0.5,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.5,"recycled":0},{"site_id":"tucson","year":2024,"withdrawal_ml":0.55,"consumption_ml":0.17,"river_basin":"Colorado","surface":0,"groundwater":0,"third_party":0.55,"recycled":0},{"site_id":"warren","year":2024,"withdrawal_ml":0.79,"consumption_ml":0.0,"river_basin":null,"surface":0,"groundwater":0,"third_party":0.79,"recycled":0}],"production_by_site":[{"site_id":"gurnee","year":2022,"production_tons":61042.3},{"site_id":"chicago","year":2022,"production_tons":224127.7},{"site_id":"leuna","year":2022,"production_tons":47392.7},{"site_id":"carnegie","year":2022,"production_tons":25785.8},{"site_id":"englewood","year":2022,"production_tons":1071.6},{"site_id":"les_borges","year":2022,"production_tons":6849.9},{"site_id":"tucson","year":2022,"production_tons":964.3},{"site_id":"gurnee","year":2023,"production_tons":46146.8},{"site_id":"chicago","year":2023,"production_tons":207637.8},{"site_id":"leuna","year":2023,"production_tons":44097.1},{"site_id":"carnegie","year":2023,"production_tons":23295.2},{"site_id":"englewood","year":2023,"production_tons":865.7},{"site_id":"les_borges","year":2023,"production_tons":6021.2},{"site_id":"tucson","year":2023,"production_tons":644.7},{"site_id":"gurnee","year":2024,"production_tons":53929.6},{"site_id":"chicago","year":2024,"production_tons":222284.8},{"site_id":"leuna","year":2024,"production_tons":56877.2},{"site_id":"carnegie","year":2024,"production_tons":20419.9},{"site_id":"englewood","year":2024,"production_tons":1114.4},{"site_id":"les_borges","year":2024,"production_tons":7863.2},{"site_id":"tucson","year":2024,"production_tons":670.0},{"site_id":"gurnee","year":2025,"production_tons":50614.0},{"site_id":"chicago","year":2025,"production_tons":205990.4},{"site_id":"leuna","year":2025,"production_tons":49678.0},{"site_id":"carnegie","year":2025,"production_tons":20108.9},{"site_id":"englewood","year":2025,"production_tons":1274.4},{"site_id":"les_borges","year":2025,"production_tons":7715.7},{"site_id":"tucson","year":2025,"production_tons":486.7}],"production_company":{"2022":367234.0,"2023":328708.0,"2024":363159.0,"2025":335868.0},"targets":{"ghg_s1s2":[{"year":2021,"actual":107249,"target":85799.2},{"year":2022,"actual":106088,"target":85799.2},{"year":2023,"actual":88585,"target":85799.2},{"year":2024,"actual":82258,"target":85799.2},{"year":2025,"actual":80144,"target":85799.2},{"year":2026,"actual":null,"target":85799.2},{"year":2027,"actual":null,"target":85799.2},{"year":2028,"actual":null,"target":85799.2},{"year":2029,"actual":null,"target":85799.2},{"year":2030,"actual":null,"target":85799.2}],"water":[{"year":2021,"actual":16522.0,"target_25":12391.5,"target_50":8261.0},{"year":2022,"actual":15202.0,"target_25":12391.5,"target_50":8261.0},{"year":2023,"actual":14434.0,"target_25":12391.5,"target_50":8261.0},{"year":2024,"actual":13155.0,"target_25":12391.5,"target_50":8261.0},{"year":2025,"actual":7984.1,"target_25":12391.5,"target_50":8261.0},{"year":2026,"actual":null,"target_25":12391.5,"target_50":8261.0},{"year":2027,"actual":null,"target_25":12391.5,"target_50":8261.0},{"year":2028,"actual":null,"target_25":12391.5,"target_50":8261.0},{"year":2029,"actual":null,"target_25":12391.5,"target_50":8261.0},{"year":2030,"actual":null,"target_25":12391.5,"target_50":8261.0}]},"initiatives":[{"name":"Dateland removal of every other row in several fields to reduce water use","site_id":"dateland","site_name":"Dateland","stage":"Implemented","year":2022,"type":"Water","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":1400.0,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Distillation Barametric water savings","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2023,"type":"Water","ghg_savings_tco2e":0.0,"scope1":null,"scope2":null,"water_savings_ml":24.761470000000003,"energy_savings_mwh":0.0,"incentive_usd":0.0,"capex_usd":61000.0,"opex_savings_usd":70000.0,"payback_years":0.8714285714285714},{"name":"(ComEd SEM) Cooling tower fan VFD (50 hp)","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2023,"type":"GHG","ghg_savings_tco2e":90.7184,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":200.0,"incentive_usd":15400.0,"capex_usd":25000.0,"opex_savings_usd":24000.0,"payback_years":0.4},{"name":"(GOS 2023) Replace Steam Trap on Stearic Acid Drop Tank A in Dry Frac","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2023,"type":"GHG","ghg_savings_tco2e":10.0,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":54.6446865,"incentive_usd":300.0,"capex_usd":1000.0,"opex_savings_usd":1500.0,"payback_years":0.4666666666666667},{"name":"Steam trap replacements","site_id":"gurnee","site_name":"Gurnee","stage":"Implemented","year":2024,"type":"GHG","ghg_savings_tco2e":545.0,"scope1":545.0,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":2930.0099999999998,"incentive_usd":39000.0,"capex_usd":0.0,"opex_savings_usd":25000.0,"payback_years":-1.56},{"name":"(ComEd SEM) Decommissioning of 6 mixer motors no longer in use (Dry frac mixer motors)","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2024,"type":"GHG","ghg_savings_tco2e":75.749864,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":167.0,"incentive_usd":15000.0,"capex_usd":24000.0,"opex_savings_usd":20040.0,"payback_years":0.4491017964071856},{"name":"Steam line insulation","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2024,"type":"GHG","ghg_savings_tco2e":250.0,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":1416.952836,"incentive_usd":65000.0,"capex_usd":130000.0,"opex_savings_usd":40000.0,"payback_years":1.625},{"name":"(GOS 2023) Fully Shut Boiler Makeup Water Valve to Tank T99","site_id":"gurnee","site_name":"Gurnee","stage":"Implemented","year":2024,"type":"GHG","ghg_savings_tco2e":332.2,"scope1":332.0,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":1845.9062999999999,"incentive_usd":0.0,"capex_usd":5000.0,"opex_savings_usd":50000.0,"payback_years":0.1},{"name":"Tank Farm Agitator Programming","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2024,"type":"GHG","ghg_savings_tco2e":328.32,"scope1":null,"scope2":null,"water_savings_ml":0.0,"energy_savings_mwh":800.0,"incentive_usd":0.0,"capex_usd":0.0,"opex_savings_usd":90000.0,"payback_years":0.0},{"name":"Steam trap replacements and reduced boiler blowdown","site_id":"chicago","site_name":"Chicago","stage":"Implementation commenced","year":2025,"type":"GHG","ghg_savings_tco2e":1000.0,"scope1":1000.0,"scope2":0.0,"water_savings_ml":null,"energy_savings_mwh":8613.0085625,"incentive_usd":43000.0,"capex_usd":45000.0,"opex_savings_usd":360000.0,"payback_years":0.005555555555555556},{"name":"Heat Savings at Metaupon by insulating K522 Tank (Electricity)","site_id":"leuna","site_name":"Leuna","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":40.0,"scope1":null,"scope2":40.0,"water_savings_ml":null,"energy_savings_mwh":55.0,"incentive_usd":0.0,"capex_usd":null,"opex_savings_usd":7114.0,"payback_years":0.0},{"name":"Heat Savings at Metaupon by insulating R341-R346 stirring tanks (Steam)","site_id":"leuna","site_name":"Leuna","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":155.0,"scope1":0.0,"scope2":155.0,"water_savings_ml":null,"energy_savings_mwh":871.0,"incentive_usd":0.0,"capex_usd":125022.46590000002,"opex_savings_usd":54062.0,"payback_years":2.312575670526433},{"name":"(Custom Project) Tolan Evaporator steam efficiency improvements","site_id":"gurnee","site_name":"Gurnee","stage":"To be implemented","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":5860.0199999999995,"incentive_usd":100000.0,"capex_usd":1000000.0,"opex_savings_usd":150000.0,"payback_years":6.0},{"name":"(GOS 2023) Recover splitter flash to preheat makeup water","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2026,"type":"GHG, Water","ghg_savings_tco2e":1200.0,"scope1":1200.0,"scope2":null,"water_savings_ml":56.781,"energy_savings_mwh":5215.4178,"incentive_usd":178000.0,"capex_usd":500000.0,"opex_savings_usd":145000.0,"payback_years":2.220689655172414},{"name":"Condensate Tie in for Spray Congealing Tower","site_id":"englewood","site_name":"Englewood","stage":"To be implemented","year":2025,"type":"GHG, Water","ghg_savings_tco2e":4.88152,"scope1":4.88152,"scope2":null,"water_savings_ml":0.5,"energy_savings_mwh":27.0,"incentive_usd":0.0,"capex_usd":10000.0,"opex_savings_usd":1500.0,"payback_years":6.666666666666667},{"name":"(GOS 2023) Automate skimming blowdown control","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2025,"type":"GHG, Water","ghg_savings_tco2e":24.0,"scope1":0.0,"scope2":24.0,"water_savings_ml":0.6435179999999999,"energy_savings_mwh":129.8873433,"incentive_usd":3325.0,"capex_usd":60000.0,"opex_savings_usd":5500.0,"payback_years":10.304545454545455},{"name":"Optimizing Cooling Towers","site_id":"chicago","site_name":"Chicago","stage":"Implementation commenced","year":2025,"type":"Water","ghg_savings_tco2e":0.0,"scope1":null,"scope2":null,"water_savings_ml":0.66,"energy_savings_mwh":0.0,"incentive_usd":0.0,"capex_usd":0.0,"opex_savings_usd":130000.0,"payback_years":0.0},{"name":"Air Compressor Replacement to replace current","site_id":"gurnee","site_name":"Gurnee","stage":"Under Investigation","year":2025,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Compressed Air Leak Fixes","site_id":"gurnee","site_name":"Gurnee","stage":"To be implemented","year":2025,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Crystallizer Optimization","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":33.6528,"scope1":0.0,"scope2":33.6528,"water_savings_ml":null,"energy_savings_mwh":82.0,"incentive_usd":0.0,"capex_usd":0.0,"opex_savings_usd":25000.0,"payback_years":0.0},{"name":"Glycol Piping Insulation","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2025,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"(Custom Project) Installation of reciculation system on the alkoxidazation vacuum pumps","site_id":"gurnee","site_name":"Gurnee","stage":"To be implemented","year":2025,"type":"Water","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":9.948031199999999,"energy_savings_mwh":null,"incentive_usd":0.0,"capex_usd":60000.0,"opex_savings_usd":1989.0,"payback_years":30.165912518853695},{"name":"Solar project at Argentina Farm (Phase 1)","site_id":"agrinsa","site_name":"Agrinsa","stage":"To be implemented","year":2025,"type":"GHG","ghg_savings_tco2e":466.0,"scope1":0.0,"scope2":466.0,"water_savings_ml":null,"energy_savings_mwh":1500.0,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Optimizations of Electricity at Dateland","site_id":"dateland","site_name":"Dateland","stage":"To be implemented","year":2025,"type":"GHG","ghg_savings_tco2e":664.0,"scope1":0.0,"scope2":664.0,"water_savings_ml":null,"energy_savings_mwh":1600.0,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Solar PPA","site_id":"leuna","site_name":"Leuna","stage":"Under Investigation","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":0.0,"energy_savings_mwh":4000.0,"incentive_usd":0.0,"capex_usd":0.0,"opex_savings_usd":null,"payback_years":null},{"name":"New taurine synthesis heat exchanger. Recover 90% of heat and save electricity","site_id":"leuna","site_name":"Leuna","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":1465.128,"scope1":0.0,"scope2":1465.128,"water_savings_ml":null,"energy_savings_mwh":2142.0,"incentive_usd":0.0,"capex_usd":50000.0,"opex_savings_usd":353000.0,"payback_years":0.141643059490085},{"name":"Dateland facility to continue adjusting its irrigation practices from furrow to drip at Field Seven Eleven (7-11) Stage 1 (160 acres)","site_id":"dateland","site_name":"Dateland","stage":"Under Investigation","year":2026,"type":"GHG, Water","ghg_savings_tco2e":141.0,"scope1":0.0,"scope2":141.0,"water_savings_ml":370.0,"energy_savings_mwh":400.0,"incentive_usd":220000.0,"capex_usd":300000.0,"opex_savings_usd":52000.0,"payback_years":1.5384615384615385},{"name":"New Dry Frac Air Compressor (SEM Incentive Pending)","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2027,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Supply temperature reset with OA WB conditions to slow fans on VFD during winter","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":4000.0,"payback_years":0.0},{"name":"Oleic acid temperature controls","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Improve approach temperature on cooling water supply temperature","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":20.0,"scope1":null,"scope2":20.0,"water_savings_ml":null,"energy_savings_mwh":52.3,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":3800.0,"payback_years":0.0},{"name":"Dry Frac Chillers - Running 1 vs 2","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Conti Odor scrubber system","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2025,"type":"Water","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":32.0,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Spent Catalyst Reduction (also reduction in nitrogen)","site_id":"chicago","site_name":"Chicago","stage":"","year":null,"type":"","ghg_savings_tco2e":61302.4388,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Shut off chiller and chiller pump when flaker rolls are off","site_id":"chicago","site_name":"Chicago","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":70.0,"scope1":null,"scope2":70.0,"water_savings_ml":null,"energy_savings_mwh":182.8,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":13231.0,"payback_years":0.0},{"name":"Low Nox burners for Boiler 11","site_id":"chicago","site_name":"Chicago","stage":"To be implemented","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Larger Nitrogen Generator","site_id":"gurnee","site_name":"Gurnee","stage":"Under Investigation","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Condensate Tank Replacement","site_id":"gurnee","site_name":"Gurnee","stage":"Under Investigation","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Optimize D1 and D2 Loading to improve efficiency","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2028,"type":"GHG","ghg_savings_tco2e":156.0,"scope1":156.0,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":0.0,"capex_usd":12000.0,"opex_savings_usd":15582.0,"payback_years":0.7701193685021178},{"name":"Utilize free cooling below 30F DBT to reduce chiller energy usage (Flaking)","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2028,"type":"GHG","ghg_savings_tco2e":20.0,"scope1":null,"scope2":20.0,"water_savings_ml":null,"energy_savings_mwh":53.0,"incentive_usd":6328.0,"capex_usd":80000.0,"opex_savings_usd":3818.0,"payback_years":19.295966474594028},{"name":"Reduce pump flow during winter and increase cooling tower fan speeds (Conti water tower)","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2028,"type":"GHG","ghg_savings_tco2e":6.0,"scope1":null,"scope2":6.0,"water_savings_ml":null,"energy_savings_mwh":16.0,"incentive_usd":1850.0,"capex_usd":3000.0,"opex_savings_usd":1160.0,"payback_years":0.9913793103448276},{"name":"Install and utilize VFDs on Boiler 11 feedwater pumps","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2027,"type":"GHG","ghg_savings_tco2e":58.0,"scope1":null,"scope2":58.0,"water_savings_ml":null,"energy_savings_mwh":152.0,"incentive_usd":8000.0,"capex_usd":36000.0,"opex_savings_usd":10977.0,"payback_years":2.550788011296347},{"name":"Install Advanced O2 Trim Controls on B1 and B11 (1% to 2% increase in eff): Flue Gas Test Recommended","site_id":"chicago","site_name":"Chicago","stage":"Under Investigation","year":2028,"type":"GHG","ghg_savings_tco2e":523.0,"scope1":523.0,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":288.0,"incentive_usd":0.0,"capex_usd":60000.0,"opex_savings_usd":52231.0,"payback_years":1.1487430836093508},{"name":"Regenerative Thermal Oxidizer","site_id":"chicago","site_name":"Chicago","stage":"To be implemented","year":2026,"type":"GHG","ghg_savings_tco2e":-1690.0,"scope1":-1690.0,"scope2":0.0,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":0.0,"capex_usd":1000000.0,"opex_savings_usd":null,"payback_years":null},{"name":"Solar project at Argentina Farm (Phase 2)","site_id":"agrinsa","site_name":"Agrinsa","stage":"To be implemented","year":2026,"type":"GHG","ghg_savings_tco2e":560.0,"scope1":0.0,"scope2":560.0,"water_savings_ml":null,"energy_savings_mwh":1800.0,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Optimizations of Electricity at Dateland","site_id":"dateland","site_name":"Dateland","stage":"To be implemented","year":2026,"type":"GHG","ghg_savings_tco2e":249.0,"scope1":0.0,"scope2":249.0,"water_savings_ml":null,"energy_savings_mwh":600.0,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Cocopah Furrow to Drip Irrigation Phase 2 (320 acres)","site_id":"dateland","site_name":"Dateland","stage":"Under Investigation","year":2027,"type":"GHG, Water","ghg_savings_tco2e":null,"scope1":0.0,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":400.0,"incentive_usd":480000.0,"capex_usd":550000.0,"opex_savings_usd":40000.0,"payback_years":1.75},{"name":"Cocopah Furrow to Drip Irrigation Phase 3 (320 acres)","site_id":"dateland","site_name":"Dateland","stage":"Under Investigation","year":2028,"type":"GHG, Water","ghg_savings_tco2e":null,"scope1":0.0,"scope2":null,"water_savings_ml":711.0,"energy_savings_mwh":400.0,"incentive_usd":480000.0,"capex_usd":550000.0,"opex_savings_usd":40000.0,"payback_years":1.75},{"name":"Chlorinated parrafins product exit (not optimization)","site_id":"leuna","site_name":"Leuna","stage":"To be implemented","year":2026,"type":"GHG","ghg_savings_tco2e":59.0,"scope1":null,"scope2":59.0,"water_savings_ml":null,"energy_savings_mwh":330.0,"incentive_usd":0.0,"capex_usd":0.0,"opex_savings_usd":25000.0,"payback_years":0.0},{"name":"New amine distillation. Install preheating for cool NMT/MMA mixture with the warm NMT outlet so that less steam is required in the process.","site_id":"leuna","site_name":"Leuna","stage":"To be implemented","year":2027,"type":"GHG","ghg_savings_tco2e":276.256,"scope1":0.0,"scope2":276.256,"water_savings_ml":null,"energy_savings_mwh":1552.0,"incentive_usd":0.0,"capex_usd":100000.0,"opex_savings_usd":100000.0,"payback_years":1.0},{"name":"Steam Trap Survey and Fixes","site_id":"gurnee","site_name":"Gurnee","stage":"Implemented","year":2025,"type":"GHG","ghg_savings_tco2e":450.0,"scope1":450.0,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":2483.0,"incentive_usd":9365.0,"capex_usd":null,"opex_savings_usd":59582.0,"payback_years":-0.15717834245241852},{"name":"Insulation of steam lines (North Shore incentive) - Phase 1\nBoiler Room in Bldg one, outdoor process areas","site_id":"gurnee","site_name":"Gurnee","stage":"Implemented","year":2026,"type":"GHG","ghg_savings_tco2e":173.0,"scope1":173.0,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":952.0,"incentive_usd":110527.0,"capex_usd":null,"opex_savings_usd":40000.0,"payback_years":-2.763175},{"name":"Insulation of steam lines (North Shore incentive) - Phase 2 (Bldg 1) does not include oxide room","site_id":"gurnee","site_name":"Gurnee","stage":"To be implemented","year":2026,"type":"GHG/Water","ghg_savings_tco2e":160.0,"scope1":160.0,"scope2":null,"water_savings_ml":1.0,"energy_savings_mwh":790.0,"incentive_usd":93237.0,"capex_usd":null,"opex_savings_usd":34000.0,"payback_years":-2.742264705882353},{"name":"LED Lighting Replacement Project","site_id":"gurnee","site_name":"Gurnee","stage":"To be implemented","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Steam Trap Survey and Fixes (Bldg 1)","site_id":"gurnee","site_name":"Gurnee","stage":"To be implemented","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"HVAC Bldg 2 2nd Floor (7.5 ton)","site_id":"gurnee","site_name":"Gurnee","stage":"Under Investigation","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null},{"name":"Compressed Air Leak Fixes","site_id":"gurnee","site_name":"Gurnee","stage":"Under Investigation","year":2026,"type":"GHG","ghg_savings_tco2e":null,"scope1":null,"scope2":null,"water_savings_ml":null,"energy_savings_mwh":null,"incentive_usd":null,"capex_usd":null,"opex_savings_usd":null,"payback_years":null}]};
+const D = window.DASHBOARD_DATA;
+const YEARS = [2021,2022,2023,2024,2025];
+const FUT = [2026,2027,2028,2029,2030];
+const ALLY = YEARS.concat(FUT);
+const C = getComputedStyle(document.documentElement);
+const col = n => C.getPropertyValue('--'+n).trim();
+const SITES = D.sites; const byId = Object.fromEntries(SITES.map(s=>[s.site_id,s]));
+const fmt=(n,d=0)=> (n==null||isNaN(n))?'–':Number(n).toLocaleString('en-US',{maximumFractionDigits:d,minimumFractionDigits:d});
+const fmtK=n=> n==null?'–': Math.abs(n)>=1000? fmt(n/1000,n%1000===0?0:1)+'k' : fmt(n,0);
+const $=s=>document.querySelector(s); const $$=s=>[...document.querySelectorAll(s)];
+
+let state={tab:'overview', yMin:2021, yMax:2025, sites:new Set(SITES.map(s=>s.site_id)),
+  basis:'market', measure:'abs', showClosed:false, scopes:{s1:true,s2:true,s3:false},
+  scn:{preset:'committed', sel:new Set()}};
+
+/* ---------- data helpers ---------- */
+function activeSites(){return SITES.filter(s=> (state.showClosed||s.status!=='closed'));}
+function selSiteIds(){return new Set([...state.sites].filter(id=> state.showClosed||byId[id].status!=='closed'));}
+function yrange(){return YEARS.filter(y=>y>=state.yMin&&y<=state.yMax);}
+
+// company emissions by year for selected sites: {scope1, scope2} (market) from site rows
+function siteEmsByYear(){
+  const sel=selSiteIds(); const out={};
+  YEARS.forEach(y=>out[y]={scope1:0,scope2:0});
+  D.emissions_by_site.forEach(e=>{ if(sel.has(e.site_id)&&out[e.year]){
+    out[e.year].scope1+=e.scope1||0; out[e.year].scope2+=e.scope2_market||0; }});
+  return out;
+}
+function companyScope2(y){ // respects basis toggle at company level
+  const c=D.emissions_company[y]||{};
+  if(state.basis==='location'&&c.scope2_location!=null) return c.scope2_location;
+  return c.scope2_market;
+}
+function prodCompany(y){return D.production_company[y]??null;}
+function isAllSites(){return selSiteIds().size===activeSites().length;}
+
+/* ---------- tiny SVG chart lib ---------- */
+const SVGNS='http://www.w3.org/2000/svg';
+function el(t,a={}){const e=document.createElementNS(SVGNS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+const tip=$('#tip');
+function showTip(html,ev){tip.innerHTML=html;tip.style.opacity=1;moveTip(ev);}
+function moveTip(ev){const p=12;let x=ev.clientX+p,y=ev.clientY+p;
+  const r=tip.getBoundingClientRect(); if(x+r.width>innerWidth)x=ev.clientX-r.width-p; if(y+r.height>innerHeight)y=ev.clientY-r.height-p;
+  tip.style.left=x+'px';tip.style.top=y+'px';}
+function hideTip(){tip.style.opacity=0;}
+function hover(node,html){node.addEventListener('mouseenter',e=>showTip(html,e));
+  node.addEventListener('mousemove',moveTip);node.addEventListener('mouseleave',hideTip);}
+
+function axes(svg,M,W,H,yMax,xLabels,yLabel,opts={}){
+  const yticks=opts.yticks||5;
+  for(let i=0;i<=yticks;i++){const v=yMax*i/yticks; const y=M.t+(H-M.t-M.b)*(1-i/yticks);
+    svg.appendChild(el('line',{x1:M.l,y1:y,x2:W-M.r,y2:y,stroke:'#E6E4E6','stroke-width':1}));
+    const tx=el('text',{x:M.l-8,y:y+4,'text-anchor':'end','font-size':10.5,fill:'#70706F'});
+    tx.textContent=opts.yfmt?opts.yfmt(v):fmtK(v); svg.appendChild(tx);}
+  const n=xLabels.length, plotW=W-M.l-M.r;
+  xLabels.forEach((lb,i)=>{const x=M.l+(n===1?plotW/2:plotW*i/(n-1));
+    const tx=el('text',{x,y:H-M.b+16,'text-anchor':'middle','font-size':10.5,fill:'#70706F'});tx.textContent=lb;svg.appendChild(tx);});
+  if(yLabel){const t=el('text',{x:14,y:M.t-8,'font-size':10.5,fill:'#70706F'});t.textContent=yLabel;svg.appendChild(t);}
+}
+function mkSvg(container,W,H){container.innerHTML='';const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',width:'100%'});container.appendChild(svg);return svg;}
+
+function lineChart(container,{series,xLabels,yMax,yLabel,height=300,yfmt,markers=true}){
+  const W=720,H=height,M={t:24,r:16,b:34,l:54};
+  const svg=mkSvg(container,W,H); const n=xLabels.length, plotW=W-M.l-M.r;
+  yMax=yMax||Math.max(1,...series.flatMap(s=>s.points.map(p=>p.y||0)))*1.12;
+  axes(svg,M,W,H,yMax,xLabels,yLabel,{yfmt});
+  const X=i=> M.l+(n===1?plotW/2:plotW*i/(n-1));
+  const Y=v=> M.t+(H-M.t-M.b)*(1-(v/yMax));
+  series.forEach(s=>{
+    const pts=s.points.filter(p=>p.y!=null);
+    let d=pts.map((p,k)=>(k?'L':'M')+X(p.i)+' '+Y(p.y)).join(' ');
+    svg.appendChild(el('path',{d,fill:'none',stroke:s.color,'stroke-width':s.width||2.4,
+      'stroke-dasharray':s.dashed?'6 5':'','stroke-linejoin':'round','stroke-linecap':'round',opacity:s.opacity||1}));
+    if(markers&&!s.noMarker) pts.forEach(p=>{const c=el('circle',{cx:X(p.i),cy:Y(p.y),r:3.4,fill:'#fff',stroke:s.color,'stroke-width':2});
+      hover(c,`<b>${s.name}</b><br>${xLabels[p.i]}: ${fmt(p.y,p.y<100?1:0)} ${p.unit||''}`);svg.appendChild(c);});
+  });
+  return svg;
+}
+function stackedBar(container,{categories,series,yLabel,height=300,yfmt,unit=''}){
+  const W=720,H=height,M={t:24,r:16,b:34,l:54};
+  const svg=mkSvg(container,W,H); const n=categories.length,plotW=W-M.l-M.r;
+  const totals=categories.map((_,i)=>series.reduce((a,s)=>a+(s.values[i]||0),0));
+  const yMax=Math.max(1,...totals)*1.12;
+  axes(svg,M,W,H,yMax,categories,yLabel,{yfmt});
+  const bw=Math.min(60,plotW/n*0.6);
+  categories.forEach((c,i)=>{const x=M.l+plotW*(n===1?0.5:i/(n-1))-bw/2; let acc=0;
+    series.forEach(s=>{const v=s.values[i]||0; if(v<=0)return;
+      const h=(H-M.t-M.b)*(v/yMax); const y=M.t+(H-M.t-M.b)*(1-((acc+v)/yMax));
+      const rect=el('rect',{x,y,width:bw,height:h,fill:s.color,rx:1});
+      hover(rect,`<b>${s.name}</b><br>${c}: ${fmt(v,v<100?1:0)} ${unit}`); svg.appendChild(rect); acc+=v;});
+    const tt=el('text',{x:x+bw/2,y:M.t+(H-M.t-M.b)*(1-(totals[i]/yMax))-6,'text-anchor':'middle','font-size':10,fill:'#3D3B3E','font-weight':600});
+    tt.textContent=fmtK(totals[i]); svg.appendChild(tt);});
+  return svg;
+}
+function barH(container,{rows,max,color,unit='',height,fmtv}){
+  const W=720,rowH=26,M={t:8,r:60,b:8,l:150}; const H=height||(rows.length*rowH+M.t+M.b);
+  const svg=mkSvg(container,W,H); max=max||Math.max(1,...rows.map(r=>r.v));
+  rows.forEach((r,i)=>{const y=M.t+i*rowH; const w=(W-M.l-M.r)*(r.v/max);
+    const lab=el('text',{x:M.l-8,y:y+rowH/2+1,'text-anchor':'end','font-size':11.5,fill:'#3D3B3E'});lab.textContent=r.label;svg.appendChild(lab);
+    const rect=el('rect',{x:M.l,y:y+4,width:Math.max(1,w),height:rowH-9,fill:r.color||color,rx:3});
+    hover(rect,`<b>${r.label}</b><br>${(fmtv?fmtv(r.v):fmt(r.v,r.v<100?1:0))} ${unit}`);svg.appendChild(rect);
+    const vt=el('text',{x:M.l+w+6,y:y+rowH/2+1,'font-size':11,fill:'#70706F'});vt.textContent=fmtv?fmtv(r.v):fmtK(r.v);svg.appendChild(vt);});
+  return svg;
+}
+function scatter(container,{points,xMax,yLabels,xLabel,height=340}){
+  const W=720,H=height,M={t:18,r:20,b:42,l:96};
+  const svg=mkSvg(container,W,H);const plotW=W-M.l-M.r,plotH=H-M.t-M.b;
+  const ny=yLabels.length;
+  yLabels.forEach((lb,i)=>{const y=M.t+plotH*(1-(i/(ny-1)));
+    svg.appendChild(el('line',{x1:M.l,y1:y,x2:W-M.r,y2:y,stroke:'#E6E4E6'}));
+    const t=el('text',{x:M.l-10,y:y+4,'text-anchor':'end','font-size':11,fill:'#70706F'});t.textContent=lb;svg.appendChild(t);});
+  xMax=xMax||Math.max(1,...points.map(p=>p.x))*1.1;
+  for(let i=0;i<=4;i++){const x=M.l+plotW*i/4;const t=el('text',{x,y:H-M.b+18,'text-anchor':'middle','font-size':10.5,fill:'#70706F'});t.textContent=fmtK(xMax*i/4);svg.appendChild(t);}
+  const xt=el('text',{x:M.l+plotW/2,y:H-6,'text-anchor':'middle','font-size':11,fill:'#70706F'});xt.textContent=xLabel;svg.appendChild(xt);
+  points.forEach(p=>{const x=M.l+plotW*(p.x/xMax);const y=M.t+plotH*(1-(p.yi/(ny-1)));
+    const r=Math.max(5,Math.min(26,Math.sqrt(p.size)*1.1));
+    const c=el('circle',{cx:x,cy:y,r,fill:p.color,'fill-opacity':.72,stroke:p.color,'stroke-width':1.3});
+    hover(c,`<b>${p.label}</b><br>Withdrawal: ${fmt(p.x,1)} ML<br>Stress: ${p.stress} · Risk: ${p.risk}`);svg.appendChild(c);});
+  return svg;
+}
+function legend(items){return `<div class="legend">${items.map(i=>`<span><i style="background:${i.c}"></i>${i.t}</span>`).join('')}</div>`;}
+
+/* ---------- KPI ---------- */
+function deltaHtml(cur,prev,invertGood=true){
+  if(prev==null||cur==null||prev===0)return '';
+  const d=(cur-prev)/prev; const good=invertGood? d<0 : d>0;
+  return `<div class="delta ${d<0?'down':'up'}">${d>0?'▲':'▼'} ${fmt(Math.abs(d*100),1)}% vs prior yr</div>`;
+}
+
+/* ---------- renderers ---------- */
+function renderOverview(){
+  const ems=siteEmsByYear(); const yMaxYr=state.yMax;
+  const s12=y=> (ems[y]?.scope1||0)+(state.basis==='location'&&isAllSites()? companyScope2(y): ems[y]?.scope2||0);
+  const cur=s12(yMaxYr), prev=s12(yMaxYr-1>=2021?yMaxYr-1:yMaxYr);
+  const tgt=(D.targets.ghg_s1s2.find(t=>t.year===yMaxYr)||{}).target;
+  const s3=D.emissions_company['2024']?.scope3_total;
+  const total24=(D.emissions_company['2024']?.scope1||0)+(D.emissions_company['2024']?.scope2_market||0)+(s3||0);
+  const w=D.water_company[yMaxYr]?.withdrawal_ml, wprev=D.water_company[yMaxYr-1]?.withdrawal_ml;
+  const m=$('#main');
+  m.innerHTML=`
+  <div class="grid cards">
+    <div class="card kpi"><div class="label">Scope 1 + 2 (${state.basis}-based) · ${yMaxYr}</div>
+      <div class="val">${fmt(cur)}</div><div class="unit">tCO₂e</div>${deltaHtml(cur,prev)}</div>
+    <div class="card kpi"><div class="label">Total incl. Scope 3 · 2024</div>
+      <div class="val">${fmtK(total24)}</div><div class="unit">tCO₂e · Scope 3 = ${fmt(Math.round(s3/1000))}k (${fmt(100*s3/total24,0)}%)</div></div>
+    <div class="card kpi"><div class="label">Water withdrawal · ${yMaxYr}</div>
+      <div class="val">${fmt(w)}</div><div class="unit">megalitres (ML)</div>${deltaHtml(w,wprev)}</div>
+    <div class="card kpi"><div class="label">Scope 1+2 vs internal target</div>
+      <div class="val">${tgt?fmt(cur-tgt):'–'}</div><div class="unit">tCO₂e ${cur<=tgt?'below ✓':'above'} target (${fmtK(tgt)})</div></div>
+  </div>
+  <div class="two" style="margin-top:16px">
+    <div class="panel"><h3>Scope 1 + 2 emissions vs. target</h3>
+      <div class="desc">Company total, ${state.basis}-based · internal target ${fmtK(tgt||85799)} tCO₂e</div>
+      <div id="ovTrend"></div>${legend([{c:col('scope1'),t:'Scope 1'},{c:col('scope2'),t:'Scope 2'},{c:col('target'),t:'Internal target'}])}</div>
+    <div class="panel"><h3>Water withdrawal trend</h3><div class="desc">Company total · megalitres</div>
+      <div id="ovWater"></div>
+      <div class="note">2025 converted from inventory gallons; the large YoY drop reflects reduced farm irrigation (Dateland) — see Water Risk.</div></div>
+  </div>`;
+  // overview emissions stacked + target
+  const yrs=YEARS; const cats=yrs.map(String);
+  stackedBar($('#ovTrend'),{categories:cats,unit:'tCO₂e',yLabel:'tCO₂e',
+    series:[{name:'Scope 1',color:col('scope1'),values:yrs.map(y=>ems[y].scope1)},
+            {name:'Scope 2',color:col('scope2'),values:yrs.map(y=>ems[y].scope2)}]});
+  // overlay target as line on same axis is complex; show as separate small line note instead
+  lineChart($('#ovWater'),{xLabels:yrs.map(String),yLabel:'ML',height:260,
+    series:[{name:'Water withdrawal',color:col('water'),points:yrs.map((y,i)=>({i,y:D.water_company[y]?.withdrawal_ml,unit:'ML'}))}]});
+}
+
+function renderTrends(){
+  const yrs=yrange(); const ems=siteEmsByYear();
+  const intensity=state.measure==='int';
+  const m=$('#main');
+  const sw=state.scopes;
+  m.innerHTML=`
+  <div class="panel"><h3>GHG emissions by scope</h3>
+    <div class="desc">${intensity?'Intensity per ton of production (2022–2025 only)':'Absolute, '+state.basis+'-based'} · Scope 3 (2023–24 only) is ~10× Scopes 1+2 — toggle it on to compare</div>
+    <div class="legend" id="scopeToggle" style="gap:18px;margin-bottom:6px">
+      <label style="cursor:pointer"><input type="checkbox" data-s="s1" ${sw.s1?'checked':''}> <i style="background:${col('scope1')}"></i> Scope 1</label>
+      <label style="cursor:pointer"><input type="checkbox" data-s="s2" ${sw.s2?'checked':''}> <i style="background:${col('scope2')}"></i> Scope 2</label>
+      <label style="cursor:pointer"><input type="checkbox" data-s="s3" ${sw.s3?'checked':''}> <i style="background:${col('scope3')}"></i> Scope 3 (2023–24)</label></div>
+    <div id="byScope"></div>
+    <div class="note" id="scopeNote"></div></div>
+  <div class="two">
+    <div class="panel"><h3>Top sites — Scope 1 + 2 · ${state.yMax}</h3><div class="desc">${state.basis}-based, tCO₂e</div><div id="topSites"></div></div>
+    <div class="panel"><h3>Scope 3 by category · 2024</h3><div class="desc">tCO₂e · Category 1 dominates</div><div id="s3cat"></div></div>
+  </div>
+  <div class="panel"><h3>Water withdrawal</h3><div class="desc">${intensity?'ML per ton (2022–2025)':'Company total · ML'}</div><div id="waterTrend"></div></div>`;
+
+  // by scope stacked (with S3 where available)
+  const prod=y=>prodCompany(y);
+  const sc=(y,k)=>{const v=ems[y]?.[k]||0; return intensity? (prod(y)? v/prod(y):null): v;};
+  const s3v=y=>{const t=D.emissions_company[y]?.scope3_total; if(t==null)return 0; return intensity?(prod(y)?t/prod(y):0):t;};
+  const cats=yrs.map(String);
+  const allSeries=[
+    {key:'s1',name:'Scope 1',color:col('scope1'),values:yrs.map(y=>sc(y,'scope1'))},
+    {key:'s2',name:'Scope 2',color:col('scope2'),values:yrs.map(y=>sc(y,'scope2'))},
+    {key:'s3',name:'Scope 3',color:col('scope3'),values:yrs.map(y=>s3v(y))}];
+  const series=allSeries.filter(s=>state.scopes[s.key]);
+  stackedBar($('#byScope'),{categories:cats,unit:intensity?'tCO₂e/ton':'tCO₂e',yLabel:intensity?'tCO₂e/ton':'tCO₂e',
+    yfmt:intensity?(v=>fmt(v,2)):null, series:series.length?series:[{name:'',color:'#fff',values:yrs.map(()=>0)}]});
+  $('#scopeNote').textContent = intensity? 'Intensity uses company production (2022–2025); 2021 omitted (no production data).'
+    : (state.scopes.s3? 'Scope 3 (value-chain) is only available 2023–2024; bars without Scope 3 are not lower performance — it is simply not yet inventoried for those years.'
+      : 'Showing Scopes 1+2 (full 2021–2025 trend). Toggle Scope 3 to see total value-chain emissions for 2023–2024.');
+  $('#scopeToggle').querySelectorAll('input').forEach(cb=>cb.onchange=e=>{
+    state.scopes[e.target.dataset.s]=e.target.checked; renderTrends();});
+
+  // top sites
+  const sel=selSiteIds();
+  const rows=D.emissions_by_site.filter(e=>e.year===state.yMax&&sel.has(e.site_id))
+    .map(e=>({label:byId[e.site_id].name,v:(e.scope1||0)+(e.scope2_market||0)}))
+    .filter(r=>r.v>0).sort((a,b)=>b.v-a.v).slice(0,10).map(r=>({...r,color:col('scope1')}));
+  barH($('#topSites'),{rows,unit:'tCO₂e'});
+
+  // scope3 categories 2024
+  const s3=D.scope3_categories['2024']||{};
+  const crows=Object.entries(s3).map(([k,v])=>({label:k.replace(/ \(.*/,'').slice(0,30),v,color:col('scope3')}))
+    .sort((a,b)=>b.v-a.v);
+  barH($('#s3cat'),{rows:crows,unit:'tCO₂e',fmtv:v=>fmtK(v)});
+
+  // water trend
+  const wv=y=>{const w=D.water_company[y]?.withdrawal_ml; return intensity?(prod(y)?w/prod(y):null):w;};
+  lineChart($('#waterTrend'),{xLabels:yrs.map(String),yLabel:intensity?'ML/ton':'ML',height:280,yfmt:intensity?(v=>fmt(v,3)):null,
+    series:[{name:'Water',color:col('water'),points:yrs.map((y,i)=>({i,y:wv(y),unit:intensity?'ML/ton':'ML'}))}]});
+}
+
+function renderTargets(){
+  const ghg=D.targets.ghg_s1s2, wat=D.targets.water;
+  const m=$('#main');
+  const lastA=ghg.filter(t=>t.actual!=null&&t.year<=2025).slice(-1)[0];
+  const tgt=ghg[0]?.target;
+  m.innerHTML=`
+  <div class="grid cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card kpi"><div class="label">2025 Scope 1+2</div><div class="val">${fmtK(lastA.actual)}</div><div class="unit">tCO₂e</div></div>
+    <div class="card kpi"><div class="label">Internal target</div><div class="val">${fmtK(tgt)}</div><div class="unit">tCO₂e (−20% vs 2021)</div></div>
+    <div class="card kpi"><div class="label">Gap to target</div><div class="val">${fmt(lastA.actual-tgt)}</div><div class="unit">tCO₂e ${lastA.actual<=tgt?'below ✓':'to close'}</div></div>
+  </div>
+  <div class="panel" style="margin-top:16px"><h3>Scope 1 + 2 — actual vs. internal target to 2030</h3>
+    <div class="desc">Baseline year 2021 · actuals 2021–2025 · target flat at ${fmtK(tgt)} tCO₂e</div>
+    <div id="tgGhg"></div>${legend([{c:col('scope1'),t:'Actual (S1+2)'},{c:col('target'),t:'Internal target'}])}</div>
+  <div class="panel"><h3>Water — actual vs. 25% &amp; 50% reduction targets</h3>
+    <div class="desc">Megalitres · targets vs. 2021 baseline (${fmtK(wat[0]?.actual)} ML)</div>
+    <div id="tgWater"></div>${legend([{c:col('water'),t:'Actual'},{c:col('target'),t:'−25% target'},{c:col('yellow'),t:'−50% target'}])}</div>`;
+  const yrsAll=ghg.map(t=>t.year);
+  lineChart($('#tgGhg'),{xLabels:yrsAll.map(String),height:320,yLabel:'tCO₂e',
+    series:[{name:'Actual S1+2',color:col('scope1'),points:ghg.map((t,i)=>({i,y:t.year<=2025?t.actual:null,unit:'tCO₂e'}))},
+            {name:'Internal target',color:col('target'),dashed:true,noMarker:true,points:ghg.map((t,i)=>({i,y:t.target}))}]});
+  const wy=wat.map(t=>t.year);
+  lineChart($('#tgWater'),{xLabels:wy.map(String),height:300,yLabel:'ML',
+    series:[{name:'Actual',color:col('water'),points:wat.map((t,i)=>({i,y:t.year<=2025?t.actual:null,unit:'ML'}))},
+            {name:'−25% target',color:col('target'),dashed:true,noMarker:true,points:wat.map((t,i)=>({i,y:t.target_25}))},
+            {name:'−50% target',color:col('yellow'),dashed:true,noMarker:true,points:wat.map((t,i)=>({i,y:t.target_50}))}]});
+}
+
+/* ---------- Scenario ---------- */
+const PIPE_STAGES=['Implementation commenced','To be implemented','Under Investigation'];
+function pipeline(){return D.initiatives.filter(i=>PIPE_STAGES.includes(i.stage)&&(i.ghg_savings_tco2e||i.water_savings_ml));}
+function applyPreset(p){state.scn.preset=p;const pl=pipeline();
+  if(p==='committed')state.scn.sel=new Set(pl.filter(i=>i.stage!=='Under Investigation').map(initKey));
+  else if(p==='all')state.scn.sel=new Set(pl.map(initKey));
+  else if(p==='none')state.scn.sel=new Set();
+}
+function initKey(i){return i.name+'|'+i.site_name+'|'+i.year;}
+function renderScenario(){
+  if(state.scn.preset!=='custom'&&state.scn.sel.size===0)applyPreset('committed');
+  const pl=pipeline();
+  const ghgBase2025=(()=>{const e=siteEmsByYear();return (e[2025].scope1+e[2025].scope2);})();
+  const ghgActual=y=>{const t=D.targets.ghg_s1s2.find(x=>x.year===y);return t?t.actual:null;};
+  const tgt=D.targets.ghg_s1s2[0].target;
+  // cumulative savings by year from selected
+  const selI=pl.filter(i=>state.scn.sel.has(initKey(i)));
+  const ghgSaveByYear=y=>selI.filter(i=>i.type!=='Water'&&(i.year||2026)<=y).reduce((a,i)=>a+(i.ghg_savings_tco2e||0),0);
+  const watSaveByYear=y=>selI.filter(i=>(i.year||2026)<=y).reduce((a,i)=>a+(i.water_savings_ml||0),0);
+  const baseGhg=y=> y<=2025? ghgActual(y): ghgActual(2025); // flat BAU
+  const projGhg=y=> y<=2025? ghgActual(y): Math.max(0, ghgActual(2025)-ghgSaveByYear(y));
+  const watBase2025=D.water_company[2025].withdrawal_ml;
+  const watAct=y=>D.water_company[y]?.withdrawal_ml;
+  const projWat=y=> y<=2025? watAct(y): Math.max(0, watBase2025-watSaveByYear(y));
+  // cost panel
+  const capex=selI.reduce((a,i)=>a+(i.capex_usd||0),0);
+  const opex=selI.reduce((a,i)=>a+(i.opex_savings_usd||0),0);
+  const incent=selI.reduce((a,i)=>a+(i.incentive_usd||0),0);
+  const ghg2030proj=projGhg(2030),ghg2030base=baseGhg(2030);
+  const gapClosed=(ghg2030base-tgt)>0? (ghg2030base-ghg2030proj)/(ghg2030base-tgt):0;
+  const totGhgSave=ghgSaveByYear(2030), totWatSave=watSaveByYear(2030);
+
+  const m=$('#main');
+  m.innerHTML=`
+  <div class="panel"><h3>Scenario modeling — bend the curve to target</h3>
+    <div class="desc">Toggle pipeline initiatives to project Scope 1+2 (and water) vs. the internal target.
+      Baseline (BAU) held flat at the 2025 actual; savings apply from each initiative's year. Historic, already-implemented projects are baked into actuals.</div>
+    <div class="preset">
+      ${['committed','all','none','custom'].map(p=>`<button data-p="${p}" class="${state.scn.preset===p?'on':''}">${
+        {committed:'Committed pipeline',all:'All incl. under-investigation',none:'None (BAU)',custom:'Custom'}[p]}</button>`).join('')}
+    </div>
+    <div class="two">
+      <div>
+        <div id="scnGhg"></div>${legend([{c:col('grey'),t:'BAU (flat)'},{c:col('scope1'),t:'With selected'},{c:col('target'),t:'Target'}])}
+        <div id="scnWat" style="margin-top:14px"></div>${legend([{c:col('grey'),t:'BAU'},{c:col('water'),t:'With selected'}])}
+      </div>
+      <div>
+        <div class="statbox">
+          <div class="s"><div class="l">GHG savings by 2030</div><div class="v">${fmtK(totGhgSave)}<span style="font-size:11px"> tCO₂e/yr</span></div></div>
+          <div class="s"><div class="l">Water savings by 2030</div><div class="v">${fmt(totWatSave,0)}<span style="font-size:11px"> ML/yr</span></div></div>
+          <div class="s"><div class="l">Total CapEx</div><div class="v">$${fmtK(capex)}</div></div>
+          <div class="s"><div class="l">Annual OpEx savings</div><div class="v">$${fmtK(opex)}</div></div>
+          <div class="s"><div class="l">Incentives</div><div class="v">$${fmtK(incent)}</div></div>
+          <div class="s"><div class="l">Blended payback</div><div class="v">${opex>0?fmt(capex/opex,1)+' yr':'–'}</div></div>
+        </div>
+        <div class="s" style="background:var(--bright);color:#13310a;border-radius:8px;padding:12px;margin-top:10px">
+          <div style="font-size:11px;opacity:.8">Gap to 2030 target closed by selection</div>
+          <div style="font-size:22px;font-weight:700">${fmt(Math.max(0,Math.min(100,gapClosed*100)),0)}%</div></div>
+        <div class="note">${selI.length} of ${pl.length} pipeline initiatives selected.</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel"><h3>Initiative pipeline</h3><div class="desc">Select to include in the projection above.</div>
+    <div class="init-list" id="initList"></div></div>`;
+
+  // charts
+  lineChart($('#scnGhg'),{xLabels:ALLY.map(String),height:260,yLabel:'tCO₂e · Scope 1+2',
+    series:[
+      {name:'BAU (flat)',color:col('grey'),dashed:false,opacity:.6,points:ALLY.map((y,i)=>({i,y:baseGhg(y),unit:'tCO₂e'}))},
+      {name:'With selected initiatives',color:col('scope1'),points:ALLY.map((y,i)=>({i,y:projGhg(y),unit:'tCO₂e'}))},
+      {name:'Internal target',color:col('target'),dashed:true,noMarker:true,points:ALLY.map((y,i)=>({i,y:tgt}))}]});
+  lineChart($('#scnWat'),{xLabels:ALLY.map(String),height:220,yLabel:'Water · ML',
+    series:[
+      {name:'BAU',color:col('grey'),opacity:.6,points:ALLY.map((y,i)=>({i,y:y<=2025?watAct(y):watBase2025,unit:'ML'}))},
+      {name:'With selected',color:col('water'),points:ALLY.map((y,i)=>({i,y:projWat(y),unit:'ML'}))}]});
+
+  // initiative list grouped by stage
+  const list=$('#initList'); let html='';
+  PIPE_STAGES.forEach(stg=>{const items=pl.filter(i=>i.stage===stg);if(!items.length)return;
+    html+=`<div class="init-stage">${stg} · ${items.length}</div>`;
+    items.sort((a,b)=>(b.ghg_savings_tco2e||0)-(a.ghg_savings_tco2e||0));
+    items.forEach(i=>{const k=initKey(i);const on=state.scn.sel.has(k);
+      html+=`<label class="init"><input type="checkbox" data-k="${encodeURIComponent(k)}" ${on?'checked':''}>
+        <div><div>${i.name}</div><div class="meta">${i.site_name||'—'} · ${i.year||'—'} · ${i.type||'—'} ·
+          ${i.ghg_savings_tco2e?fmt(i.ghg_savings_tco2e,0)+' tCO₂e':''}${i.water_savings_ml?' · '+fmt(i.water_savings_ml,0)+' ML':''}${i.capex_usd?' · $'+fmtK(i.capex_usd)+' capex':''}</div></div></label>`;});
+  });
+  list.innerHTML=html;
+  list.querySelectorAll('input').forEach(cb=>cb.addEventListener('change',e=>{
+    const k=decodeURIComponent(e.target.dataset.k); state.scn.preset='custom';
+    if(e.target.checked)state.scn.sel.add(k);else state.scn.sel.delete(k); renderScenario();}));
+  m.querySelectorAll('.preset button').forEach(b=>b.addEventListener('click',()=>{applyPreset(b.dataset.p);renderScenario();}));
+}
+
+/* ---------- Water Risk ---------- */
+let waterSort={k:'withdrawal_ml',dir:-1};
+function renderWater(){
+  const rows=D.water_by_site.filter(w=>w.year===2024).map(w=>({...w,site:byId[w.site_id]}))
+    .filter(w=>w.site);
+  const m=$('#main');
+  const stressRank={High:3,Medium:2,Low:1,NA:0};
+  m.innerHTML=`
+  <div class="panel"><h3>Water withdrawal vs. WWF water stress · 2024</h3>
+    <div class="desc">Priority = high withdrawal in high-stress basins (upper-right). Bubble size = withdrawal.</div>
+    <div id="wScatter"></div>${legend([{c:col('orange'),t:'High stress'},{c:col('yellow'),t:'Medium'},{c:col('water'),t:'Low / NA'}])}</div>
+  <div class="panel"><h3>Site water table · 2024</h3>
+    <div class="desc">Withdrawal &amp; consumption (ML) with WWF stress/risk. Click a header to sort.</div>
+    <div style="overflow:auto"><table id="wTable"><thead><tr>
+      <th data-k="name">Site</th><th data-k="facility_type">Type</th><th data-k="river_basin">River basin</th>
+      <th data-k="wwf_water_stress">Stress</th><th data-k="wwf_water_risk">Risk</th>
+      <th data-k="withdrawal_ml">Withdrawal (ML)</th><th data-k="consumption_ml">Consumption (ML)</th></tr></thead><tbody></tbody></table></div>
+    <div class="note">Site-level water detail is 2024; the trend (Overview/Trends) runs 2021–2025. WWF stress/risk are basin attributes (static).</div></div>`;
+  // scatter
+  const colorFor=s=> s==='High'?col('orange'): s==='Medium'?col('yellow'):col('water');
+  const pts=rows.filter(w=>w.withdrawal_ml>0).map(w=>({label:w.site.name,x:w.withdrawal_ml,
+    yi:stressRank[w.site.wwf_water_stress]??0,size:w.withdrawal_ml,color:colorFor(w.site.wwf_water_stress),
+    stress:w.site.wwf_water_stress,risk:w.site.wwf_water_risk}));
+  scatter($('#wScatter'),{points:pts,yLabels:['NA','Low','Medium','High'],xLabel:'Water withdrawal (ML) →'});
+  drawWaterTable(rows);
+}
+function drawWaterTable(rows){
+  const tb=$('#wTable tbody'); const k=waterSort.k;
+  rows.sort((a,b)=>{let va=k in a?a[k]:a.site[k], vb=k in b?b[k]:b.site[k];
+    if(typeof va==='string'||typeof vb==='string'){va=(va||'');vb=(vb||'');return waterSort.dir*va.localeCompare(vb);}
+    return waterSort.dir*(((va||0)-(vb||0)));});
+  tb.innerHTML=rows.map(w=>`<tr>
+    <td>${w.site.name}${w.site.status==='closed'?' <span class="badge">closed</span>':''}</td>
+    <td>${w.site.facility_type}</td><td style="text-align:left">${w.site.river_basin||'—'}</td>
+    <td><span class="pill r-${w.site.wwf_water_stress}">${w.site.wwf_water_stress}</span></td>
+    <td><span class="pill r-${w.site.wwf_water_risk}">${w.site.wwf_water_risk}</span></td>
+    <td>${fmt(w.withdrawal_ml,1)}</td><td>${w.consumption_ml==null?'—':fmt(w.consumption_ml,1)}</td></tr>`).join('');
+  $$('#wTable th').forEach(th=>th.onclick=()=>{const kk=th.dataset.k;
+    waterSort.dir = waterSort.k===kk? -waterSort.dir : -1; waterSort.k=kk; drawWaterTable(rows);});
+}
+// river basin lookup from data
+D.water_by_site.forEach(w=>{const s=byId[w.site_id]; if(s&&w.river_basin)s.river_basin=w.river_basin;});
+
+/* ---------- shell wiring ---------- */
+function render(){
+  $$('#tabs .tab').forEach(t=>t.classList.toggle('on',t.dataset.t===state.tab));
+  const intensityTabs=['trends'];
+  ({overview:renderOverview,trends:renderTrends,scenario:renderScenario,targets:renderTargets,water:renderWater}[state.tab])();
+}
+function buildControls(){
+  const yMin=$('#yMin'),yMax=$('#yMax');
+  YEARS.forEach(y=>{yMin.add(new Option(y,y));yMax.add(new Option(y,y));});
+  yMin.value=2021;yMax.value=2025;
+  yMin.onchange=e=>{state.yMin=+e.target.value; if(state.yMin>state.yMax){state.yMax=state.yMin;yMax.value=state.yMax;} render();};
+  yMax.onchange=e=>{state.yMax=+e.target.value; if(state.yMax<state.yMin){state.yMin=state.yMax;yMin.value=state.yMin;} render();};
+  // sites dropdown
+  const sl=$('#siteList');
+  function paint(){sl.innerHTML=activeSites().map(s=>`<div class="row"><input type="checkbox" id="s_${s.site_id}" ${state.sites.has(s.site_id)?'checked':''}>
+    <label for="s_${s.site_id}">${s.name}${s.producing?'':' <span class="muted">·'+s.facility_type+'</span>'}</label></div>`).join('');
+    sl.querySelectorAll('input').forEach(cb=>cb.onchange=e=>{const id=e.target.id.slice(2);
+      if(e.target.checked)state.sites.add(id);else state.sites.delete(id); updSiteBtn(); render();});}
+  function updSiteBtn(){const n=selSiteIds().size,tot=activeSites().length;
+    $('#siteBtn').textContent=(n===tot?'All sites':n+' sites')+' ▾';}
+  $('#siteBtn').onclick=()=>$('#siteDD').classList.toggle('open');
+  document.addEventListener('click',e=>{if(!$('#siteDD').contains(e.target))$('#siteDD').classList.remove('open');});
+  $('#siteAll').onclick=()=>{activeSites().forEach(s=>state.sites.add(s.site_id));paint();updSiteBtn();render();};
+  $('#siteNone').onclick=()=>{state.sites.clear();paint();updSiteBtn();render();};
+  $('#siteProd').onclick=()=>{state.sites=new Set(SITES.filter(s=>s.producing).map(s=>s.site_id));paint();updSiteBtn();render();};
+  paint();updSiteBtn();
+  $('#basis').onclick=e=>{if(e.target.dataset.v){state.basis=e.target.dataset.v;
+    $$('#basis button').forEach(b=>b.classList.toggle('on',b===e.target));render();}};
+  $('#measure').onclick=e=>{if(e.target.dataset.v){state.measure=e.target.dataset.v;
+    $$('#measure button').forEach(b=>b.classList.toggle('on',b===e.target));render();}};
+  $('#showClosed').onchange=e=>{state.showClosed=e.target.checked;
+    if(e.target.checked)SITES.forEach(s=>{if(s.status==='closed')state.sites.add(s.site_id);});
+    else SITES.forEach(s=>{if(s.status==='closed')state.sites.delete(s.site_id);});
+    paint();updSiteBtn();render();};
+  $('#tabs').onclick=e=>{const t=e.target.closest('.tab');if(t){state.tab=t.dataset.t;render();}};
+  $('#gen').textContent='Generated '+D.meta.generated;
+}
+buildControls();
+applyPreset('committed');
+render();
+</script>
+</body>
+</html>

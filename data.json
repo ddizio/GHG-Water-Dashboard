@@ -1202,6 +1202,7 @@
    "year": 2024,
    "withdrawal_ml": 7362.97,
    "consumption_ml": 3681.49,
+   "river_basin": "WMOBB374",
    "surface": 0,
    "groundwater": 7362.97,
    "third_party": 0,
@@ -1212,6 +1213,7 @@
    "year": 2024,
    "withdrawal_ml": 0.19,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.19,
@@ -1222,6 +1224,7 @@
    "year": 2024,
    "withdrawal_ml": 1.65,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 1.65,
@@ -1232,6 +1235,7 @@
    "year": 2024,
    "withdrawal_ml": 0.16,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.16,
@@ -1242,6 +1246,7 @@
    "year": 2024,
    "withdrawal_ml": 11.37,
    "consumption_ml": 0.0,
+   "river_basin": "Ohio",
    "surface": 0,
    "groundwater": 0,
    "third_party": 11.37,
@@ -1252,6 +1257,7 @@
    "year": 2024,
    "withdrawal_ml": 401.54,
    "consumption_ml": 80.31,
+   "river_basin": "Michigan",
    "surface": 0,
    "groundwater": 0,
    "third_party": 401.54,
@@ -1262,6 +1268,7 @@
    "year": 2024,
    "withdrawal_ml": 4991.47,
    "consumption_ml": 2495.73,
+   "river_basin": "Colorado",
    "surface": 0,
    "groundwater": 4991.47,
    "third_party": 0,
@@ -1272,6 +1279,7 @@
    "year": 2024,
    "withdrawal_ml": 0.5,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.5,
@@ -1282,6 +1290,7 @@
    "year": 2024,
    "withdrawal_ml": 6.89,
    "consumption_ml": 0.0,
+   "river_basin": "Ohio",
    "surface": 0,
    "groundwater": 0,
    "third_party": 6.89,
@@ -1292,6 +1301,7 @@
    "year": 2024,
    "withdrawal_ml": 4.39,
    "consumption_ml": 0.0,
+   "river_basin": "North Atlantic (419)",
    "surface": 0,
    "groundwater": 0,
    "third_party": 4.39,
@@ -1302,6 +1312,7 @@
    "year": 2024,
    "withdrawal_ml": 347.06,
    "consumption_ml": 226.96,
+   "river_basin": "Mississippi (419)",
    "surface": 0,
    "groundwater": 0,
    "third_party": 347.06,
@@ -1312,6 +1323,7 @@
    "year": 2024,
    "withdrawal_ml": 3.12,
    "consumption_ml": 0.0,
+   "river_basin": "Ebro",
    "surface": 0,
    "groundwater": 0,
    "third_party": 3.12,
@@ -1322,6 +1334,7 @@
    "year": 2024,
    "withdrawal_ml": 37.03,
    "consumption_ml": -17.91,
+   "river_basin": "Elbe",
    "surface": 19.66,
    "groundwater": 0,
    "third_party": 1.62,
@@ -1332,6 +1345,7 @@
    "year": 2024,
    "withdrawal_ml": 0.83,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.83,
@@ -1342,6 +1356,7 @@
    "year": 2024,
    "withdrawal_ml": 0.36,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.36,
@@ -1352,6 +1367,7 @@
    "year": 2024,
    "withdrawal_ml": 0.08,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.08,
@@ -1362,6 +1378,7 @@
    "year": 2024,
    "withdrawal_ml": 0.03,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.03,
@@ -1372,6 +1389,7 @@
    "year": 2024,
    "withdrawal_ml": 0.16,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.16,
@@ -1382,6 +1400,7 @@
    "year": 2024,
    "withdrawal_ml": 0.5,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.5,
@@ -1392,6 +1411,7 @@
    "year": 2024,
    "withdrawal_ml": 0.55,
    "consumption_ml": 0.17,
+   "river_basin": "Colorado",
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.55,
@@ -1402,6 +1422,7 @@
    "year": 2024,
    "withdrawal_ml": 0.79,
    "consumption_ml": 0.0,
+   "river_basin": null,
    "surface": 0,
    "groundwater": 0,
    "third_party": 0.79,
@@ -1560,52 +1581,52 @@
   "ghg_s1s2": [
    {
     "year": 2021,
-    "actual": 107249.0,
+    "actual": 107249,
     "target": 85799.2
    },
    {
     "year": 2022,
-    "actual": 106088.0,
+    "actual": 106088,
     "target": 85799.2
    },
    {
     "year": 2023,
-    "actual": 88585.0,
+    "actual": 88585,
     "target": 85799.2
    },
    {
     "year": 2024,
-    "actual": 82258.0,
+    "actual": 82258,
     "target": 85799.2
    },
    {
     "year": 2025,
-    "actual": 87865.33768,
+    "actual": 80144,
     "target": 85799.2
    },
    {
     "year": 2026,
-    "actual": 87173.33768,
+    "actual": null,
     "target": 85799.2
    },
    {
     "year": 2027,
-    "actual": 86839.08168,
+    "actual": null,
     "target": 85799.2
    },
    {
     "year": 2028,
-    "actual": 86134.08168,
+    "actual": null,
     "target": 85799.2
    },
    {
     "year": 2029,
-    "actual": 85429.08168,
+    "actual": null,
     "target": 85799.2
    },
    {
     "year": 2030,
-    "actual": 84724.08168,
+    "actual": null,
     "target": 85799.2
    }
   ],
@@ -1636,37 +1657,37 @@
    },
    {
     "year": 2025,
-    "actual": 13143.2484508,
+    "actual": 7984.1,
     "target_25": 12391.5,
     "target_50": 8261.0
    },
    {
     "year": 2026,
-    "actual": 12716.467450799999,
+    "actual": null,
     "target_25": 12391.5,
     "target_50": 8261.0
    },
    {
     "year": 2027,
-    "actual": 12716.467450799999,
+    "actual": null,
     "target_25": 12391.5,
     "target_50": 8261.0
    },
    {
     "year": 2028,
-    "actual": 12005.467450799999,
+    "actual": null,
     "target_25": 12391.5,
     "target_50": 8261.0
    },
    {
     "year": 2029,
-    "actual": 12005.467450799999,
+    "actual": null,
     "target_25": 12391.5,
     "target_50": 8261.0
    },
    {
     "year": 2030,
-    "actual": 12005.467450799999,
+    "actual": null,
     "target_25": 12391.5,
     "target_50": 8261.0
    }

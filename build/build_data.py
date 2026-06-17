@@ -244,9 +244,11 @@ for r in rows(ws, maxc=14):
     withdrawal = surface+ground+third+recyc
     consumption = num(r[12])
     if withdrawal == 0 and not consumption: continue
+    basin = r[2] if len(r)>2 and isinstance(r[2],str) else None
     data["water_by_site"].append({"site_id": sid, "year": 2024,
         "withdrawal_ml": round(withdrawal,2),
         "consumption_ml": round(consumption,2) if consumption is not None else None,
+        "river_basin": (basin if basin and basin.upper()!="NA" else None),
         "surface": round(surface,2),"groundwater": round(ground,2),
         "third_party": round(third,2),"recycled": round(recyc,2)})
 wb.close()
@@ -292,6 +294,16 @@ for r in rows(ws, maxc=5):
             "target_25":num(r[2]),"target_50":num(r[3])})
 wb.close()
 
+# Override target "actuals" with inventory-derived actuals (the planning sheet's
+# 2025 was a pre-close forecast). Keeps target lines; future actuals -> null.
+ghg_actual = {y: round(comp[y]["scope1"]+comp[y]["scope2_market"])
+              for y in comp if "scope1" in comp[y] and "scope2_market" in comp[y]}
+for t in data["targets"]["ghg_s1s2"]:
+    t["actual"] = ghg_actual.get(t["year"]) if t["year"] <= 2025 else None
+for t in data["targets"]["water"]:
+    w = data["water_company"].get(str(t["year"]))
+    t["actual"] = (w["withdrawal_ml"] if w else None) if t["year"] <= 2025 else None
+
 # ---- Initiatives (CDP GHG-Water Initiatives (2)) ----------------------------
 wb = load("cdp"); ws = wb["GHG-Water Initiatives (2)"]
 rr = rows(ws, maxc=14)
@@ -321,6 +333,24 @@ wb.close()
 out = os.path.join(ROOT, "data.json")
 with open(out, "w") as f:
     json.dump(data, f, indent=1, ensure_ascii=False)
+
+# ---- Inject data + logo into the template -> self-contained dashboard.html --
+import base64
+tpl_path = os.path.join(ROOT, "build", "dashboard_template.html")
+if os.path.exists(tpl_path):
+    with open(tpl_path, encoding="utf-8") as f:
+        html = f.read()
+    logo_path = os.path.join(ROOT, "assets", "vantage-logo.jpg")
+    if os.path.exists(logo_path):
+        b64 = base64.b64encode(open(logo_path, "rb").read()).decode()
+        html = html.replace("__LOGO_DATA_URI__", "data:image/jpeg;base64," + b64)
+    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    html = html.replace("const D = window.DASHBOARD_DATA;",
+                        "window.DASHBOARD_DATA=" + payload + ";\nconst D = window.DASHBOARD_DATA;")
+    dash = os.path.join(ROOT, "dashboard.html")
+    with open(dash, "w", encoding="utf-8") as f:
+        f.write(html)
+    print("=== dashboard.html written:", f"{os.path.getsize(dash)//1024} KB ===")
 
 # ---- Validation report ------------------------------------------------------
 def co(y, k): return data["emissions_company"].get(str(y),{}).get(k)
